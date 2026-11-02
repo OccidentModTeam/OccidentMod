@@ -12,7 +12,7 @@ namespace Occident.Common.UI.CharacterCreation;
 
 internal sealed class ClassStartingStatsPanel : UIPanel
 {
-    private const string Prefix = "Mods.Occident.UI.CharacterCreation.";
+    private const string Prefix = "Mods.OccidentMod.UI.CharacterCreation.";
     private readonly Player player;
     private readonly Func<ClassCategory> getCategory;
     private readonly UIText heading, previewHeading;

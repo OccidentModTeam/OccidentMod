@@ -10,7 +10,7 @@ namespace Occident.Content.Items.Weapons.Summon;
 
 public sealed class AncientAgaricStaff : ModItem
 {
-    public override string Texture => "Occident/Assets/Sprites/Weapon/Summon/ancient_agaric_staff";
+    public override string Texture => "OccidentMod/Assets/Sprites/Weapon/Summon/ancient_agaric_staff";
 
     public override void SetStaticDefaults()
     {

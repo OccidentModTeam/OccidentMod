@@ -14,7 +14,7 @@ namespace Occident.Common.UI.CharacterCreation;
 internal static class CasualCreationOptions
 {
     private static readonly Color CasualColor = new(120, 185, 132);
-    private const string TextPrefix = "Mods.Occident.UI.CharacterCreation.";
+    private const string TextPrefix = "Mods.OccidentMod.UI.CharacterCreation.";
 
     public static void Add(UICharacterCreation page, Player player, UIElement middle, UIElement root)
     {

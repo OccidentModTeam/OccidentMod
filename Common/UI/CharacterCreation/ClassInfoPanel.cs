@@ -13,7 +13,7 @@ internal sealed class ClassInfoPanel : UIPanel
     public const float PanelWidth = 300f;
     public const float PanelHeight = 360f;
     public const float PanelGap = 12f;
-    private const string Prefix = "Mods.Occident.UI.CharacterCreation.";
+    private const string Prefix = "Mods.OccidentMod.UI.CharacterCreation.";
     private readonly Player player;
     private readonly Func<ClassCategory> getCategory;
     private readonly UIText categoryText, ratingsTitle;
@@ -78,7 +78,7 @@ internal sealed class ClassInfoPanel : UIPanel
         {
             lastState = state;
             categoryText.SetText(Language.GetTextValue(Prefix + "ClassType",
-                Language.GetTextValue($"Mods.Occident.ClassCategories.{category}")));
+                Language.GetTextValue($"Mods.OccidentMod.ClassCategories.{category}")));
             ratingsTitle.SetText(Language.GetText(Prefix + "RatingsTitle"));
             bool selected = current != ClassType.None && ClassCatalog.GetCategory(current) == category;
             ClassType displayed = selected ? current : ClassType.None;

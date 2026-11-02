@@ -1,5 +1,5 @@
 Mods: {
-	Occident: {
+	OccidentMod: {
 		Items: {
 			MushroomInABottle: {
 				DisplayName: 瓶中蘑菇

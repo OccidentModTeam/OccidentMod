@@ -1,5 +1,5 @@
 Mods: {
-	Occident: {
+	OccidentMod: {
 		Items: {
 			MushroomInABottle: {
 				DisplayName: Mushroom in a Bottle

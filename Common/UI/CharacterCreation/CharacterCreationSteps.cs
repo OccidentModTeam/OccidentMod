@@ -106,15 +106,15 @@ internal sealed class CharacterCreationSteps
     private void RefreshButtons()
     {
         bool hasClass = player.GetModPlayer<ClassPlayer>().CurrentClass != ClassType.None;
-        string caption = !IsClassStep ? "Mods.Occident.UI.CharacterCreation.Next"
-            : hasClass ? "UI.Create" : "Mods.Occident.UI.CharacterCreation.ContinueWithoutClass";
+        string caption = !IsClassStep ? "Mods.OccidentMod.UI.CharacterCreation.Next"
+            : hasClass ? "UI.Create" : "Mods.OccidentMod.UI.CharacterCreation.ContinueWithoutClass";
         var signature = (IsClassStep, infoOpen, Language.ActiveCulture.Name, caption);
         if (signature == lastCaption)
             return;
         lastCaption = signature;
 
         back.SetText(Language.GetText(IsClassStep
-            ? "Mods.Occident.UI.CharacterCreation.Previous" : "UI.Back"), 0.7f, true);
+            ? "Mods.OccidentMod.UI.CharacterCreation.Previous" : "UI.Back"), 0.7f, true);
         next.SetText(Language.GetText(caption), 0.7f, true);
 
         // Match the native large-font buttons. Widen the page instead of shrinking the caption.

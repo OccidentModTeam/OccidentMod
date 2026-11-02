@@ -48,7 +48,7 @@ internal sealed class ClassRadarChart : UIElement
         for (int i = 0; i < values.Length; i++)
         {
             values[i] = float.IsFinite(values[i]) ? MathHelper.Clamp(values[i], 0f, ClassRatings.MaxRating) : 0f;
-            string key = $"Mods.Occident.UI.CharacterCreation.Ratings.{AxisKeys[i]}";
+            string key = $"Mods.OccidentMod.UI.CharacterCreation.Ratings.{AxisKeys[i]}";
             string label = Language.GetTextValue(key);
             captions[i] = (label == key ? AxisKeys[i] : label) + (HasSelection ? $" {values[i]:0.#}" : "");
         }

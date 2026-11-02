@@ -21,7 +21,7 @@ internal sealed class WorldCreationChoices(UIWorldCreation page)
     private WorldDifficultyPreview preview;
     private (WorldOptions Options, int VanillaDifficulty, string Culture)? lastCaption;
 
-    internal static string Text(string key) => Language.GetTextValue("Mods.Occident.UI.WorldCreation." + key);
+    internal static string Text(string key) => Language.GetTextValue("Mods.OccidentMod.UI.WorldCreation." + key);
 
     public void AddSize(UIElement parent, float top)
     {

@@ -14,7 +14,7 @@ namespace Occident.Common.UI.CharacterCreation;
 // Native difficulty-button artwork and text sizing, used as a blue class-name list.
 internal sealed class ClassCreationCategory : UIElement
 {
-    private const string PromptKey = "Mods.Occident.UI.CharacterCreation.ChooseClass";
+    private const string PromptKey = "Mods.OccidentMod.UI.CharacterCreation.ChooseClass";
     private readonly Player player;
     private readonly ClassCategory category;
     private readonly Player selection = new();
@@ -78,7 +78,7 @@ internal sealed class ClassCreationCategory : UIElement
 
         foreach (ClassType id in classes)
         {
-            string prefix = $"Mods.Occident.Classes.{id}.";
+            string prefix = $"Mods.OccidentMod.Classes.{id}.";
             var button = new ClassNameButton(selection, Language.GetText(prefix + "DisplayName"),
                 Language.GetText(prefix + "Description"), (byte)id);
             button.Width.Set(0f, 1f);
@@ -112,7 +112,7 @@ internal sealed class ClassCreationCategory : UIElement
             return;
         lastState = state;
         string key = ClassCatalog.GetCategory(current) == category
-            ? $"Mods.Occident.Classes.{current}.Description" : PromptKey;
+            ? $"Mods.OccidentMod.Classes.{current}.Description" : PromptKey;
         description.SetText(Language.GetText(key));
         descriptionList.Recalculate();
         scrollbar.ViewPosition = 0f;

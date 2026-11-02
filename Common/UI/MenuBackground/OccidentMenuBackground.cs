@@ -9,7 +9,7 @@ namespace Occident.Common.UI.MenuBackground;
 
 internal sealed class OccidentMenuBackground
 {
-    private const string AssetFolder = "Occident/Assets/UI/MenuBackground/";
+    private const string AssetFolder = "OccidentMod/Assets/UI/MenuBackground/";
     // Optional replacement image. When absent, leave the vanilla menu scenery visible.
     private const string BackgroundAssetPath = AssetFolder + "CustomBackground";
     private Asset<Texture2D> background;

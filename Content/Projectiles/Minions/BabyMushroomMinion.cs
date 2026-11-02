@@ -29,7 +29,7 @@ public sealed class BabyMushroomMinion : ModProjectile
     private int landingTicks;
     private bool wasAirborne;
 
-    public override string Texture => "Occident/Assets/Sprites/Summoned Entity/baby_mushroom";
+    public override string Texture => "OccidentMod/Assets/Sprites/Summoned Entity/baby_mushroom";
 
     public override void SetStaticDefaults()
     {

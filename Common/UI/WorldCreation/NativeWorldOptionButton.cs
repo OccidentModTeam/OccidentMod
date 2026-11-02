@@ -13,7 +13,7 @@ namespace Occident.Common.UI.WorldCreation;
 // 參考接入方式：https://github.com/RemurinTheReal/Terraria-Extra-World-Sizes/blob/main/Common/ExtraUIWorldCreation.cs
 internal sealed class NativeWorldOptionButton : GroupOptionButton<int>
 {
-    private const string Prefix = "Mods.Occident.UI.WorldCreation.";
+    private const string Prefix = "Mods.OccidentMod.UI.WorldCreation.";
     private readonly Func<bool> selected;
     private readonly Asset<Texture2D> optionIcon;
 
@@ -31,7 +31,7 @@ internal sealed class NativeWorldOptionButton : GroupOptionButton<int>
             _ => null
         };
         if (assetName is not null)
-            optionIcon = ModContent.Request<Texture2D>("Occident/Assets/UI/WorldCreation/" + assetName);
+            optionIcon = ModContent.Request<Texture2D>("OccidentMod/Assets/UI/WorldCreation/" + assetName);
         OnLeftMouseDown += (_, _) => click();
         SetCurrentOption(selected() ? 1 : 0);
     }

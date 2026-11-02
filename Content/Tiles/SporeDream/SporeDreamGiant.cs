@@ -9,7 +9,7 @@ namespace Occident.Content.Tiles.SporeDream;
 
 public sealed class SporeDreamGiant : ModTile
 {
-    private const string Root="Occident/Assets/Sprites/Environment/SporeDreamForest/";
+    private const string Root="OccidentMod/Assets/Sprites/Environment/SporeDreamForest/";
     // These are the actual opaque bounds, not equal atlas cells.
     public static readonly Rectangle[] CapFrames={new(2,12,96,62),new(100,20,76,54),new(186,2,52,72)};
     private static readonly int[] BranchAnchorY={28,30,38};

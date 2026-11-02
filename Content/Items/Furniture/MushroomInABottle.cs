@@ -6,7 +6,7 @@ namespace Occident.Content.Items.Furniture;
 
 public sealed class MushroomInABottle : ModItem
 {
-    public override string Texture => "Occident/Assets/Sprites/Item/Furniture/mushroom_in_a_bottle";
+    public override string Texture => "OccidentMod/Assets/Sprites/Item/Furniture/mushroom_in_a_bottle";
 
     public override void SetDefaults()
     {

@@ -6,7 +6,7 @@ namespace Occident.Content.Buffs.Summon;
 
 public sealed class BabyMushroomBuff : ModBuff
 {
-    public override string Texture => "Occident/Assets/Sprites/Item/Furniture/mushroom_in_a_bottle";
+    public override string Texture => "OccidentMod/Assets/Sprites/Item/Furniture/mushroom_in_a_bottle";
 
     public override void SetStaticDefaults()
     {

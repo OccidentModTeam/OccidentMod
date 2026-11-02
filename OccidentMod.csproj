@@ -4,7 +4,7 @@
 	<Import Project="..\tModLoader.targets" />
 
 	<!-- General -->
-    <PropertyGroup><RootNamespace>Occident</RootNamespace><AssemblyName>Occident</AssemblyName></PropertyGroup>
+    <PropertyGroup><RootNamespace>Occident</RootNamespace><AssemblyName>OccidentMod</AssemblyName></PropertyGroup>
 	<PropertyGroup>
 		
 	</PropertyGroup>

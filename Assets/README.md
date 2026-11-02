@@ -28,7 +28,7 @@
 
 ## 資源引用規則
 
-- ModContent 資源路徑使用 `/`，並省略副檔名，例如 `Occident/Assets/UI/CharacterCreation/ClassInfoToggle`。
+- ModContent 資源路徑使用 `/`，並省略副檔名，例如 `OccidentMod/Assets/UI/CharacterCreation/ClassInfoToggle`。
 - 區分大小寫，名稱須與實際檔案一致；拼接形成的動態路徑也要一併檢查。
 - 模組根目錄的 `icon.png`、`icon_small.png`、`icon_workshop.png` 保留原位置，供模組與工坊圖示使用。
 - 新增物品、敵怪等 Content 類別時，須考量 tModLoader 的預設貼圖路徑；若貼圖另放 Assets，需在類別中明確指定 Texture。

@@ -53,9 +53,9 @@ public sealed class PlayerClassTagSystem : ModSystem
             {
                 ClassType currentClass = classPlayer.CurrentClass;
                 string key = currentClass != ClassType.None
-                    ? $"Mods.Occident.Classes.{currentClass}.DisplayName"
-                    : classPlayer.hasChooseClass ? "Mods.Occident.UI.PlayerClassTag.UnknownClass"
-                    : "Mods.Occident.UI.PlayerClassTag.NoClass";
+                    ? $"Mods.OccidentMod.Classes.{currentClass}.DisplayName"
+                    : classPlayer.hasChooseClass ? "Mods.OccidentMod.UI.PlayerClassTag.UnknownClass"
+                    : "Mods.OccidentMod.UI.PlayerClassTag.NoClass";
                 caption = Language.GetTextValue(key);
                 if (caption == key && currentClass != ClassType.None)
                     caption = currentClass.ToString();

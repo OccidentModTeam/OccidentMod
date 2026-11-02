@@ -8,6 +8,8 @@ namespace Occident.Common.UI.MenuBackground;
 [Autoload(Side = ModSide.Client)]
 public sealed class OccidentMenu : ModMenu
 {
+    public override string DisplayName => "OccidentMod";
+
     private readonly OccidentMenuBackground background = new();
 
     public override bool PreDrawLogo(SpriteBatch spriteBatch, ref Vector2 logoCenter,

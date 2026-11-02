@@ -9,7 +9,7 @@ namespace Occident.Common.UI.CharacterCreation;
 
 internal sealed class ClassInfoToggleButton : UIPanel
 {
-    private readonly Asset<Texture2D> icon = ModContent.Request<Texture2D>("Occident/Assets/UI/CharacterCreation/ClassInfoToggle");
+    private readonly Asset<Texture2D> icon = ModContent.Request<Texture2D>("OccidentMod/Assets/UI/CharacterCreation/ClassInfoToggle");
     private readonly Func<bool> isOpen;
 
     public ClassInfoToggleButton(Func<bool> isOpen, Action toggle)

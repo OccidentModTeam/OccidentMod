@@ -36,7 +36,7 @@ internal sealed class WorldDifficultyPreview
             _ => null
         };
         Bunny.SetValue(preview, asset is null ? original
-            : ModContent.Request<Texture2D>("Occident/Assets/UI/WorldCreation/Difficulty/Previews/" + asset));
+            : ModContent.Request<Texture2D>("OccidentMod/Assets/UI/WorldCreation/Difficulty/Previews/" + asset));
         current = difficulty;
     }
 }

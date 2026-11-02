@@ -28,7 +28,7 @@ internal sealed class ClassDifficultyText : UIText
         this.difficulty = difficulty;
         measuredFont = null;
         value = level;
-        string fullText = Language.GetTextValue("Mods.Occident.UI.CharacterCreation.Difficulty", level);
+        string fullText = Language.GetTextValue("Mods.OccidentMod.UI.CharacterCreation.Difficulty", level);
         int index = fullText.IndexOf(level, StringComparison.Ordinal);
         prefix = index >= 0 ? fullText.Substring(0, index) : fullText;
         suffix = index >= 0 ? fullText.Substring(index + level.Length) : "";

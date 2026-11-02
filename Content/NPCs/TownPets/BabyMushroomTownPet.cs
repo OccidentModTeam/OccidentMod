@@ -13,7 +13,7 @@ namespace Occident.Content.NPCs.TownPets;
 [AutoloadHead]
 public sealed class BabyMushroomTownPet : ModNPC
 {
-    public override string Texture => "Occident/Assets/Sprites/Town Pets/city_baby_mushroom";
+    public override string Texture => "OccidentMod/Assets/Sprites/Town Pets/city_baby_mushroom";
 
     // Original frame durations converted from milliseconds to Terraria's 60-Hz ticks.
     internal static readonly int[] FrameTicks = {

@@ -131,7 +131,7 @@ public sealed class ClassWeaponPreviewSystem : ModSystem
         {
             if (phase < 48) return;
             if (mushroom == null) {
-                mushroom = ModContent.Request<Texture2D>("Occident/Assets/Sprites/Summoned Entity/baby_mushroom",
+                mushroom = ModContent.Request<Texture2D>("OccidentMod/Assets/Sprites/Summoned Entity/baby_mushroom",
                     AssetRequestMode.ImmediateLoad).Value;
                 cellWidth = mushroom.Width;
                 cellHeight = mushroom.Height / 8;

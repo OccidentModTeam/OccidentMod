@@ -10,7 +10,7 @@ namespace Occident.Content.Tiles.SporeDream;
 
 public sealed class SporeDreamPlants : ModTile
 {
-    public override string Texture => "Occident/Assets/Sprites/Environment/SporeDreamForest/mushroom_glass";
+    public override string Texture => "OccidentMod/Assets/Sprites/Environment/SporeDreamForest/mushroom_glass";
     public override void SetStaticDefaults()
     {
         Main.tileFrameImportant[Type]=true; Main.tileCut[Type]=true; Main.tileNoFail[Type]=true;
@@ -30,7 +30,7 @@ public sealed class SporeDreamPlants : ModTile
 
 public sealed class PandoraPlant : ModTile
 {
-    public override string Texture => "Occident/Assets/Sprites/Environment/SporeDreamForest/pangora_berry";
+    public override string Texture => "OccidentMod/Assets/Sprites/Environment/SporeDreamForest/pangora_berry";
     public override void SetStaticDefaults()
     {
         Main.tileFrameImportant[Type]=true; Main.tileNoAttach[Type]=true; Main.tileLavaDeath[Type]=true;
@@ -40,7 +40,7 @@ public sealed class PandoraPlant : ModTile
         TileObjectData.newTile.RandomStyleRange=3;
         TileObjectData.newTile.AnchorValidTiles=new[]{ModContent.TileType<SporeDreamGrass>()};
         TileObjectData.addTile(Type);
-        AddMapEntry(new Color(145,86,182),Terraria.Localization.Language.GetOrRegister("Mods.Occident.Items.PandorasFruit.DisplayName"));
+        AddMapEntry(new Color(145,86,182),Terraria.Localization.Language.GetOrRegister("Mods.OccidentMod.Items.PandorasFruit.DisplayName"));
         RegisterItemDrop(ModContent.ItemType<Items.Materials.PandorasFruit>());
         DustType=DustID.PurpleMoss;
     }

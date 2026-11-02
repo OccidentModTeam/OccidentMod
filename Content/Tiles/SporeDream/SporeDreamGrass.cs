@@ -9,7 +9,7 @@ namespace Occident.Content.Tiles.SporeDream;
 
 public sealed class SporeDreamGrass : ModTile
 {
-    public override string Texture => "Occident/Assets/Sprites/Environment/SporeDreamForest/liegrass_tiles";
+    public override string Texture => "OccidentMod/Assets/Sprites/Environment/SporeDreamForest/liegrass_tiles";
     public override void SetStaticDefaults()
     {
         Main.tileSolid[Type]=true; Main.tileBlockLight[Type]=true; Main.tileMergeDirt[Type]=false;
@@ -22,7 +22,7 @@ public sealed class SporeDreamGrass : ModTile
         Main.tileMerge[TileID.Dirt][Type]=true;
         Main.tileMerge[TileID.Grass][Type]=true;
         Main.tileMerge[Type][TileID.Grass]=true;
-        AddMapEntry(new Color(30,119,117),Language.GetOrRegister("Mods.Occident.SporeDream.Grass"));
+        AddMapEntry(new Color(30,119,117),Language.GetOrRegister("Mods.OccidentMod.SporeDream.Grass"));
         RegisterItemDrop(ItemID.DirtBlock);
         DustType=DustID.Grass;
         VanillaFallbackOnModDeletion=TileID.Grass;

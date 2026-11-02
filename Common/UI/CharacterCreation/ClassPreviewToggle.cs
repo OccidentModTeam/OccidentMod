@@ -11,7 +11,7 @@ namespace Occident.Common.UI.CharacterCreation;
 // Preview-only UI state. No equipment, inventory or saved character data is changed.
 internal sealed class ClassPreviewToggle : UIPanel
 {
-    private const string Prefix = "Mods.Occident.UI.CharacterCreation.";
+    private const string Prefix = "Mods.OccidentMod.UI.CharacterCreation.";
     private readonly Color accent;
     private readonly UIText label, status;
     private string lastCulture = "";
