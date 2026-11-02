@@ -1,0 +1,3 @@
+displayName = 挽歌 Occident
+author = OoolongTea
+version = 0.1

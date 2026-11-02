@@ -1,0 +1,19 @@
+Mods: {
+	Occident: {
+		Biomes: {
+			SporeDreamForest: {
+				DisplayName: 孢梦之森
+				// TownNPCDialogueName: the Spore Dream Forest
+			}
+		}
+
+		SporeDream.Grass: 孢梦草皮
+
+		Items: {
+			PandorasFruit: {
+				DisplayName: 致幻果
+				Tooltip: 仍在微微跳动。
+			}
+		}
+	}
+}

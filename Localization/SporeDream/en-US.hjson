@@ -1,0 +1,19 @@
+Mods: {
+	Occident: {
+		Biomes: {
+			SporeDreamForest: {
+				DisplayName: Spore Dream Forest
+				TownNPCDialogueName: the Spore Dream Forest
+			}
+		}
+
+		SporeDream.Grass: Spore Dream Grass
+
+		Items: {
+			PandorasFruit: {
+				DisplayName: Pandora’s Fruit
+				Tooltip: It still beats faintly.
+			}
+		}
+	}
+}
