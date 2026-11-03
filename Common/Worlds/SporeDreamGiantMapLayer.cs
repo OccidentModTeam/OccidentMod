@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.GameContent;
 using Terraria.Localization;
 using Terraria.Map;
 using Terraria.ModLoader;
@@ -22,6 +21,7 @@ public sealed class SporeDreamGiantMapLayer : ModMapLayer
     private readonly Dictionary<string,(Color[] Pixels,int Width)> sources=new();
     private int revision=-1,world=-1;
     private ulong refreshed;
+    private Texture2D mapPixel;
     public override Position GetDefaultPosition()=>BeforeFirstVanillaLayer;
     private (Color[] Pixels,int Width) Source(string name)
     {
@@ -69,7 +69,13 @@ public sealed class SporeDreamGiantMapLayer : ModMapLayer
     {
         if(Main.gameMenu || Main.Map is null)return;
         if(world!=Main.worldID || revision!=SporeDreamCurvedSystem.Instance.MapRevision || Main.GameUpdateCount-refreshed>120)Refresh();
-        var texture=TextureAssets.MagicPixel.Value;
+        // Vanilla MagicPixel is 1x1000, not a single-pixel texture. Drawing
+        // its whole frame stretches map cells into lines outside the minimap.
+        if(mapPixel is null) {
+            mapPixel=new Texture2D(Main.instance.GraphicsDevice,1,1);
+            mapPixel.SetData(new[]{Color.White});
+        }
+        var texture=mapPixel;
         float scale=context.MapScale/context.DrawScale;
         foreach(var entry in ink) {
             Point p=entry.Key;byte light=Main.Map[p.X,p.Y].Light;
@@ -82,5 +88,10 @@ public sealed class SporeDreamGiantMapLayer : ModMapLayer
             if(result.IsMouseOver)text=Language.GetTextValue("Mods.OccidentMod.SporeDream.GiantMushroom");
         }
     }
-    public override void Unload(){ink.Clear();sources.Clear();}
+    public override void Unload()
+    {
+        ink.Clear();sources.Clear();
+        var oldPixel=mapPixel;mapPixel=null;
+        if(oldPixel is not null)Main.QueueMainThreadAction(()=>oldPixel.Dispose());
+    }
 }

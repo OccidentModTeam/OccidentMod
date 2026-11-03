@@ -12,7 +12,11 @@ Mods: {
 			}
 		}
 
-		NPCs.BabyMushroomTownPet.DisplayName: Baby Mushroom
+		NPCs: {
+			BabyMushroomTownPet.DisplayName: Baby Mushroom
+			FungalWyrmPreview.DisplayName: Fungal Wyrm Preview
+		}
+
 		Projectiles.BabyMushroomMinion.DisplayName: Baby Mushroom
 
 		Buffs: {

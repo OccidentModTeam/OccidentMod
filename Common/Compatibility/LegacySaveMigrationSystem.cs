@@ -20,6 +20,7 @@ public sealed class LegacySaveMigrationSystem : ModSystem
     {
         try
         {
+            LegacySaveIdentity.ValidateRuntimeMembers();
             playerHook = new Hook(Find("PlayerIO", "LoadModData"),
                 (Action<PlayerLoad, Player, IList<TagCompound>>)LoadPlayer);
             worldHook = new Hook(Find("WorldIO", "LoadModData"),

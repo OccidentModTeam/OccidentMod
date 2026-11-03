@@ -12,7 +12,11 @@ Mods: {
 			}
 		}
 
-		NPCs.BabyMushroomTownPet.DisplayName: 菇宝宝
+		NPCs: {
+			BabyMushroomTownPet.DisplayName: 菇宝宝
+			FungalWyrmPreview.DisplayName: 真菌蠕虫造型预览
+		}
+
 		Projectiles.BabyMushroomMinion.DisplayName: 菇宝宝
 
 		Buffs: {

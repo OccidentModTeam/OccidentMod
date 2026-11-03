@@ -49,17 +49,9 @@ public class ClassPlayer : ModPlayer
         if (ClassID == nextClassID)
             return false;
 
-        string previousClassID = ClassID;
         ClassID = nextClassID;
         CurrentClass = classid;
-        
-        OnClassChange(previousClassID, ClassID);
         return true;
-    }
-
-    private void OnClassChange(string previousClassID, string newClassID)
-    {
-        
     }
 
     internal void ApplyNetworkState(ClassType classId, bool hasInitialClass)

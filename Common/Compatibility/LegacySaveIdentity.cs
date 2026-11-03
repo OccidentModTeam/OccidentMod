@@ -17,6 +17,15 @@ internal static class LegacySaveIdentity
     private static readonly FieldInfo GeneratedVersions = typeof(WorldFileData).GetField("modVersionsDuringWorldGen", Flags);
     private static readonly PropertyInfo Headers = typeof(WorldFileData).GetProperty("ModHeaders", Flags);
 
+    // Check all required members before any load hook is installed. A changed tML
+    // version must report a compatibility error, not fail midway through loading a save.
+    internal static void ValidateRuntimeMembers()
+    {
+        if (UsedMods is null) throw new MissingFieldException(typeof(WorldFileData).FullName, "usedMods");
+        if (GeneratedVersions is null) throw new MissingFieldException(typeof(WorldFileData).FullName, "modVersionsDuringWorldGen");
+        if (Headers?.GetGetMethod(true) is null) throw new MissingMemberException(typeof(WorldFileData).FullName, "ModHeaders getter");
+    }
+
     internal static IList<TagCompound> Remap(IList<TagCompound> records, string currentName)
     {
         // Current saves are the common case: no copied list and no nested searches.
