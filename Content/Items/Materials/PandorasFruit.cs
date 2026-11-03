@@ -7,7 +7,7 @@ namespace Occident.Content.Items.Materials;
 
 public sealed class PandorasFruit : ModItem
 {
-    public override string Texture => "OccidentMod/Assets/Sprites/Environment/SporeDreamForest/pangora_berry_item";
+    public override string Texture => "OccidentMod/Assets/Sprites/Item/pangora_berry_item";
     public override void SetStaticDefaults()
     {
         Main.RegisterItemAnimation(Type,new DrawAnimationVertical(8,6));

@@ -7,6 +7,8 @@ namespace Occident.Content.Biomes;
 
 public sealed class SporeDreamForest : ModBiome
 {
+    public override ModSurfaceBackgroundStyle SurfaceBackgroundStyle => Main.dedServ
+        ? null : ModContent.GetInstance<SporeDreamSurfaceBackgroundStyle>();
     public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
     public override int Music => Main.dayTime ? MusicID.Night : MusicID.OverworldDay;
     public override string BestiaryIcon => "Terraria/Images/Item_5";

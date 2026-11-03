@@ -25,3 +25,8 @@ obj/
 Thumbs.db
 Desktop.ini
 .DS_Store
+
+# Local audit output and drawing histories
+output/
+.codex/
+**/*-timelapse/

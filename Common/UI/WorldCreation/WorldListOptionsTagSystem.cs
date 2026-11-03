@@ -39,8 +39,15 @@ public sealed class WorldListOptionsTagSystem : ModSystem
     private static void ShowExtraLarge(ILContext il)
     {
         var cursor = new ILCursor(il);
-        if (!cursor.TryGotoNext(MoveType.Before, instruction => instruction.MatchCallvirt<WorldFileData>("get_WorldSizeName")))
-            throw new InvalidOperationException("Cannot find world size label in UIWorldListItem.DrawSelf.");
+        if (!cursor.TryGotoNext(MoveType.Before, instruction =>
+            instruction.MatchCallvirt<WorldFileData>("get_WorldSizeName")
+            || instruction.MatchCall<WorldFileData>("get_WorldSizeName")))
+        {
+            ModContent.GetInstance<WorldListOptionsTagSystem>().Mod.Logger.Warn(
+                "World size label hook is unavailable; keeping the existing world list label. "
+                + "Another mod or tModLoader version may have changed UIWorldListItem.DrawSelf.");
+            return;
+        }
         cursor.Remove();
         // 只替換列表的顯示名稱，不改動原版 WorldFileData 或實際尺寸。
         cursor.EmitDelegate<Func<WorldFileData, string>>(data => Read(data).ExtraLarge

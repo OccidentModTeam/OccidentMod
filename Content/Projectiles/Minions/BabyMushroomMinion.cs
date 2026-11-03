@@ -17,7 +17,7 @@ public sealed class BabyMushroomMinion : ModProjectile
     private const int FrameHeight = 20;
     private const float RiseGravity = 0.26f;
     private const float FallGravity = 0.34f;
-    private const float AttackHopSpeed = 3f;
+    private const float AttackHopSpeed = 3.4f;
     private const float FollowHopSpeed = 3.2f;
     private const float ObstacleHopSpeed = 6f;
     // Source frames contain vertical animation offsets. Anchor each visible sole to
@@ -28,6 +28,8 @@ public sealed class BabyMushroomMinion : ModProjectile
     private int preparationTicks;
     private int landingTicks;
     private bool wasAirborne;
+    private int targetIndex=-1;
+    private int targetSearchTimer;
 
     public override string Texture => "OccidentMod/Assets/Sprites/Summoned Entity/baby_mushroom";
 
@@ -52,7 +54,7 @@ public sealed class BabyMushroomMinion : ModProjectile
         Projectile.tileCollide = true;
         Projectile.ignoreWater = true;
         Projectile.usesLocalNPCImmunity = true;
-        Projectile.localNPCHitCooldown = 30;
+        Projectile.localNPCHitCooldown = 18;
     }
 
     public override void OnSpawn(IEntitySource source)
@@ -91,13 +93,14 @@ public sealed class BabyMushroomMinion : ModProjectile
             Collision.TileCollision(Projectile.position, Vector2.UnitY, Projectile.width,
                 Projectile.height, fallThrough).Y == 0f;
         if (grounded && wasAirborne) {
-            landingTicks = 6;
+            landingTicks = 2;
             Projectile.velocity.X = 0f;
             Projectile.ai[2] = 0f;
         }
         wasAirborne = !grounded;
 
         NPC target = FindTarget(owner);
+        if(target!=null) landingTicks=0;
         Projectile.friendly = target != null;
         Vector2 destination = target?.Center ?? owner.Bottom +
             new Vector2(-owner.direction * (36 + Projectile.minionPos * 28), -10);
@@ -111,7 +114,8 @@ public sealed class BabyMushroomMinion : ModProjectile
         }
 
         // Return through terrain if stranded; normal following and combat stay on the ground.
-        if (ownerDistance > 600f || Projectile.ai[1] == 1f) {
+        float returnDistance=target!=null ? 900f : 600f;
+        if (ownerDistance > returnDistance || Projectile.ai[1] == 1f) {
             Projectile.ai[1] = 1f;
             Projectile.ai[2] = 0f;
             Projectile.tileCollide = false;
@@ -125,15 +129,14 @@ public sealed class BabyMushroomMinion : ModProjectile
         else {
             Projectile.tileCollide = true;
             float dx = destination.X - Projectile.Center.X;
-            float stopDistance = target == null ? 18f :
-                Math.Max(2f, (Projectile.width + target.width) * 0.5f - 3f);
+            float stopDistance = target == null ? 18f : 2f;
             if (grounded) {
                 Projectile.velocity.X *= 0.7f;
                 if (Projectile.ai[0] > 0f) Projectile.ai[0]--;
-                if (Math.Abs(dx) > stopDistance && Projectile.ai[0] <= 0f && landingTicks <= 0) {
-                    if (preparationTicks == 0) preparationTicks = 4;
+                if ((target!=null || Math.Abs(dx)>stopDistance) && Projectile.ai[0] <= 0f && landingTicks <= 0) {
+                    if (preparationTicks == 0) preparationTicks = target!=null ? 1 : 4;
                     if (--preparationTicks == 0) {
-                        int direction = Math.Sign(dx);
+                        int direction = Math.Abs(dx)>1f ? Math.Sign(dx) : (Projectile.direction==0 ? 1 : Projectile.direction);
                         // A jumping enemy is not an obstacle. Only a solid block
                         // directly ahead enables a high hop.
                         Vector2 probe = new(direction > 0 ? Projectile.Right.X + 1f : Projectile.Left.X - 5f,
@@ -141,16 +144,20 @@ public sealed class BabyMushroomMinion : ModProjectile
                         bool blocked = Collision.SolidCollision(probe, 4, 16);
                         float hopSpeed = blocked ? ObstacleHopSpeed :
                             target != null ? AttackHopSpeed : FollowHopSpeed;
+                        if(target!=null && target.Bottom.Y<Projectile.Bottom.Y-8f) {
+                            float rise=Math.Clamp(Projectile.Bottom.Y-target.Bottom.Y+10f,22f,70f);
+                            hopSpeed=Math.Max(hopSpeed,MathF.Sqrt(2f*RiseGravity*rise));
+                        }
                         // Shorten the horizontal stride with the remaining gap;
                         // otherwise even a low hop can carry it past a small enemy.
                         float estimatedHeight = hopSpeed * hopSpeed / (2f * RiseGravity);
                         float flightTicks = Math.Max(1f, hopSpeed / RiseGravity +
                             MathF.Sqrt(2f * estimatedHeight / FallGravity) - 1f);
                         float speed = Math.Clamp((Math.Abs(dx) - stopDistance + 3f) / flightTicks,
-                            0.3f, target != null ? 3f : 4f);
+                            target!=null ? 0.5f : 0.3f, target != null ? 6.5f : 4f);
                         Projectile.velocity = new Vector2(direction * speed, -hopSpeed);
                         Projectile.ai[2] = direction;
-                        Projectile.ai[0] = target != null ? 4f : 12f;
+                        Projectile.ai[0] = target != null ? 0f : 12f;
                         Projectile.netUpdate = true;
                     }
                 }
@@ -160,7 +167,11 @@ public sealed class BabyMushroomMinion : ModProjectile
                 // Keep the launch direction until landing. Approaching or passing
                 // the enemy may brake this hop, but can never reverse it in midair.
                 float remainingAhead = dx * Projectile.ai[2];
-                if (remainingAhead <= stopDistance) Projectile.velocity.X *= 0.9f;
+                if (remainingAhead <= stopDistance) Projectile.velocity.X *= 0.75f;
+                else {
+                    float pursuitSpeed=Math.Clamp(remainingAhead*.18f,1.2f,6.5f);
+                    Projectile.velocity.X=MathHelper.Lerp(Projectile.velocity.X,Projectile.ai[2]*pursuitSpeed,.18f);
+                }
             }
             float gravity = Projectile.velocity.Y < 0f ? RiseGravity : FallGravity;
             Projectile.velocity.Y = Math.Min(Projectile.velocity.Y + gravity, 10f);
@@ -231,7 +242,7 @@ public sealed class BabyMushroomMinion : ModProjectile
         Main.EntitySpriteDraw(texture,
             Projectile.Bottom - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY),
             source, lightColor, Projectile.rotation, new Vector2(width / 2f, feetY),
-            Projectile.scale, SpriteEffects.None, 0f);
+            Projectile.scale, Projectile.spriteDirection<0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
         return false;
     }
 
@@ -239,20 +250,45 @@ public sealed class BabyMushroomMinion : ModProjectile
     {
         if (owner.HasMinionAttackTargetNPC) {
             NPC designated = Main.npc[owner.MinionAttackTargetNPC];
-            if (designated.CanBeChasedBy(this) && Vector2.Distance(Projectile.Center, designated.Center) < 700f &&
-                Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height,
-                    designated.position, designated.width, designated.height)) return designated;
+            if (designated.CanBeChasedBy(this) && Vector2.DistanceSquared(Projectile.Center, designated.Center) < 1000f*1000f &&
+                CanSeeTarget(designated)) {
+                targetIndex=designated.whoAmI;
+                targetSearchTimer=0;
+                return designated;
+            }
+        }
+        // Keep attacking a live nearby target between searches. Dead/out-of-range
+        // targets are discarded immediately, rather than waiting for the timer.
+        if(targetIndex>=0 && targetIndex<Main.maxNPCs && targetSearchTimer>0) {
+            targetSearchTimer--;
+            NPC cached=Main.npc[targetIndex];
+            if(cached.CanBeChasedBy(this)
+                && Vector2.DistanceSquared(Projectile.Center,cached.Center)<900f*900f
+                && Vector2.DistanceSquared(owner.Center,cached.Center)<1100f*1100f) return cached;
         }
         NPC closest = null;
-        float range = 600f;
+        float rangeSquared = 800f*800f;
         foreach (NPC npc in Main.ActiveNPCs) {
-            float distance = Vector2.Distance(Projectile.Center, npc.Center);
-            if (!npc.CanBeChasedBy(this) || distance >= range ||
-                !Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height,
-                    npc.position, npc.width, npc.height)) continue;
+            if(!npc.CanBeChasedBy(this)) continue;
+            float distanceSquared = Vector2.DistanceSquared(Projectile.Center, npc.Center);
+            if (distanceSquared >= rangeSquared || Vector2.DistanceSquared(owner.Center,npc.Center)>=1100f*1100f ||
+                !CanSeeTarget(npc)) continue;
             closest = npc;
-            range = distance;
+            rangeSquared = distanceSquared;
         }
+        targetIndex=closest?.whoAmI ?? -1;
+        targetSearchTimer=closest!=null ? 5 : 0;
         return closest;
+    }
+
+    private bool CanSeeTarget(NPC target)
+    {
+        // Very small grounded actors can fail the body-center tile ray because
+        // its neighboring cell touches the floor. An upper-body ray recognizes
+        // visible ground enemies without allowing attacks through a full wall.
+        return Collision.CanHitLine(Projectile.position,Projectile.width,Projectile.height,
+                target.position,target.width,target.height)
+            || Collision.CanHitLine(Projectile.Top+new Vector2(0,2),1,1,
+                target.Top+new Vector2(0,2),1,1);
     }
 }

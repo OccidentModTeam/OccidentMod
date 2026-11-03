@@ -165,7 +165,7 @@ public sealed class ClassWeaponPreviewSystem : ModSystem
             Vector2 position = ground + new Vector2(direction * MathF.Sin(age / 45f) * 3f, -hop) * scale;
             batch.Draw(mushroom, position, new Rectangle(0, frame * cellHeight, cellWidth, cellHeight),
                 Color.White * alpha, 0f, new Vector2(cellWidth / 2f, feet[frame]), scale,
-                SpriteEffects.None, 0f);
+                direction<0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
             if (age < 36) {
                 // Use the same Cloud dust atlas as BabyMushroomMinion.OnSpawn.
                 // UI-local particles never consume the world's Dust pool.

@@ -1,122 +1,147 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
+using Occident.Common.Worlds;
 
 namespace Occident.Content.Tiles.SporeDream;
 
 public sealed class SporeDreamGiant : ModTile
 {
     private const string Root="OccidentMod/Assets/Sprites/Environment/SporeDreamForest/";
-    // These are the actual opaque bounds, not equal atlas cells.
-    public static readonly Rectangle[] CapFrames={new(2,12,96,62),new(100,20,76,54),new(186,2,52,72)};
-    private static readonly int[] BranchAnchorY={28,30,38};
-    public override string Texture => Root+"amanita_crema_tiles";
+    // Old single-column saves use X=0/18/36. New paired columns use a distinct
+    // marker, so existing plants remain readable without rewriting the world.
+    private const int SplitFrameBase=108;
+    private const int SingleFrameBase=216;
+    private static bool felling;
+    public static readonly Rectangle[] CapFrames={SporeDreamGiantLayout.CapFrame(0),SporeDreamGiantLayout.CapFrame(1),SporeDreamGiantLayout.CapFrame(2)};
+    public override string Texture => Root+"amanita_crema_tiles_02";
+    private static bool Split(Tile t) => t.TileFrameX>=SplitFrameBase && t.TileFrameX<SplitFrameBase+108;
+    private static int Half(Tile t) => Split(t)?((t.TileFrameX-SplitFrameBase)/18)%2:0;
+    private static int PrimaryX(int x,int y) => x-Half(Main.tile[x,y]);
+    public static bool IsPrimaryTile(int x,int y) => Half(Main.tile[x,y])==0;
+    public static bool IsPairedTile(int x,int y) => Split(Main.tile[x,y]);
+    public static float StemCenterX(int x,int y)=>PrimaryX(x,y)*16+(Split(Main.tile[x,y])?16:8);
+    public static int CapStyle(int x,int y)
+    {
+        Tile t=Main.tile[x,y];
+        return t.TileFrameX>=SingleFrameBase?(t.TileFrameX-SingleFrameBase)/18:
+            Split(t)?(t.TileFrameX-SplitFrameBase)/36:(t.TileFrameX/18)%3;
+    }
     public override void SetStaticDefaults()
     {
-        Main.tileFrameImportant[Type]=true; Main.tileAxe[Type]=true; Main.tileLavaDeath[Type]=true;
-        Main.tileNoFail[Type]=false; Main.tileNoAttach[Type]=true;
-        MineResist=4f;
-        AddMapEntry(new Color(191,132,69)); DustType=DustID.WoodFurniture;
+        Main.tileFrameImportant[Type]=true;Main.tileAxe[Type]=true;Main.tileHammer[Type]=false;Main.tileLavaDeath[Type]=true;
+        Main.tileNoFail[Type]=false;Main.tileNoAttach[Type]=true;
+        // Giant mushroom stems use axes, like other tree trunks.
+        MinPick=0;MineResist=1f;
+        AddMapEntry(new Color(156,83,83),Language.GetText("Mods.OccidentMod.SporeDream.GiantMushroom"));DustType=DustID.WoodFurniture;
         RegisterItemDrop(ItemID.Mushroom);
     }
     public static bool TryGrow(int x,int ground)
+        => SporeDreamCurvedSystem.Instance.TryFloor(x,ground);
+    public static void GetStemBounds(int x,int y,out int top,out int bottom,out int bodyTop)
     {
-        int height=WorldGen.genRand.Next(6,14), type=ModContent.TileType<SporeDreamGiant>();
-        Tile support=Main.tile[x,ground];
-        if(!support.HasTile || support.TileType!=ModContent.TileType<SporeDreamGrass>() || support.IsHalfBlock || support.Slope!=0) return false;
-        // Keep six tiles between trunks even when replenishing an existing forest.
-        for(int i=x-5;i<=x+5;i++) for(int y=ground-40;y<=ground+4;y++)
-            if(!WorldGen.InWorld(i,y,1) || (Main.tile[i,y].HasTile && Main.tile[i,y].TileType==type)) return false;
-        int plants=ModContent.TileType<SporeDreamPlants>();
-        for(int i=x-3;i<=x+3;i++) for(int j=ground-height-5;j<ground;j++) {
-            if(!WorldGen.InWorld(i,j,1)) return false;
-            Tile t=Main.tile[i,j];
-            if((t.HasTile && t.TileType!=plants) || t.LiquidAmount>0 || Main.wallHouse[t.WallType]) return false;
-        }
-        int style=WorldGen.genRand.Next(3);
-        for(int y=ground-height;y<ground;y++) {
-            Tile t=Main.tile[x,y]; t.ClearTile(); t.HasTile=true; t.TileType=(ushort)type;
-            t.TileFrameX=(short)(style*18); t.TileFrameY=(short)(y==ground-height ? 0 : 18);
-        }
-        return true;
-    }
-    private static uint BranchHash(int x,int y,int side,int worldId)
-    {
-        unchecked {
-            uint h=(uint)x*73856093u ^ (uint)y*19349663u ^ (uint)(side+1)*83492791u ^ (uint)worldId;
-            h^=h>>16; h*=0x7feb352du; h^=h>>15; h*=0x846ca68bu; return h^(h>>16);
-        }
-    }
-    public static int BranchRow(int x,int y,int side,int worldId)
-    {
-        uint hash=BranchHash(x,y,side,worldId);
-        // Independent left/right rolls, with a vertical gap on each side. No per-frame RNG.
-        if(hash%100>=28 || BranchHash(x,y-1,side,worldId)%100<28) return -1;
-        return (int)((hash>>8)%3);
-    }
-    public static bool CanDrawBranch(int x,int y,int side,int row)
-    {
-        if(row<0 || row>2 || side<0 || side>1 || !WorldGen.InWorld(x,y,5)) return false;
+        x=PrimaryX(x,y);
         int type=ModContent.TileType<SporeDreamGiant>();
-        // Require a live trunk both above and below the attachment, with a bare lower stem.
-        for(int dy=-1;dy<=3;dy++)
-            if(!Main.tile[x,y+dy].HasTile || Main.tile[x,y+dy].TileType!=type) return false;
-        // Entire branch footprint must be free; never paint across a hillside or another object.
-        int left=x*16+(side==0 ? -30 : 4),top=y*16+16-BranchAnchorY[row];
-        for(int i=left/16;i<=(left+41)/16;i++) for(int j=top/16;j<=(top+41)/16;j++) {
-            if(i==x) continue;
-            Tile t=Main.tile[i,j];
-            if(t.HasTile) return false;
+        top=y;bottom=y+1;
+        while(top>1 && Main.tile[x,top-1].HasTile && Main.tile[x,top-1].TileType==type) top--;
+        while(bottom<Main.maxTilesY-1 && Main.tile[x,bottom].HasTile && Main.tile[x,bottom].TileType==type) bottom++;
+        bodyTop=top+(Main.tile[x,top].TileFrameY==0?1:0);
+    }
+    public static bool HasDecoratedStemAt(int x,int y)
+    {
+        x=PrimaryX(x,y);
+        GetStemBounds(x,y,out int top,out int bottom,out int bodyTop);
+        int pixel=(y-bodyTop)*16;
+        if(pixel<0) return false;
+        int pixels=(bottom-bodyTop)*16;
+        int first=pixel/SporeDreamGiantLayout.StemHeight,last=(pixel+15)/SporeDreamGiantLayout.StemHeight;
+        return SporeDreamGiantLayout.Decorated(x,top,pixels,first,Main.worldID)
+            || SporeDreamGiantLayout.Decorated(x,top,pixels,last,Main.worldID);
+    }
+    public static void DrawStemTile(int i,int j,SpriteBatch spriteBatch,Vector2 offset)
+    {
+        Tile tile=Main.tile[i,j];
+        if(!IsPrimaryTile(i,j))return;
+        int x=PrimaryX(i,j);
+        GetStemBounds(x,j,out int top,out int bottom,out int bodyTop);
+        int startPixel=(j-bodyTop)*16;
+        if(startPixel<0) return;
+        int bodyPixels=(bottom-bodyTop)*16;
+        var texture=ModContent.Request<Texture2D>(Root+"amanita_crema_tiles_02").Value;
+        bool cutTop=Main.tile[x,top].TileFrameY!=0;
+        // A severed column keeps its tile data: its exposed top is determined
+        // from the remaining trunk, so saves and fog redraws use the same end.
+        var cutTexture=cutTop && startPixel<SporeDreamGiantLayout.StemHeight
+            ?ModContent.Request<Texture2D>(Root+"amanita_crema_tiles_top").Value:null;
+        int cutStyle=SporeDreamGiantLayout.Style(x,top,1,Main.worldID);
+        Color color=Lighting.GetColor(i,j);
+        var slots=SporeDreamGiantLayout.DecorationSlots(x,top,bodyPixels,Main.worldID);
+        {
+            int pixel=startPixel,remaining=16,destinationY=0;
+            Vector2 position=new(StemCenterX(i,j)-8,j*16);
+            if(cutTop && j==top) {
+                Rectangle tip=SporeDreamGiantLayout.CutStemFrame(cutStyle,0,SporeDreamGiantLayout.CutTopExtension);
+                spriteBatch.Draw(cutTexture,position-new Vector2(0,SporeDreamGiantLayout.CutTopExtension)-Main.screenPosition+offset,tip,color);
+            }
+            while(remaining>0) {
+                int segment=pixel/SporeDreamGiantLayout.StemHeight;
+                int height=SporeDreamGiantLayout.SliceHeight(pixel,remaining);
+                int style=SporeDreamGiantLayout.Style(x,top,segment,Main.worldID);
+                bool decorated=segment==slots.First || segment==slots.Second;
+                Rectangle frame=SporeDreamGiantLayout.StemFrame(style,decorated,pixel%SporeDreamGiantLayout.StemHeight,height);
+                bool capped=cutTop && segment==0;
+                if(capped) frame=SporeDreamGiantLayout.CutStemFrame(cutStyle,pixel+SporeDreamGiantLayout.CutTopExtension,height);
+                spriteBatch.Draw(capped?cutTexture:texture,position+new Vector2(capped?0:-2,destinationY)-Main.screenPosition+offset,frame,color);
+                pixel+=height;destinationY+=height;remaining-=height;
+            }
         }
-        return true;
     }
     public override bool PreDraw(int i,int j,SpriteBatch spriteBatch)
     {
         Tile tile=Main.tile[i,j];
-        Vector2 offset=Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange);
-        Vector2 pos=new Vector2(i*16,j*16)-Main.screenPosition+offset;
-        Color color=Lighting.GetColor(i,j);
-        var stem=ModContent.Request<Texture2D>(Root+"amanita_crema_tiles").Value;
-        bool baseTile=Main.tile[i,j+1].HasTile && Main.tile[i,j+1].TileType!=Type;
-        spriteBatch.Draw(stem,pos,new Rectangle(0,(j%3)*18,16,16),color);
-        if(baseTile && !Main.tile[i,j+1].IsHalfBlock && Main.tile[i,j+1].Slope==0)
-            spriteBatch.Draw(stem,pos+new Vector2(0,16),new Rectangle(0,(j%3)*18+14,16,2),color);
+        Vector2 offset=Main.drawToScreen?Vector2.Zero:new Vector2(Main.offScreenRange);
         if(tile.TileFrameY==0) {
-            var tops=ModContent.Request<Texture2D>(Root+"amanita_crema_tops").Value;
-            int style=(tile.TileFrameX/18)%3;
-            Rectangle frame=CapFrames[style];
-            spriteBatch.Draw(tops,pos+new Vector2(8,16),frame,color,0,new Vector2(frame.Width/2f,frame.Height),1,SpriteEffects.None,0);
-        } else {
-            int top=j;
-            while(top>1 && Main.tile[i,top-1].HasTile && Main.tile[i,top-1].TileType==Type) top--;
-            // Keep the crown and ground readable; left and right can branch at different heights.
-            if(j-top<3 || !Main.tile[i,j+1].HasTile || Main.tile[i,j+1].TileType!=Type) return false;
-            for(int side=0;side<2;side++) {
-                int row=BranchRow(i,j,side,Main.worldID);
-                if(!CanDrawBranch(i,j,side,row)) continue;
-                var branches=ModContent.Request<Texture2D>(Root+"little_mushroom").Value;
-                spriteBatch.Draw(branches,pos+new Vector2(8,16),new Rectangle(side*42,row*42,42,42),color,0,
-                    new Vector2(side==0 ? 38 : 4,BranchAnchorY[row]),1,SpriteEffects.None,0);
-            }
-        }
+            if(!IsPrimaryTile(i,j)) return false;
+            Rectangle frame=CapFrames[CapStyle(i,j)];
+            var cap=ModContent.Request<Texture2D>(Root+"fleshy_mushroom_caps").Value;
+            Vector2 position=new(i*16+(Split(tile)?16:8)-SporeDreamGiantLayout.CapAnchorX,j*16+16-frame.Height);
+            spriteBatch.Draw(cap,position-Main.screenPosition+offset,frame,Lighting.GetColor(i,j));
+        } else DrawStemTile(i,j,spriteBatch,offset);
         return false;
     }
     public override bool TileFrame(int i,int j,ref bool resetFrame,ref bool noBreak)
     {
-        Tile below=Main.tile[i,j+1];
-        if(!below.HasTile || (below.TileType!=Type && !Main.tileSolid[below.TileType])) WorldGen.KillTile(i,j);
+        if(felling) return false;
+        Tile tile=Main.tile[i,j],below=Main.tile[i,j+1];
+        bool supported=below.HasTile && (below.TileType==Type || Main.tileSolid[below.TileType]);
+        if(Split(tile)) {
+            Tile partner=Main.tile[i+(Half(tile)==0?1:-1),j];
+            supported&=partner.HasTile && partner.TileType==Type && Split(partner)
+                && Half(partner)!=Half(tile) && CapStyle(i,j)==CapStyle(i+(Half(tile)==0?1:-1),j)
+                && partner.TileFrameY==tile.TileFrameY;
+        }
+        if(!supported) WorldGen.KillTile(i,j);
         return false;
     }
     public override void KillTile(int i,int j,ref bool fail,ref bool effectOnly,ref bool noItem)
     {
-        if(fail || effectOnly) return;
-        // Fell upward only, so a cut does not remove the lower stump or recurse into itself.
-        for(int y=j-1;y>1;y--) {
-            Tile t=Main.tile[i,y]; if(!t.HasTile || t.TileType!=Type) break;
-            WorldGen.KillTile(i,y);
+        if(fail || effectOnly || felling) return;
+        Tile current=Main.tile[i,j];int x=PrimaryX(i,j),width=Split(current)?2:1;
+        GetStemBounds(i,j,out int top,out _,out _);
+        felling=true;
+        try {
+            // Break the opposite half at the cut and both columns above, leaving
+            // the supported lower stump intact. No recursive upward felling.
+            for(int y=j;y>=top;y--)for(int side=0;side<width;side++) {
+                if(x+side==i && y==j) continue;
+                Tile t=Main.tile[x+side,y];
+                if(t.HasTile && t.TileType==Type) WorldGen.KillTile(x+side,y);
+            }
         }
+        finally {felling=false;}
     }
 }

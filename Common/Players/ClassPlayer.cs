@@ -62,6 +62,15 @@ public class ClassPlayer : ModPlayer
         
     }
 
+    internal void ApplyNetworkState(ClassType classId, bool hasInitialClass)
+    {
+        // Keep unknown legacy IDs intact when both sides represent them as None.
+        // They remain available to the existing save/list fallback logic.
+        if (CurrentClass != classId)
+            EditClass(classId);
+        HasInitialClass = hasInitialClass;
+    }
+
     public override void SaveData(TagCompound tag)
     {
         tag["ClassID"] = ClassID;

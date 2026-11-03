@@ -1,0 +1,11 @@
+Mods: {
+	OccidentMod: {
+		Keybinds.SporeDreamTeleport.DisplayName: 传送至孢梦之森（测试）
+
+		TestTeleport: {
+			Button: 传送孢梦之森（测试）
+			Missing: 当前世界没有生成孢梦之森。
+			NoLanding: 孢梦之森内没有找到安全落点。
+		}
+	}
+}

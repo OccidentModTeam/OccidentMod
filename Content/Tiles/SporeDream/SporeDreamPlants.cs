@@ -10,6 +10,7 @@ namespace Occident.Content.Tiles.SporeDream;
 
 public sealed class SporeDreamPlants : ModTile
 {
+    public const int StyleCount = 30;
     public override string Texture => "OccidentMod/Assets/Sprites/Environment/SporeDreamForest/mushroom_glass";
     public override void SetStaticDefaults()
     {
@@ -19,12 +20,12 @@ public sealed class SporeDreamPlants : ModTile
         TileObjectData.newTile.CoordinateHeights=new[]{20};
         TileObjectData.newTile.DrawYOffset=-4;
         TileObjectData.newTile.StyleHorizontal=true;
-        TileObjectData.newTile.RandomStyleRange=5;
+        TileObjectData.newTile.RandomStyleRange=StyleCount;
         TileObjectData.newTile.AnchorBottom=new AnchorData(AnchorType.SolidTile,1,0);
         TileObjectData.newTile.AnchorValidTiles=new[]{ModContent.TileType<SporeDreamGrass>()};
         TileObjectData.addTile(Type);
         AddMapEntry(new Color(232,164,69)); DustType=DustID.Grass;
-        RegisterItemDrop(ItemID.Mushroom);
+        RegisterItemDrop(ItemID.MudBlock);
     }
 }
 

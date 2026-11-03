@@ -13,6 +13,8 @@
 | `UI/HUD/ResourceBars/` | SP、MP、Energy 資源條圖片 | 尚未找到程式引用 |
 | `UI/Equipment/` | 裝備介面，例如盾牌欄位 | 尚未找到程式引用 |
 | `Sounds/UI/` | 介面提示音 | warning.wav 尚未找到程式引用 |
+| `Backgrounds/SporeDreamForest/` | 孢夢之森地表背景 | 使用精灵-0040.png 的原樣副本；天空保留透明、背景以整數倍率及水平視差繪製 |
+| `Sprites/Environment/SporeDreamForest/` | 孢夢之森草皮、巨菇與植被 | 0.1.1 採 16px 單格柱：`amanita_crema_tiles_02` 為 16×20 直段、`amanita_crema_tiles` 為 20×16 橫段、`amanita_crema_tiles_corner` 為四款 20×20 完整彎頭、`amanita_crema_tiles_top` 為 16×24 封口；各格間距 2px。菇傘每款 130×74，取上方 72px；x=66 為接頭中心 |
 | `Sprites/Weapon/` | 武器貼圖，依 Magic、Melee、Ranged、Summon 分類 | 古蕈柱杖已接入，其他待接入；桌面來源保留副本 |
 | `Sprites/Item/Furniture/` | 家具物品與放置貼圖 | 瓶中蘑菇已接入，32×32 原圖以無間距 2×2 圖塊使用 |
 | `Sprites/Summoned Entity/` | 召喚實體貼圖 | baby_mushroom：8 格，每格32×36，僅供召喚物 |
@@ -32,3 +34,5 @@
 - 區分大小寫，名稱須與實際檔案一致；拼接形成的動態路徑也要一併檢查。
 - 模組根目錄的 `icon.png`、`icon_small.png`、`icon_workshop.png` 保留原位置，供模組與工坊圖示使用。
 - 新增物品、敵怪等 Content 類別時，須考量 tModLoader 的預設貼圖路徑；若貼圖另放 Assets，需在類別中明確指定 Texture。
+
+0.1.2 巨菇圖集：直柱 108×86，每格 20×20、步距 22；橫柱 108×88，列起點 y=0/22/46/68。轉角 86×64，四方向、三排紋理，每格 20×20、步距 22。封頂維持 88×24，每格 16×24、步距 18。菇傘 386×72，三款各取 126×72、步距 130，接頭中心 x=62。新增邊緣以原像素溢出繪製，不拉伸；菇傘僅朝上或左右 90 度。

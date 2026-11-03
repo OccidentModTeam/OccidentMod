@@ -7,7 +7,10 @@ Mods: {
 			}
 		}
 
-		SporeDream.Grass: 孢梦草皮
+		SporeDream: {
+			Grass: 孢梦草皮
+			GiantMushroom: 巨蕈菇
+		}
 
 		Items: {
 			PandorasFruit: {

@@ -30,6 +30,7 @@ Systems currently being implemented and refined include:
 - Stamina consumption for rolling, passive recovery, and a stamina HUD.
 - Character creation for 14 classes, starting stats, and weapon previews.
 - Spore Dream Forest world generation, vegetation, and day/night visuals.
+- Giant mushroom root shapes, height variations, spring caps, and map silhouettes.
 - Mushroom in a Bottle, Baby Mushroom, and Ancient Agaric Staff.
 
 These systems are still being tested and adjusted. Values, rules, and presentation may change.
