@@ -1,3 +1,4 @@
+// 掛接原版建立角色流程，讓下一步、返回與手把導覽支援職業選擇。
 using System.Runtime.CompilerServices;
 using Occident.Common.Classes;
 using Occident.Common.Players;
@@ -46,6 +47,7 @@ public sealed class CharacterCreationStepsSystem : ModSystem
         pages = new();
     }
 
+    // 先讓原版完成頁面，再為這個頁面建立控制器；弱參考表不阻止舊頁面回收。
     private void Build(On_UICharacterCreation.orig_BuildPage orig, UICharacterCreation page)
     {
         orig(page);
@@ -53,6 +55,7 @@ public sealed class CharacterCreationStepsSystem : ModSystem
         pages.Add(page, new CharacterCreationSteps(page));
     }
 
+    // 第一次下一步先開職業頁；職業頁再按下一步才交回原版命名流程。
     private void Continue(On_UICharacterCreation.orig_Click_NamingAndCreating orig,
         UICharacterCreation page, UIMouseEvent evt, UIElement element)
     {

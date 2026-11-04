@@ -1,3 +1,4 @@
+// 彎曲巨菇的物塊入口；繪圖與砍斷交由 SporeDreamCurvedSystem 統一處理。
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

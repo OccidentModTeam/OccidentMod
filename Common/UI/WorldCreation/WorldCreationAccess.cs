@@ -1,3 +1,4 @@
+// 集中反射存取原版世界建立頁的私有欄位與回呼。
 using System;
 using System.Collections.Generic;
 using System.Reflection;

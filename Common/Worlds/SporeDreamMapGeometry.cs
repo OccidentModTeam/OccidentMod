@@ -1,7 +1,8 @@
+// 將巨菇素材像素依旋轉方向轉成世界像素與地圖格。
 using G=Occident.Common.Worlds.SporeDreamGrowthPath;
 namespace Occident.Common.Worlds;
 
-// Native pixel transforms, matching SpriteBatch's quarter-turn pixel centers.
+// 原圖像素座標轉換需對齊 SpriteBatch 四分之一圈旋轉後的像素中心。
 internal static class SporeDreamMapGeometry
 {
     internal static (int X,int Y) Pixel(G.Piece p,int x,int y)=>p.Kind switch {

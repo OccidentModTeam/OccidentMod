@@ -1,3 +1,4 @@
+// 玩家同步資料的封包格式與合法性檢查。
 using System.IO;
 using Occident.Common.Classes;
 
@@ -7,12 +8,14 @@ internal readonly record struct PlayerSyncState(ClassType Class, bool HasInitial
 {
     internal const byte MessageType = 0;
 
+    // 旗標的第 0 位代表已初選，第 1 位代表休閒模式；讀寫順序必須一致。
     internal void Write(BinaryWriter writer)
     {
         writer.Write((byte)Class);
         writer.Write((byte)((HasInitialClass ? 1 : 0) | (CasualMode ? 2 : 0)));
     }
 
+    // 保留伺服器已知的初選狀態，且只有經典角色能啟用休閒模式。
     internal PlayerSyncState Normalize(bool classicPlayer, bool initialClassAlreadyChosen) =>
         this with { CasualMode = CasualMode && classicPlayer,
             HasInitialClass = HasInitialClass || initialClassAlreadyChosen };
@@ -29,7 +32,7 @@ internal readonly record struct PlayerSyncState(ClassType Class, bool HasInitial
             byte flags = reader.ReadByte();
             if (claimedPlayer >= maxPlayers || (flags & ~3) != 0
                 || (classId != ClassType.None && !ClassCatalog.IsValid(classId))) return false;
-            // A client may only update its own slot; never trust the claimed index alone.
+            // 客戶端只能更新自己的玩家欄位，必須同時核對封包代號與實際發送者。
             if (fromClient && (sender < 0 || sender >= maxPlayers || claimedPlayer != sender)) return false;
             playerIndex = claimedPlayer;
             state = new(classId, (flags & 1) != 0, (flags & 2) != 0);

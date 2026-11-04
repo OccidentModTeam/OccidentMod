@@ -1,3 +1,4 @@
+// 模組網路封包的入口，依訊息代號與客戶端／伺服器身分分派。
 using System.IO;
 using Terraria;
 using Terraria.ID;
@@ -9,6 +10,7 @@ namespace Occident.Common.Networking;
 internal static class PacketRouter
 {
     internal const byte SporeDreamTeleportRequest=1;
+    // 先讀訊息代號，再按來源身分路由；各處理器接到的讀取位置已越過代號。
     internal static void Receive(Mod mod,BinaryReader reader,int whoAmI)
     {
         byte message;

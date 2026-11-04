@@ -1,3 +1,4 @@
+// 預覽專用開關，處理武器／裝備顯示選項的文字與勾選狀態。
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Audio;
@@ -8,7 +9,7 @@ using Terraria.UI;
 
 namespace Occident.Common.UI.CharacterCreation;
 
-// Preview-only UI state. No equipment, inventory or saved character data is changed.
+// 這是預覽專用的介面狀態，不會更動裝備、背包或角色存檔。
 internal sealed class ClassPreviewToggle : UIPanel
 {
     private const string Prefix = "Mods.OccidentMod.UI.CharacterCreation.";

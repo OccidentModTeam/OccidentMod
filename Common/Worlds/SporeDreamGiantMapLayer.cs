@@ -1,3 +1,4 @@
+// 以素材透明輪廓補畫已探索的巨菇地圖圖形。
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
@@ -49,13 +50,13 @@ public sealed class SporeDreamGiantMapLayer : ModMapLayer
             ink.TryGetValue(point,out bool cap);ink[point]=cap || p.Kind==G.Crown;
         }
     }
+    // 幾何或世界變動時重建輪廓快取，避免每格每幀重讀貼圖。
     private void Refresh()
     {
         ink.Clear();
         var curved=SporeDreamCurvedSystem.Instance;
         foreach(var p in curved.MapPieces())Stamp(p);
-        // Old saved vertical stems already have physical map cells; only their
-        // overhanging caps need the supplemental silhouette.
+        // 舊直柱菇柄已占有實體地圖格，只需補上向外延伸的菌蓋輪廓。
         var forest=SporeDreamForestSystem.Instance;
         if(forest.Exists)for(int x=forest.Left;x<forest.Right;x++)
             for(int y=Math.Max(1,forest.Surface[x-forest.Left]-64);y<forest.Surface[x-forest.Left];y++) {
@@ -69,8 +70,7 @@ public sealed class SporeDreamGiantMapLayer : ModMapLayer
     {
         if(Main.gameMenu || Main.Map is null)return;
         if(world!=Main.worldID || revision!=SporeDreamCurvedSystem.Instance.MapRevision || Main.GameUpdateCount-refreshed>120)Refresh();
-        // Vanilla MagicPixel is 1x1000, not a single-pixel texture. Drawing
-        // its whole frame stretches map cells into lines outside the minimap.
+        // 原版 MagicPixel 為 1×1000；直接繪製整張會把地圖格拉成長線，因此另建 1×1 貼圖。
         if(mapPixel is null) {
             mapPixel=new Texture2D(Main.instance.GraphicsDevice,1,1);
             mapPixel.SetData(new[]{Color.White});
@@ -79,7 +79,7 @@ public sealed class SporeDreamGiantMapLayer : ModMapLayer
         float scale=context.MapScale/context.DrawScale;
         foreach(var entry in ink) {
             Point p=entry.Key;byte light=Main.Map[p.X,p.Y].Light;
-            if(light==0)continue; // Never reveal an unexplored cap or hidden biome.
+            if(light==0)continue; // 只繪製已探索區域，避免提前洩露菌蓋與群系位置。
             Vector2 tile=new(p.X,p.Y);
             Vector2 screen=(tile-context.MapPosition)*context.MapScale+context.MapOffset;
             if(context.ClippingRectangle is Rectangle clip && !clip.Contains(screen.ToPoint()))continue;

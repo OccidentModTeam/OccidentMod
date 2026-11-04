@@ -1,3 +1,4 @@
+// 維護進出群系的視覺混合，只在天體繪製期間暫用反轉顯示時鐘。
 using System;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -14,14 +15,12 @@ public sealed class SporeDreamVisuals : ModSystem
     private double entryTime;
     private bool wasInside;
     private int transitionProgress;
-    // Vanilla Crimson shades its background independently from foreground tiles.
-    // This bright panorama needs its own neutral exposure adjustment; this is an
-    // art-specific starting point, not a copied vanilla Crimson constant.
+    // 背景與前景亮度分開控制；此全景圖使用獨立的中性曝光值，並非直接沿用原版猩紅背景常數。
     public float BackgroundBrightness => 0.78f;
     public Color BackgroundTint(float opacity)
     {
         int level=(int)Math.Round(255f*BackgroundBrightness);
-        // Brightness changes RGB only. Alpha belongs solely to the biome fade.
+        // 亮度只調整色彩通道，透明度交由群系淡入淡出控制。
         return new Color(level,level,level)*MathHelper.Clamp(opacity,0f,1f);
     }
     public (Color Top, Color Horizon) SkyPalette => (entryDay ?? Main.dayTime)
@@ -51,7 +50,7 @@ public sealed class SporeDreamVisuals : ModSystem
         var p=Main.LocalPlayer.Center.ToTileCoordinates();
         bool inside=SporeDreamForestSystem.Instance.Contains(p.X,p.Y);
         if(inside && !wasInside) {
-            // Capture simulation time once. The local sky then stays at this phase.
+            // 進入群系時擷取一次世界時間，之後本地天空停在這個對應時段。
             entryDay=Main.dayTime;
             entryTime=Main.time;
         }
@@ -80,8 +79,7 @@ public sealed class SporeDreamVisuals : ModSystem
         if(Main.gameMenu || Blend<=0) { orig(self,sceneArea,moonColor,sunColor,mushroomInfluence); return; }
         bool day=Main.dayTime; double time=Main.time;
         try {
-            // Only celestial rendering sees the frozen clock. World lighting,
-            // biome artwork, weather and simulation keep their original inputs.
+            // 只在繪製天體時暫用顯示時鐘；世界照明、背景圖、天氣與模擬仍使用原本資料。
             ApplySkyClock();
             orig(self,sceneArea,moonColor,sunColor,mushroomInfluence);
         } finally { Main.dayTime=day; Main.time=time; }
@@ -92,6 +90,7 @@ public sealed class SporeDreamVisuals : ModSystem
         double targetTime=day ? time/Main.dayLength*Main.nightLength : time/Main.nightLength*Main.dayLength;
         return InterpolateClock(day,time,targetDay,targetTime,blend);
     }
+    // 將日夜映射到同一循環，取較短方向平滑過渡，最後轉回原版時間格式。
     public static (bool Day,double Time) InterpolateClock(bool day,double time,bool targetDay,double targetTime,float blend)
     {
         double cycle=Main.dayLength+Main.nightLength;
@@ -108,9 +107,7 @@ public sealed class SporeDreamVisuals : ModSystem
     public override void ModifySunLightColor(ref Color tileColor,ref Color backgroundColor)
     {
         if(Main.gameMenu || Blend<=0) return;
-        // Both visual sky phases use neutral daytime sunlight. The red/pale
-        // palette belongs exclusively to the sky layer. Terrain still uses the
-        // normal light map, so blocks continue to obstruct sunlight underground.
+        // 兩種天空狀態皆用中性日光；紅色與淺色只作用於天空層。地形仍使用原版光照圖，地下物塊照常遮光。
         tileColor=Color.Lerp(tileColor,Color.White,Blend);
         backgroundColor=Color.Lerp(backgroundColor,Color.White,Blend);
     }

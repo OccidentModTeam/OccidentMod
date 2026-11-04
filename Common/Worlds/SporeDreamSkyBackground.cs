@@ -1,3 +1,4 @@
+// 在原版天空繪製流程中加入群系漸層，並依地下深度淡出。
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent;
@@ -25,8 +26,7 @@ public sealed class SporeDreamSkyBackground : ModSystem
             && surfaceVisibility>0f
             && Main.screenPosition.Y < Main.worldSurface * 16.0 + 16.0)
         {
-            // Vanilla's blue gradient has already been drawn here. Replace its
-            // color before stars, sun/moon, clouds, biome art and terrain draw.
+            // 此時原版藍色漸層已畫好；在星空、日月、雲、群系背景與地形之前覆蓋天空顏色。
             var (top, horizon) = visuals.SkyPalette;
             const int stripHeight = 8;
             for (int y = 0; y < Main.screenHeight; y += stripHeight)

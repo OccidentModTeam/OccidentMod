@@ -1,3 +1,4 @@
+// 繪製五軸能力圖、刻度與標籤，並平滑更新展示值。
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -35,6 +36,7 @@ internal sealed class ClassRadarChart : UIElement
         IgnoresMouseInteraction = true;
     }
 
+    // 設定目標評分；畫面插值與繪製在後續更新中完成。
     public void SetRatings(ClassRating value)
     {
         measuredFont = null;
@@ -141,6 +143,7 @@ internal sealed class ClassRadarChart : UIElement
             new Vector2(delta.Length(), thickness), SpriteEffects.None, 0f);
     }
 
+    // 以逐條水平線填滿多邊形，避免額外建立繪圖網格資源。
     private void Fill(SpriteBatch batch, Vector2[] vertices, Color color)
     {
         float min = vertices[0].Y, max = min;

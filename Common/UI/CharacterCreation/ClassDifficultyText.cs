@@ -1,3 +1,4 @@
+// 將操作難度評分繪製成可隨語言更新的文字與標記。
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

@@ -1,20 +1,36 @@
-# Build output and tModLoader packages
+# 編譯產物與已打包的模組；原始碼、正式素材及 .build 腳本仍需納入版本控制。
 bin/
 obj/
 *.tmod
+*.pdb
+*.mdb
+*.tmod.bak
 
-# Local IDE configuration
+# 本機編輯器與工作區設定。
 .vs/
 .vscode/
+.idea/
 *.user
 *.suo
+*.userosscache
+*.sln.docstates
 
-# Temporary files and local credentials
+# 暫存、當機傾印及編輯器殘留。
 *.log
 *.tmp
+*.temp
 *.bak
 *.orig
 *.rej
+*.dmp
+*.stackdump
+*.swp
+*.swo
+*~
+__pycache__/
+*.py[cod]
+
+# 本機憑證與機密設定；範例檔可追蹤，但不得填入真實金鑰。
 .env
 .env.*
 !.env.example
@@ -22,11 +38,56 @@ obj/
 *.p12
 *.pem
 *.key
+*.p8
+*.jks
+*.keystore
+id_rsa
+id_ed25519
+secrets.json
+secrets.*.json
+credentials.json
+credentials.*.json
+*.local.json
+
+# 作業系統產生的中繼檔案。
 Thumbs.db
 Desktop.ini
 .DS_Store
+*.lnk
 
-# Local audit output and drawing histories
+# 本機產物與歷史備份；不忽略正式 Assets 內的圖片與音效。
 output/
 .codex/
+Backups/
+backups/
 **/*-timelapse/
+/*.zip
+/*.7z
+/*.rar
+/*.tar
+/*.tar.gz
+/*.dll
+/*.exe
+
+# 放在專案根目錄的遊戲執行資料，避免誤排除 Common/Worlds 與 Common/Players。
+/SaveData/
+/Players/
+/Worlds/
+/Mods/
+/ModConfigs/
+/Logs/
+/ModSources/
+/ModAssemblies/
+*.plr
+*.tplr
+*.wld
+*.twld
+
+# 本機測試結果與工具環境；相依套件宣告及鎖定檔仍可追蹤。
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+.venv/
+venv/
+node_modules/

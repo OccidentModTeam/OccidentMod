@@ -1,3 +1,4 @@
+// 按世界寬度換算群系尺寸與搜尋距離，集中生成比例參數。
 using System;
 
 namespace Occident.Common.Worlds;

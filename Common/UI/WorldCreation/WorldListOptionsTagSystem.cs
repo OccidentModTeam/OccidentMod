@@ -1,3 +1,4 @@
+// 從世界標頭讀取自訂選項，替換列表上的難度與尺寸顯示。
 using System;
 using Occident.Common.Worlds;
 using Microsoft.Xna.Framework;

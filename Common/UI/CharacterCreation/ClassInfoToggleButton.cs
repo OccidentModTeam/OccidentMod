@@ -1,3 +1,4 @@
+// 切換職業資訊側欄的書本圖示按鈕。
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -30,7 +31,7 @@ internal sealed class ClassInfoToggleButton : UIPanel
         BorderColor = active ? new Color(150, 165, 205) : Color.Black;
         base.DrawSelf(spriteBatch);
 
-        // Bestiary's two horizontal frames: normal book and highlighted book.
+        // 圖鑑素材橫向分成兩格，分別是一般書本與反白書本。
         var texture = icon.Value;
         int frameWidth = texture.Width / 2;
         var source = new Rectangle(active ? frameWidth : 0, 0, frameWidth, texture.Height);

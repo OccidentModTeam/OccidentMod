@@ -1,3 +1,4 @@
+// 孢夢草皮的原版草土接框設定與自然更新入口。
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

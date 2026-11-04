@@ -1,187 +1,237 @@
-Mods: {
-	OccidentMod: {
-		Items: {
-			MushroomInABottle: {
-				DisplayName: Mushroom in a Bottle
-				Tooltip: Place in a suitable house to welcome a Baby Mushroom.
-			}
+// 同一語言集中維護；完整鍵名由下方巢狀區塊組成，勿改動程式使用的鍵名。
+{
+  Mods:
+  {
+    OccidentMod:
+    {
+      Items:
+      {
+        MushroomInABottle:
+        {
+          DisplayName: Mushroom in a Bottle
+          Tooltip: Place in a suitable house to welcome a Baby Mushroom.
+        }
+        AncientAgaricStaff:
+        {
+          DisplayName: Ancient Agaric Staff
+          Tooltip: Summons a Baby Mushroom that knows no fear.
+        }
+        PandorasFruit:
+        {
+          DisplayName: Pandora’s Fruit
+          Tooltip: It still beats faintly.
+        }
+      }
+      NPCs:
+      {
+        BabyMushroomTownPet:
+        {
+          DisplayName: Baby Mushroom
+        }
+        FungalWyrmPreview:
+        {
+          DisplayName: Fungal Wyrm Preview
+        }
+      }
+      Projectiles:
+      {
+        BabyMushroomMinion:
+        {
+          DisplayName: Baby Mushroom
+        }
+      }
+      Buffs:
+      {
+        BabyMushroomBuff:
+        {
+          DisplayName: Baby Mushroom
+          Description: A Baby Mushroom fights for you.
+        }
+      }
+      ClassCategories:
+      {
+        Melee: Melee
+        Magic: Magic
+        Ranged: Ranged
+        Summon: Summon
+      }
+      Classes:
+      {
+        Blademaster:
+        {
+          DisplayName: Blademaster
+          Description: A master of swordsmanship who can wield multiple weapons in coordinated assaults, or focus on a single blade, charging up to unleash a powerful strike at the right moment.
+        }
+        Goliath:
+        {
+          DisplayName: Goliath
+          Description: A heavily armored warrior balanced in offense and defense, wielding heavy blunt weapons to break enemy stances or maintain pressure with repeated blows, holding firm and striking back in close combat.
+        }
+        Rogue:
+        {
+          DisplayName: Rogue
+          Description: An assassin skilled at seizing lethal opportunities, slipping into concealment to identify and break enemy weak points, creating a window to unleash a fierce assault.
+        }
+        Knight:
+        {
+          DisplayName: Knight
+          Description: A heavily armored warrior adept at frontal defense, slowing their advance to hold the line against fierce assaults; or empowering their next strike after a successful defense, with spears gaining additional reach.
+        }
+        Priest:
+        {
+          DisplayName: Priest
+          Description: A close-combat spellcaster whose weapons carry blessings, using charged attacks to restore health; or invoking a ritual to amplify weapon effects and share healing and blessings with allies through their attacks.
+        }
+        Apothecary:
+        {
+          DisplayName: Apothecary
+          Description: A spellcaster versed in herbal alchemy, using varied formulas to alter the nature of spells, bolster attacks, and provide support, with the freedom to specialize in either discipline.
+        }
+        Sage:
+        {
+          DisplayName: Sage
+          Description: A spellcaster versed in a wide range of spells, specializing in one school to gradually deepen its power; or alternating between different forms of magic, chaining spells to adapt to an ever-changing battlefield.
+        }
+        Warlock:
+        {
+          DisplayName: Warlock
+          Description: A spellcaster who gathers power through incantation, releasing mighty spells after a lengthy chant to hunt down enemies; or continuously channeling power, gradually strengthening their assault as the chanting continues.
+        }
+        Skirmisher:
+        {
+          DisplayName: Skirmisher
+          Description: A ranged warrior skilled in thrown weapons, commanding scattered weapons to pursue enemies in a relentless assault; or binding weapons to their will, making them return through their foes to rejoin their wielder.
+        }
+        Musketeer:
+        {
+          DisplayName: Musketeer
+          Description: A ranged warrior proficient with all manner of firearms, conserving ammunition to suppress enemies with sustained fire; or loading specially crafted rounds that bypass defenses and strike at vital points.
+        }
+        Archer:
+        {
+          DisplayName: Archer
+          Description: A ranged hunter skilled in archery, drawing the bow to unleash a powerful arrow that pierces enemies; or mastering the rhythm of release to maintain a relentless barrage of arrows.
+        }
+        Cultist:
+        {
+          DisplayName: Cultist
+          Description: A summoner bound by pacts with otherworldly beings, offering blood to command demons in battle; or calling upon an angel to guard them, gathering blessings before turning that protective power into a force of conquest.
+        }
+        Evoker:
+        {
+          DisplayName: Evoker
+          Description: A summoner adept at commanding spirits, directing minions to fight in concert; or letting them spread infection and turn enemies into undead, swelling their ranks through successive battles.
+        }
+        Druid:
+        {
+          DisplayName: Druid
+          Description: A summoner who wields the power of transformation, changing form to channel summoning power through their own body and confront enemies in an altered guise.
+        }
+      }
+      UI:
+      {
+        WorldCreation:
+        {
+          ModTab: Modded
+          Vanilla: Vanilla
+          Longentity: Longentity
+          Elation: Elation
+          Finality: Finality
+          ExtraLarge: Extra Large
+          SelectedDifficulty: "Difficulty: "
+          LongentityDescription: No one can absolve your death, child.
+          ElationDescription: Tear your remaining sanity to pieces... Look, see how beautifully they smile.
+          FinalityDescription: A shattered melody—what else is left to praise?
+          ExtraLargeHelp: Large mod compatibility recommended, otherwise the world may feel empty.
+        }
+        PlayerClassTag:
+        {
+          NoClass: Penniless
+          UnknownClass: Unknown Class
+        }
+        CharacterCreation:
+        {
+          PreviewHeading: Character Preview
+          PreviewOn: On
+          PreviewOff: Off
+          RatingsTitle: Aptitudes
+          PreviewWeapon: Weapon preview
+          PreviewEquipment: Gear preview
+          StartingStats: Starting Stats
+          Stats:
+          {
+            Vigor: Vigor
+            Mind: Mind
+            Endurance: Endurance
+            Strength: Strength
+            Dexterity: Dexterity
+            Intelligence: Intelligence
+            Faith: Faith
+            Arcane: Arcane
+          }
+          ClassType: Class Type: {0}
+          Difficulty: Difficulty: {0}
+          DifficultyLevels:
+          {
+            NoSelection: ???
+            Unrated: Unrated
+            Easy: Easy
+            Normal: Normal
+            Hard: Hard
+            Expert: Expert
+            Master: Master
+          }
+          Ratings:
+          {
+            Damage: Damage
+            Survival: Survival
+            Mobility: Mobility
+            Control: Control
+            Support: Support
+          }
+          ClassInfoTitle: Class Information
+          NoClassSelected: No class selected
+          ChooseClass:
+            '''
+            Choose a class on the left.
+            Click it again to clear your choice.
 
-			AncientAgaricStaff: {
-				DisplayName: Ancient Agaric Staff
-				Tooltip: Summons a Baby Mushroom that knows no fear.
-			}
-		}
-
-		NPCs: {
-			BabyMushroomTownPet.DisplayName: Baby Mushroom
-			FungalWyrmPreview.DisplayName: Fungal Wyrm Preview
-		}
-
-		Projectiles.BabyMushroomMinion.DisplayName: Baby Mushroom
-
-		Buffs: {
-			BabyMushroomBuff: {
-				DisplayName: Baby Mushroom
-				Description: A Baby Mushroom fights for you.
-			}
-		}
-
-		ClassCategories: {
-			Melee: Melee
-			Magic: Magic
-			Ranged: Ranged
-			Summon: Summon
-		}
-
-		Classes: {
-			Blademaster: {
-				DisplayName: Blademaster
-				Description: A master of swordsmanship who can wield multiple weapons in coordinated assaults, or focus on a single blade, charging up to unleash a powerful strike at the right moment.
-			}
-
-			Goliath: {
-				DisplayName: Goliath
-				Description: A heavily armored warrior balanced in offense and defense, wielding heavy blunt weapons to break enemy stances or maintain pressure with repeated blows, holding firm and striking back in close combat.
-			}
-
-			Rogue: {
-				DisplayName: Rogue
-				Description: An assassin skilled at seizing lethal opportunities, slipping into concealment to identify and break enemy weak points, creating a window to unleash a fierce assault.
-			}
-
-			Knight: {
-				DisplayName: Knight
-				Description: A heavily armored warrior adept at frontal defense, slowing their advance to hold the line against fierce assaults; or empowering their next strike after a successful defense, with spears gaining additional reach.
-			}
-
-			Priest: {
-				DisplayName: Priest
-				Description: A close-combat spellcaster whose weapons carry blessings, using charged attacks to restore health; or invoking a ritual to amplify weapon effects and share healing and blessings with allies through their attacks.
-			}
-
-			Apothecary: {
-				DisplayName: Apothecary
-				Description: A spellcaster versed in herbal alchemy, using varied formulas to alter the nature of spells, bolster attacks, and provide support, with the freedom to specialize in either discipline.
-			}
-
-			Sage: {
-				DisplayName: Sage
-				Description: A spellcaster versed in a wide range of spells, specializing in one school to gradually deepen its power; or alternating between different forms of magic, chaining spells to adapt to an ever-changing battlefield.
-			}
-
-			Warlock: {
-				DisplayName: Warlock
-				Description: A spellcaster who gathers power through incantation, releasing mighty spells after a lengthy chant to hunt down enemies; or continuously channeling power, gradually strengthening their assault as the chanting continues.
-			}
-
-			Skirmisher: {
-				DisplayName: Skirmisher
-				Description: A ranged warrior skilled in thrown weapons, commanding scattered weapons to pursue enemies in a relentless assault; or binding weapons to their will, making them return through their foes to rejoin their wielder.
-			}
-
-			Musketeer: {
-				DisplayName: Musketeer
-				Description: A ranged warrior proficient with all manner of firearms, conserving ammunition to suppress enemies with sustained fire; or loading specially crafted rounds that bypass defenses and strike at vital points.
-			}
-
-			Archer: {
-				DisplayName: Archer
-				Description: A ranged hunter skilled in archery, drawing the bow to unleash a powerful arrow that pierces enemies; or mastering the rhythm of release to maintain a relentless barrage of arrows.
-			}
-
-			Cultist: {
-				DisplayName: Cultist
-				Description: A summoner bound by pacts with otherworldly beings, offering blood to command demons in battle; or calling upon an angel to guard them, gathering blessings before turning that protective power into a force of conquest.
-			}
-
-			Evoker: {
-				DisplayName: Evoker
-				Description: A summoner adept at commanding spirits, directing minions to fight in concert; or letting them spread infection and turn enemies into undead, swelling their ranks through successive battles.
-			}
-
-			Druid: {
-				DisplayName: Druid
-				Description: A summoner who wields the power of transformation, changing form to channel summoning power through their own body and confront enemies in an altered guise.
-			}
-		}
-
-		UI: {
-			WorldCreation: {
-				ModTab: Modded
-				Vanilla: Vanilla
-				Longentity: Longentity
-				Elation: Elation
-				Finality: Finality
-				ExtraLarge: Extra Large
-				SelectedDifficulty: "Difficulty: "
-				LongentityDescription: No one can absolve your death, child.
-				ElationDescription: Tear your remaining sanity to pieces... Look, see how beautifully they smile.
-				FinalityDescription: A shattered melody—what else is left to praise?
-				ExtraLargeHelp: Large mod compatibility recommended, otherwise the world may feel empty.
-			}
-
-			PlayerClassTag: {
-				NoClass: Penniless
-				UnknownClass: Unknown Class
-			}
-
-			CharacterCreation: {
-				PreviewHeading: Character Preview
-				PreviewOn: On
-				PreviewOff: Off
-				RatingsTitle: Aptitudes
-				PreviewWeapon: Weapon preview
-				PreviewEquipment: Gear preview
-				StartingStats: Starting Stats
-
-				Stats: {
-					Vigor: Vigor
-					Mind: Mind
-					Endurance: Endurance
-					Strength: Strength
-					Dexterity: Dexterity
-					Intelligence: Intelligence
-					Faith: Faith
-					Arcane: Arcane
-				}
-
-				ClassType: Class Type: {0}
-				Difficulty: Difficulty: {0}
-
-				DifficultyLevels: {
-					NoSelection: ???
-					Unrated: Unrated
-					Easy: Easy
-					Normal: Normal
-					Hard: Hard
-					Expert: Expert
-					Master: Master
-				}
-
-				Ratings: {
-					Damage: Damage
-					Survival: Survival
-					Mobility: Mobility
-					Control: Control
-					Support: Support
-				}
-
-				ClassInfoTitle: Class Information
-				NoClassSelected: No class selected
-				ChooseClass:
-					'''
-					Choose a class on the left.
-					Click it again to clear your choice.
-
-					No class: Penniless.
-					All starting stats are 0.
-					'''
-				Casual: Casual
-				CasualDescription: Casual characters keep all coins and items upon death.
-				Next: Next
-				Previous: Previous
-				ContinueWithoutClass: Continue without a class
-			}
-		}
-	}
+            No class: Penniless.
+            All starting stats are 0.
+            '''
+          Casual: Casual
+          CasualDescription: Casual characters keep all coins and items upon death.
+          Next: Next
+          Previous: Previous
+          ContinueWithoutClass: Continue without a class
+        }
+      }
+      Biomes:
+      {
+        SporeDreamForest:
+        {
+          DisplayName: Spore Dream Forest
+          TownNPCDialogueName: the Spore Dream Forest
+        }
+      }
+      SporeDream:
+      {
+        Grass: Spore Dream Grass
+        GiantMushroom: Giant Mushroom
+      }
+      Keybinds:
+      {
+        SporeDreamTeleport:
+        {
+          DisplayName: Teleport to Spore Dream Forest (Test)
+        }
+      }
+      TestTeleport:
+      {
+        Button: Spore Dream Forest (Test)
+        Missing: This world has no Spore Dream Forest.
+        NoLanding: No safe landing spot was found in Spore Dream Forest.
+      }
+    }
+  }
 }

@@ -1,3 +1,4 @@
+// 真菌蠕蟲的本機造型預覽指令，不代表正式首領玩法。
 using System;
 using Terraria;
 using Terraria.ID;

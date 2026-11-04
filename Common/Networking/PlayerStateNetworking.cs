@@ -1,3 +1,4 @@
+// 擷取、傳送與驗證職業及休閒模式，伺服器統一轉送接受的狀態。
 using System.IO;
 using Occident.Common.Players;
 using Terraria;
@@ -8,6 +9,7 @@ namespace Occident.Common.Networking;
 
 internal static class PlayerStateNetworking
 {
+    // 把分散在兩個 ModPlayer 的資料組成可比較、可序列化的快照。
     internal static PlayerSyncState Capture(Player player)
     {
         var classes = player.GetModPlayer<ClassPlayer>();
@@ -38,8 +40,7 @@ internal static class PlayerStateNetworking
         classes.ApplyNetworkState(accepted.Class, accepted.HasInitialClass);
         player.GetModPlayer<CasualModePlayer>().Enabled = accepted.CasualMode;
         if (server) {
-            // Other clients receive only validated state. Correct the owner too if
-            // its mode or initial-selection flag needed normalization.
+            // 只將驗證後的狀態轉送給其他客戶端；若內容經過修正，也回傳給原玩家。
             Send(mod, player, -1, whoAmI);
             if (accepted != received) Send(mod, player, whoAmI);
         }

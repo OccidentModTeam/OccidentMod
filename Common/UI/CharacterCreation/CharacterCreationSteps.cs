@@ -1,3 +1,4 @@
+// 管理角色建立的外觀步驟、職業步驟及兩側資訊面板。
 using System;
 using System.Linq;
 using System.Reflection;
@@ -16,7 +17,7 @@ using Terraria.UI.Gamepad;
 
 namespace Occident.Common.UI.CharacterCreation;
 
-// Reuses the actual creation page so returning from naming keeps the draft and current step.
+// 沿用原版建立頁面，從命名返回時保留角色草稿與目前步驟。
 internal sealed class CharacterCreationSteps
 {
     private readonly UICharacterCreation page;
@@ -70,6 +71,7 @@ internal sealed class CharacterCreationSteps
         RefreshButtons();
     }
 
+    // 暫存外觀元件再換成職業頁；返回時沿用同一批元件與玩家草稿。
     public void ShowClassStep()
     {
         if (IsClassStep)
@@ -103,6 +105,7 @@ internal sealed class CharacterCreationSteps
         SoundEngine.PlaySound(SoundID.MenuClose);
     }
 
+    // 只在步驟、側欄或語言改變時更新文字與尺寸，避免每刻重排。
     private void RefreshButtons()
     {
         bool hasClass = player.GetModPlayer<ClassPlayer>().CurrentClass != ClassType.None;
@@ -117,7 +120,7 @@ internal sealed class CharacterCreationSteps
             ? "Mods.OccidentMod.UI.CharacterCreation.Previous" : "UI.Back"), 0.7f, true);
         next.SetText(Language.GetText(caption), 0.7f, true);
 
-        // Match the native large-font buttons. Widen the page instead of shrinking the caption.
+        // 維持原版大字按鈕，依文字寬度擴張頁面，避免縮小標題。
         float rightWidth = Math.Max(240f,
             FontAssets.DeathText.Value.MeasureString(Language.GetTextValue(caption)).X * 0.7f + 36f);
         float leftWidth = Math.Max(240f,
@@ -126,9 +129,9 @@ internal sealed class CharacterCreationSteps
         float width = IsClassStep ? Math.Max(originalWidth.Pixels, leftWidth + 20f + rightWidth + infoSpace)
             : originalWidth.Pixels;
         root.Width.Set(width, originalWidth.Percent);
-        // Keep the creation page stationary; the information panel opens alongside it.
+        // 建立頁面保持原位，資訊面板展開在兩側。
         root.Left.Set(originalLeft.Pixels, originalLeft.Percent);
-        // Attach to the full-screen page so the sidebar can receive input outside the main root's bounds.
+        // 側欄掛在全螢幕頁面上，讓主容器範圍外的按鈕仍可接收輸入。
         infoPanel.Left.Set(width * 0.5f + root.Left.Pixels + ClassInfoPanel.PanelGap, 0.5f + originalLeft.Percent);
         leftInfoPanel.Left.Set(-width * 0.5f + root.Left.Pixels - ClassInfoPanel.PanelGap - ClassInfoPanel.PanelWidth,
             0.5f + originalLeft.Percent);
@@ -173,7 +176,7 @@ internal sealed class CharacterCreationSteps
 
     public void SetupGamepad()
     {
-        // The second step has its own tabs instead of the native appearance categories.
+        // 第二步使用自己的職業分頁，需重新連接手把導覽，不沿用外觀分類的連結。
         UILinkPointNavigator.Shortcuts.BackButtonCommand = 1;
         var left = UILinkPointNavigator.Points[3000];
         var right = UILinkPointNavigator.Points[3001];

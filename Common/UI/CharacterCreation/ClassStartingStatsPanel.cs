@@ -1,3 +1,4 @@
+// 顯示初始配點及預覽開關，數值來源是 ClassPreviewData。
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
@@ -105,7 +106,7 @@ internal sealed class ClassStartingStatsPanel : UIPanel
             labels[i].SetText(Language.GetText(Prefix + "Stats." + key));
             values[i].SetText(selected ? stats.GetValue(key)?.ToString() ?? "--" : "0");
         }
-        // Refresh right-aligned values immediately, including on the first opening.
+        // 立即更新靠右對齊的數值，第一次開啟面板時也需重新排版。
         Recalculate();
     }
 

@@ -1,3 +1,4 @@
+// 繪製孢夢之森全景及下方地色，處理背景淡入與深度。
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -46,8 +47,7 @@ public sealed class SporeDreamSurfaceBackgroundStyle : ModSurfaceBackgroundStyle
         opacity *= SporeDreamBackgroundLayout.SurfaceVisibility(Main.LocalPlayer.Center.Y,forest.Surface[column]*16f);
         if(opacity<=0f) return false;
 
-        // A fixed biome-wide anchor prevents a deep pit under the player from
-        // pulling the panorama up or down. Refresh only when world data changes.
+        // 使用全群系固定的地面錨點，避免玩家腳下深坑拉動全景背景；只在世界資料改變時更新。
         if(!ReferenceEquals(anchoredSurface,forest.Surface)) {
             anchoredSurface=forest.Surface;
             anchorGroundY=SporeDreamBackgroundLayout.RepresentativeGround(anchoredSurface);
@@ -69,8 +69,7 @@ public sealed class SporeDreamSurfaceBackgroundStyle : ModSurfaceBackgroundStyle
         SporeDreamBackgroundLayout.Panorama layout,Color tint,float opacity)
     {
         if(!sampledGroundColor) {
-            // Pick the dominant opaque ground color from the original lower
-            // quarter once. Do not stretch a skull or repeat the bottom row.
+            // 只從原圖下四分之一取樣一次主要不透明地色，不拉伸裝飾圖案或複製最底列。
             int height=Math.Max(1,texture.Height/4);
             var pixels=new Color[texture.Width*height];
             texture.GetData(0,new Rectangle(0,texture.Height-height,texture.Width,height),pixels,0,pixels.Length);

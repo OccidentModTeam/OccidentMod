@@ -1,3 +1,4 @@
+// 定義地被與致幻果植株，處理多格放置、採收及滑鼠提示。
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -47,7 +48,7 @@ public sealed class PandoraPlant : ModTile
     }
     public override bool RightClick(int i,int j)
     {
-        // Use vanilla tile manipulation networking and the registered multi-tile drop; one harvest, one item.
+        // 沿用原版物塊操作同步與已登錄的多格掉落，確保一次採收只掉一個物品。
         if(Main.netMode==NetmodeID.MultiplayerClient) NetMessage.SendData(MessageID.TileManipulation,-1,-1,null,0,i,j);
         else WorldGen.KillTile(i,j);
         return true;

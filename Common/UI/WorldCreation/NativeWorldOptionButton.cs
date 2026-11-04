@@ -1,3 +1,4 @@
+// 封裝原版世界選項按鈕，顯示自訂文字、圖示與說明。
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

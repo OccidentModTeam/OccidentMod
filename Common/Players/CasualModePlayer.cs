@@ -1,3 +1,4 @@
+// 保存休閒模式選擇，僅讓經典角色死亡時保留金錢。
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -27,7 +28,7 @@ public sealed class CasualModePlayer : ModPlayer
         if (!player.TryGetModPlayer<CasualModePlayer>(out var mode) || !mode.IsActive)
             return orig(player);
 
-        // Classic already retains items. Skip only its coin-drop operation, leaving death and respawn intact.
+        // 經典角色本來就保留物品；只略過掉錢流程，保留死亡與重生行為。
         player.lostCoins = 0;
         player.lostCoinString = Main.ValueToCoins(0);
         return 0;

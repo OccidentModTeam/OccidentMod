@@ -1,9 +1,10 @@
+// 集中巨菇素材裁切、基座幾何、穩定樣式與裝飾間距。
 using System;
 using Microsoft.Xna.Framework;
 
 namespace Occident.Common.Worlds;
 
-// Source-pixel layout. Separator pixels never enter a draw rectangle.
+// 以原圖像素定義裁切範圍，分隔線像素不納入繪圖矩形。
 internal static class SporeDreamGiantLayout
 {
     public const int CapCount=3,CapWidth=126,CapHeight=72,CapStride=130,CapAnchorX=62;
@@ -35,6 +36,7 @@ internal static class SporeDreamGiantLayout
     public static Rectangle HorizontalFrame(int style,bool decorated,bool right)
         => new(Math.Clamp(style,0,4)*22,(right?46:0)+(decorated?22:0),20,20);
 
+    // 世界代號與座標產生穩定樣式，避免每幀重新抽樣而閃爍。
     public static uint Hash(int x,int top,int value,int worldId)
     {
         unchecked {
@@ -46,8 +48,7 @@ internal static class SporeDreamGiantLayout
         => segment==0?0:(int)(Hash(x,top,segment,worldId)%StemRows);
     public static int SegmentCount(int bodyPixels) => (Math.Max(0,bodyPixels)+StemHeight-1)/StemHeight;
 
-    // Select a quota for the whole plant, rather than rolling at each segment.
-    // Both ends remain bare; two decorations have at least two bare cells between them.
+    // 先決定整株裝飾配額，不逐節獨立抽選；兩端留白，兩個裝飾間至少隔兩個空白節。
     public static (int First,int Second) DecorationSlots(int x,int top,int bodyPixels,int worldId)
     {
         int count=SegmentCount(bodyPixels),eligible=count-4;
@@ -70,7 +71,6 @@ internal static class SporeDreamGiantLayout
         return segment>=0 && (segment==slots.First || segment==slots.Second);
     }
 
-    // A 16px terrain tile can cut across two 20px artwork cells. Each slice is
-    // taken from that artwork cell without stretching it to a terrain tile.
+    // 16 像素物塊可能跨越兩個 20 像素素材格；逐段裁切對應原圖，不拉伸成物塊尺寸。
     public static int SliceHeight(int bodyPixel,int remaining) => Math.Min(remaining,StemHeight-bodyPixel%StemHeight);
 }

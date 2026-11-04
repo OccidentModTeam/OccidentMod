@@ -1,3 +1,4 @@
+// 僅替換建立世界時的難度預覽圖層，維持原版生成基底。
 using System;
 using System.Reflection;
 using Occident.Common.Worlds;

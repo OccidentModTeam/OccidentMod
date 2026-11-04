@@ -1,9 +1,0 @@
-Mods.OccidentMod: {
-    Biomes.SporeDreamForest.DisplayName: 孢夢之森
-    SporeDream.Grass: 孢夢草皮
-    SporeDream.GiantMushroom: 巨蕈菇
-    Items.PandorasFruit: {
-        DisplayName: 致幻果
-        Tooltip: 仍在微微跳動。
-    }
-}

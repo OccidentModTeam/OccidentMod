@@ -1,3 +1,4 @@
+// 明確啟用環境變數時才建立真菌蠕蟲造型預覽。
 using System;
 using Terraria;
 using Terraria.ID;
@@ -6,7 +7,7 @@ using Occident.Content.NPCs.Prototypes;
 
 namespace Occident.Common.Worlds;
 
-// Opt-in local art-review launch only. Normal games never auto-spawn this NPC.
+// 只有明確啟用本機美術預覽時才自動生成；一般遊戲不會自動生成這個 NPC。
 public sealed class FungalWyrmPreviewSystem : ModSystem
 {
     private bool spawned;

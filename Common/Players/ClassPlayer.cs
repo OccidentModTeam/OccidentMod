@@ -1,3 +1,4 @@
+// 玩家職業的執行期與存檔狀態，區分初次選職與後續切換。
 using Occident.Common.Classes;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -21,6 +22,7 @@ public class ClassPlayer : ModPlayer
     }  
     //初始化
 
+    // 初始職業只能確認一次；一般切換請走 EditClass，不重設初選旗標。
     public bool SelectClass(string classid)
     {
         if(HasInitialClass)
@@ -56,13 +58,13 @@ public class ClassPlayer : ModPlayer
 
     internal void ApplyNetworkState(ClassType classId, bool hasInitialClass)
     {
-        // Keep unknown legacy IDs intact when both sides represent them as None.
-        // They remain available to the existing save/list fallback logic.
+        // 雙方皆以 None 表示未知職業時，不清掉舊代號，讓存檔與角色列表仍能使用備援顯示。
         if (CurrentClass != classId)
             EditClass(classId);
         HasInitialClass = hasInitialClass;
     }
 
+    // 儲存的是職業識別與初選紀錄，展示配點不寫入此處。
     public override void SaveData(TagCompound tag)
     {
         tag["ClassID"] = ClassID;
@@ -74,7 +76,7 @@ public class ClassPlayer : ModPlayer
         ClassID = tag.ContainsKey("ClassID")
             ? tag.GetString("ClassID")
             : "";
-        // Parse only when loading; preserve unknown IDs for the list's fallback label.
+        // 只在讀檔時解析職業；未知代號保留給角色列表的備援文字使用。
         CurrentClass = ClassCatalog.TryResolveClassId(ClassID, out var id) ? id : ClassType.None;
         if (CurrentClass != ClassType.None)
             ClassID = CurrentClass.ToString();

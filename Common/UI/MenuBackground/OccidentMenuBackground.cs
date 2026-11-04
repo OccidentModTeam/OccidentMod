@@ -1,3 +1,4 @@
+// 載入並繪製選單標誌與選用背景，管理比例、透明混合及快取。
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,7 +11,7 @@ namespace Occident.Common.UI.MenuBackground;
 internal sealed class OccidentMenuBackground
 {
     private const string AssetFolder = "OccidentMod/Assets/UI/MenuBackground/";
-    // Optional replacement image. When absent, leave the vanilla menu scenery visible.
+    // 替換背景為選用素材；找不到時保留原版選單景色。
     private const string BackgroundAssetPath = AssetFolder + "CustomBackground";
     private Asset<Texture2D> background;
     private Asset<Texture2D> logo;
@@ -28,7 +29,7 @@ internal sealed class OccidentMenuBackground
         logo ??= ModContent.Request<Texture2D>(AssetFolder + "OccidentLogo", AssetRequestMode.ImmediateLoad);
 
         spriteBatch.End();
-        // The transparent logo uses straight alpha. Nothing in this theme animates.
+        // 透明標誌使用直通透明度混合；此選單主題不播放動畫。
         spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, SamplerState.LinearClamp,
             DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
         try
@@ -47,7 +48,7 @@ internal sealed class OccidentMenuBackground
 
     private static void DrawBackground(SpriteBatch spriteBatch, Texture2D texture)
     {
-        // Cover the menu while preserving the image's aspect ratio; apply UI scaling once.
+        // 保持圖片比例並填滿選單，介面縮放只套用一次。
         float scale = Math.Max(Main.screenWidth / (float)texture.Width, Main.screenHeight / (float)texture.Height);
         float width = texture.Width * scale;
         float height = texture.Height * scale;
@@ -76,7 +77,7 @@ internal sealed class OccidentMenuBackground
 
     public void Unload()
     {
-        // ModContent owns and disposes the assets.
+        // 素材由 ModContent 管理與釋放，此處只清除持有的參考。
         background = null;
         logo = null;
         backgroundChecked = false;

@@ -1,3 +1,4 @@
+// 比較前後狀態快照，只在本機玩家資料改變時要求同步。
 using Occident.Common.Networking;
 using Terraria;
 using Terraria.ID;
@@ -5,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Occident.Common.Players;
 
-// One small snapshot covers both ModPlayers, avoiding duplicate packets when both change.
+// 用一份狀態快照涵蓋職業與休閒模式，避免兩者同時變更時重複發送封包。
 public sealed class PlayerStateSyncPlayer : ModPlayer
 {
     private PlayerSyncState snapshot;

@@ -1,3 +1,4 @@
+// 使用隔離的展示角色繪製武器動作與召喚物，不執行實際攻擊。
 using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -64,8 +65,7 @@ public sealed class ClassWeaponPreviewSystem : ModSystem
         Item item = preview.inventory[0];
         preview.selectedItem = 0;
         bool showWeapon = phase < 54;
-        // PlayerDrawSet.CopyBasicPlayerFields reads this cache, not HeldItem.
-        // Menu previews do not run the normal player update that refreshes it.
+        // PlayerDrawSet.CopyBasicPlayerFields 讀取的是快取而非 HeldItem；選單預覽不會執行正常更新，需手動補上。
         preview.lastVisualizedSelectedItem = showWeapon ? item : state.HiddenItem;
         preview.position = Vector2.Zero;
         preview.velocity = new Vector2(preview.direction, 0f);
@@ -79,26 +79,25 @@ public sealed class ClassWeaponPreviewSystem : ModSystem
         Main.instance.LoadItem(weaponType);
         Vector2 position = center - new Vector2(preview.width / 2, preview.height / 2);
         using (new Main.CurrentPlayerOverride(preview)) {
-            // Calculate only the real use pose. Do not run ItemCheck or Shoot.
+            // 只計算使用姿勢，不執行 ItemCheck 或 Shoot，避免預覽真的發動武器。
             if (showWeapon)
                 preview.ItemCheck_ApplyUseStyle(0f, item, preview.GetItemDrawFrame(weaponType));
             preview.PlayerFrame();
             int walkingFrame = ((int)(Main.GlobalTimeWrappedHourly / 0.07f) % 14 + 6) * 56;
             preview.legFrame.Y = walkingFrame;
             preview.headFrame.Y = walkingFrame;
-            // Native UICharacter normally blanks the held item. Render an isolated
-            // display player directly so the native held-item layer can draw it.
+            // 原版 UICharacter 會清掉手持物；直接繪製隔離的展示角色，讓原版手持物圖層生效。
             Main.PlayerRenderer.DrawPlayer(Main.Camera, preview, position + Main.screenPosition,
                 0f, Vector2.Zero, 0f, scale);
         }
         if (weaponType == ModContent.ItemType<AncientAgaricStaff>()) {
-            // Terraria scales preview draw data around the player's bottom center.
-            // This floor stays fixed as the character scale changes.
+            // 原版以角色底部中央縮放預覽；固定這個落腳點，避免角色尺寸改變時地面跟著移動。
             Vector2 feetPosition = position + new Vector2(preview.width * 0.5f, preview.height);
             state.DrawMushroom(spriteBatch, feetPosition, scale, preview.direction, phase);
         }
     }
 
+    // 只複製外觀，不把展示用物品或動作回寫到真正的角色。
     private static void CopyAppearance(Player source, Player target)
     {
         target.skinVariant = source.skinVariant;
@@ -167,8 +166,7 @@ public sealed class ClassWeaponPreviewSystem : ModSystem
                 Color.White * alpha, 0f, new Vector2(cellWidth / 2f, feet[frame]), scale,
                 direction<0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
             if (age < 36) {
-                // Use the same Cloud dust atlas as BabyMushroomMinion.OnSpawn.
-                // UI-local particles never consume the world's Dust pool.
+                // 沿用 BabyMushroomMinion.OnSpawn 的雲霧粒子圖集；介面粒子只在本地繪製，不占世界粒子池。
                 for (int i = 0; i < 14; i++) {
                     float particleAge = age - (i % 4) * 1.5f;
                     if (particleAge < 0f) continue;

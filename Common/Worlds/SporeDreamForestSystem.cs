@@ -1,4 +1,5 @@
-﻿using System;
+﻿// 管理孢夢之森範圍、地表高度、新世界生成及既有群系資料更新。
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.Xna.Framework;
@@ -18,6 +19,7 @@ public sealed class SporeDreamForestSystem : ModSystem
 {
     public const int UndergroundDepth = 35;
     public int Left { get; private set; } = -1;
+    // 索引為世界 X 減去 Left；每個值是該欄地表的 Y，兩者單位皆為物塊。
     public int[] Surface { get; private set; } = Array.Empty<int>();
     private const int CurrentVegetationVersion=2;
     private int vegetationVersion;
@@ -29,6 +31,7 @@ public sealed class SporeDreamForestSystem : ModSystem
     public static SporeDreamForestSystem Instance => ModContent.GetInstance<SporeDreamForestSystem>();
 
     public override void ClearWorld() { Left = -1; Surface = Array.Empty<int>(); vegetationVersion=0; soilVersion=0; giantFoundationsUpdated=false; }
+    // 只更新已存在的群系；版本欄位讓土壤與植被修正不會每次載入重做。
     public override void PostWorldLoad()
     {
         if(!Exists) return;
@@ -39,7 +42,7 @@ public sealed class SporeDreamForestSystem : ModSystem
                 int ground=Surface[x-Left];
                 for(int y=Math.Max(1,ground);y<=Math.Min(Main.maxTilesY-2,ground+UndergroundDepth);y++) {
                     Tile t=Main.tile[x,y];
-                    // Preserve structures, other blocks, and the existing terrain shape.
+                    // 保留建築、其他物塊與既有地形形狀，只轉換符合條件的土壤。
                     if(!t.HasTile || t.TileType!=TileID.Dirt || Main.wallHouse[t.WallType]) continue;
                     t.TileType=TileID.Mud; t.TileFrameX=t.TileFrameY=0;
                     converted++;
@@ -49,7 +52,7 @@ public sealed class SporeDreamForestSystem : ModSystem
             soilVersion=CurrentSoilVersion;
             Mod.Logger.Info($"Spore Dream Forest soil updated once: converted {converted} dirt tiles to mud, repaired {repaired} buried slopes/half-blocks.");
         }
-        // Refresh all neighboring frames after the complete soil conversion.
+        // 土壤全部轉換完後才刷新鄰接框架，避免用到轉換中的地形狀態。
         for(int x=Math.Max(1,Left-1);x<=Math.Min(Main.maxTilesX-2,Right);x++) {
             int ground=Surface[Math.Clamp(x-Left,0,Surface.Length-1)];
             for(int y=Math.Max(1,ground-1);y<=Math.Min(Main.maxTilesY-2,ground+UndergroundDepth+1);y++) {
@@ -78,6 +81,7 @@ public sealed class SporeDreamForestSystem : ModSystem
             Mod.Logger.Info($"Spore Dream Forest paired giant foundations updated once: {repaired} natural root pads repaired.");
         }
     }
+    // 此範圍包括地表下方；敵人屏障另用較窄的 IsSurfaceBarrier 判定。
     public bool Contains(int x, int y) => Exists && x >= Left && x < Right && y >= 0 && y <= Surface[x-Left] + UndergroundDepth;
     public bool SurfaceContains(int x, int y) => Exists && x >= Left && x < Right && y >= 0 && y <= Surface[x-Left];
     public bool IsSurfaceBarrier(Rectangle hitbox)
@@ -135,6 +139,7 @@ public sealed class SporeDreamForestSystem : ModSystem
         foreach(int y in surface) if(y<0 || y+UndergroundDepth>=Main.maxTilesY) throw new IOException("Invalid Spore Dream Forest depth");
         Left = left; Surface = surface;
     }
+    // 插入原版世界生成流程；一般載入舊世界不會經過這個生成步驟。
     public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
         => tasks.Add(new PassLegacy("Spore Dream Forest", Generate));
 
@@ -142,7 +147,7 @@ public sealed class SporeDreamForestSystem : ModSystem
         =>type is TileID.Trees or TileID.VanityTreeSakura or TileID.VanityTreeYellowWillow;
     private void ClearNativeTrees()
     {
-        // Only remove a complete tree rooted inside the biome; preserve outside trees.
+        // 只移除根部位於群系內的完整樹木，保留群系外的樹。
         for(int x=Left;x<Right;x++) {
             int ground=Surface[x-Left];
             for(int y=Math.Max(1,ground-4);y<=ground+1;y++) {
@@ -156,8 +161,7 @@ public sealed class SporeDreamForestSystem : ModSystem
     }
     private void ClearSurfaceRubble()
     {
-        // Native decorative piles are placed before our terrain pass. They do
-        // not follow a lowered surface and must not remain floating above it.
+        // 原版裝飾堆在本生成步驟之前放置；地面降低後不會自行跟隨，需避免懸空。
         int removed=0;
         for(int x=Left;x<Right;x++) {
             int ground=Surface[x-Left];
@@ -177,13 +181,12 @@ public sealed class SporeDreamForestSystem : ModSystem
         for (int y=terrainTop; y<Math.Min(Main.maxTilesY-100, (int)Main.worldSurface+100); y++) {
             Tile t = Main.tile[x,y];
             if (!t.HasTile || !Main.tileSolid[t.TileType] || Main.tileSolidTop[t.TileType])continue;
-            // Clouds can extend below the nominal surface band. They must not
-            // veto the real forest underneath a floating island.
+            // 雲塊可能低於一般地表高度，不能因此否決浮島下方真正的森林地面。
             if(t.TileType is TileID.Cloud or TileID.RainCloud or TileID.SnowCloud)continue;
             if(t.TileType is TileID.Grass or TileID.Dirt or TileID.Stone) {
                 Tile lower=Main.tile[x,y+32];
                 if(!lower.HasTile || !Main.tileSolid[lower.TileType]) {
-                    // A shallow floating mass followed by open sky is not land.
+                    // 淺薄浮空土塊下方若仍是天空，就不視為陸地。
                     bool sky=true;
                     for(int q=y+24;q<=y+40;q++)if(Main.tile[x,q].HasTile && Main.tileSolid[Main.tile[x,q].TileType]){sky=false;break;}
                     if(sky)continue;
@@ -193,12 +196,12 @@ public sealed class SporeDreamForestSystem : ModSystem
         }
         return -1;
     }
+    // 先尋找安全位置，再處理地形、巨菇與地被；失敗時保留原版世界。
     private void Generate(GenerationProgress progress, GameConfiguration config)
     {
         progress.Message = "Spore Dream Forest";
         int spawn = Main.spawnTileX > 0 ? Main.spawnTileX : Main.maxTilesX/2;
-        // Start at the native land-surface band. Scanning from y=60 mistakes
-        // floating islands/clouds for the forest floor beneath them.
+        // 從原版陸地表面高度帶開始掃描，避免把高空浮島與雲層誤認為森林地面。
         int terrainTop=(int)GenVars.worldSurfaceLow;
         if(terrainTop<80 || terrainTop>Main.worldSurface)
             terrainTop=Math.Max(80,Main.spawnTileY-SporeDreamGenerationScale.Distance(80,Main.maxTilesX));
@@ -216,8 +219,7 @@ public sealed class SporeDreamForestSystem : ModSystem
             bool safe=type is TileID.Grass or TileID.Dirt or TileID.ClayBlock or TileID.Stone;
             int waterDepth=0;
             safe&=!Main.wallHouse[Main.tile[x,y-1].WallType];
-            // Tiny surface puddles do not veto an entire forest. Deep pools and
-            // non-water liquids remain protected and are never drained.
+            // 少量地表積水不否決整片森林；深水與非水液體仍受保護，不在此排空。
             if(safe) for(int waterY=y-1;waterY>=Math.Max(1,y-5);waterY--) {
                 Tile water=Main.tile[x,waterY];
                 if(water.LiquidAmount==0)break;
@@ -245,7 +247,7 @@ public sealed class SporeDreamForestSystem : ModSystem
             Mod.Logger.Warn($"Spore Dream Forest safe spans: {string.Join(';',spans)}; blocked surface types: {string.Join(';',blockers)}");
             throw new InvalidOperationException($"Spore Dream Forest is required, but no safe forest site remains after standard, detailed and narrow searches. World generation stopped instead of saving a world without this biome. spawn={spawn}, terrainTop={terrainTop}, world={Main.maxTilesX}.");
         }
-        // A nearby narrow candidate must not displace a valid full-size forest.
+        // 先保留正常寬度候選，避免較近的窄候選擠掉完整森林。
         int widest=0;
         foreach(var site in search.Sites)widest=Math.Max(widest,site.Surface.Length);
         int bestScore=int.MaxValue;
@@ -290,7 +292,7 @@ public sealed class SporeDreamForestSystem : ModSystem
         vegetationVersion=CurrentVegetationVersion;
         soilVersion=CurrentSoilVersion;
         giantFoundationsUpdated=true;
-        // Place ground cover afterward so small plants cannot accidentally veto a giant's clearance test.
+        // 巨菇配置完成後再放地被，避免小植株誤擋巨菇的空間檢查。
         for(int x=Left+4;x<Right-4;x++) {
             int y=Surface[x-Left];
             if(WorldGen.genRand.NextBool(110) && CanPlaceFruit(x,y)) WorldGen.PlaceObject(x,y-1,ModContent.TileType<PandoraPlant>(),true,WorldGen.genRand.Next(3));
@@ -308,8 +310,7 @@ public sealed class SporeDreamForestSystem : ModSystem
             Tile tile=Main.tile[x,y];
             if(!tile.HasTile || (tile.TileType!=grass && tile.TileType!=TileID.Mud && tile.TileType!=TileID.Dirt)
                 || (!tile.IsHalfBlock && tile.Slope==SlopeType.Solid) || Main.wallHouse[tile.WallType]) continue;
-            // Only restore buried shape remnants. Exposed hillside slopes, real
-            // caves, platforms and constructed rooms retain their geometry.
+            // 只修復埋在土中的形狀殘留，保留外露斜坡、洞穴、平台與建築房間。
             if(!WorldGen.SolidTile(x-1,y) || !WorldGen.SolidTile(x+1,y)
                 || !WorldGen.SolidTile(x,y-1) || !WorldGen.SolidTile(x,y+1)) continue;
             tile.IsHalfBlock=false;
@@ -333,7 +334,7 @@ public sealed class SporeDreamForestSystem : ModSystem
             }
             if(!safe) offsets[k]=0;
         }
-        // Ease toward protected columns instead of making a cliff beside a cave.
+        // 靠近受保護的地形欄位時平滑收斂，避免在洞穴旁造出斷崖。
         for(int k=1;k<offsets.Length;k++)
             offsets[k]=Math.Clamp(offsets[k],Math.Min(0,offsets[k-1]-1),Math.Max(0,offsets[k-1]+1));
         for(int k=offsets.Length-2;k>=0;k--)
@@ -358,15 +359,14 @@ public sealed class SporeDreamForestSystem : ModSystem
             for(int dy=1;dy<=2;dy++)
                 if(Main.tile[x+dx,ground-dy].HasTile || Main.tile[x+dx,ground-dy].LiquidAmount>0) return false;
         }
-        // Spacing also limits long-term regrowth, rather than merely slowing overcrowding.
+        // 間距限制同樣用於日後生長，避免只是延後出現過密植株。
         for(int i=Math.Max(1,x-28);i<=Math.Min(Main.maxTilesX-2,x+28);i++)
             for(int y=Math.Max(1,ground-16);y<=Math.Min(Main.maxTilesY-2,ground+16);y++)
                 if(Main.tile[i,y].HasTile && Main.tile[i,y].TileType==fruit) return false;
         return true;
     }
-    // A single full support column and natural shoulders for the new 16px
-    // stalk; the optional width=2 is only for roots in older paired saves.
-    // Planning is read-only; never leave a prepared pad behind a rejected plant.
+    // 新 16 像素菇柄使用單欄支撐與兩側自然土肩；width=2 僅相容舊雙欄存檔。規劃階段只讀取，失敗時不留下修改過的基座。
+    // commit=false 只驗證並規劃，通過後才以 commit=true 實際修改土壤。
     public bool PrepareGiantFoundation(int x,int ground,bool apply,int width=1)
     {
         if(!Exists || width is <1 or >2 || x-3<Left || x+width+2>=Right) return false;
@@ -376,8 +376,7 @@ public sealed class SporeDreamForestSystem : ModSystem
         for(int dx=-3;dx<=width+2;dx++) {
             int column=x+dx,old=Surface[column-Left];
             int target=tops[dx+3];
-            // Require actual earth beneath the entire pad; do not bridge caves
-            // or overwrite furnishings, fruit, other trunks, or housing walls.
+            // 整個基座下方必須有實際土壤，不跨接洞穴，也不覆蓋家具、果實、菇柄或房屋牆。
             for(int y=target;y<=Math.Max(old+1,target+1);y++) {
                 Tile t=Main.tile[column,y];
                 if(t.LiquidAmount>0 || Main.wallHouse[t.WallType]) return false;
@@ -408,7 +407,7 @@ public sealed class SporeDreamForestSystem : ModSystem
         if(tallPair && tallCount==0)Mod.Logger.Info("Spore Dream Forest tall pair skipped: no two safely separated clear sites.");
         int curvedCount=SporeDreamCurvedSystem.Instance.PopulateSides(curvedBudget);
         int count=curvedCount+tallCount;
-        // Randomized candidate order avoids filling consistently from the left edge.
+        // 打亂候選順序，避免每次都從最左側開始種滿。
         var candidates=new List<int>();
         for(int x=Left+5;x<Right-5;x++) candidates.Add(x);
         for(int k=candidates.Count-1;k>0;k--) {
@@ -418,8 +417,7 @@ public sealed class SporeDreamForestSystem : ModSystem
         foreach(int x in candidates) {
             if(WorldGen.genRand.Next(100)>=SporeDreamGenerationScale.GiantCandidatePercent) continue;
             int y=Surface[x-Left];
-            // All new floor giants use the short hooked root. Failed sites are
-            // skipped rather than falling back to an unbent vertical column.
+            // 新地面巨菇皆使用短彎根；位置不合格就略過，不退回直柱外形。
             if(!SporeDreamCurvedSystem.Instance.TryFloor(x,y)) continue;
             curvedCount++;
             count++;

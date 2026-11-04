@@ -1,3 +1,4 @@
+// 自訂世界難度與特大尺寸的儲存格式，並保留舊名稱讀取對照。
 using System;
 using Terraria.ModLoader.IO;
 
@@ -16,7 +17,7 @@ public readonly record struct WorldOptions(OccidentWorldDifficulty Difficulty, b
 
     public static WorldOptions Read(TagCompound tag)
     {
-        // Accept previous names from existing world data and headers; all new saves use the new names.
+        // 讀取世界與標頭時接受舊難度名稱，新存檔統一使用現名。
         string storedName = tag.GetString("Difficulty") switch
         {
             "Omen" => nameof(OccidentWorldDifficulty.Longentity),

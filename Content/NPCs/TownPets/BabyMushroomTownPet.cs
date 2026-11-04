@@ -1,3 +1,4 @@
+// 菇寶寶城鎮寵物的住房、離開條件、動畫與腳底對齊。
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.Xna.Framework;
@@ -15,7 +16,7 @@ public sealed class BabyMushroomTownPet : ModNPC
 {
     public override string Texture => "OccidentMod/Assets/Sprites/Town Pets/city_baby_mushroom";
 
-    // Original frame durations converted from milliseconds to Terraria's 60-Hz ticks.
+    // 將原動畫毫秒時長換算成 Terraria 每秒 60 次更新的刻數。
     internal static readonly int[] FrameTicks = {
         13, 8, 5, 5, 5, 5, 4, 4, 5, 4, 4, 4, 4, 3, 5, 7, 13, 5, 5,
         5, 5, 4, 4, 4, 5, 4, 4, 4, 3, 4, 7, 10, 15, 6, 5, 5, 4, 4,
@@ -47,8 +48,7 @@ public sealed class BabyMushroomTownPet : ModNPC
         AnimationType = -1;
     }
 
-    // FullName already includes the localized species name. A second given name
-    // would produce "菇寶寶菇寶寶" in Chinese arrival messages.
+    // FullName 已包含翻譯後的物種名；再給名字會讓中文入住訊息變成「菇寶寶菇寶寶」。
     public override List<string> SetNPCNameList() => new() { string.Empty };
     public override bool UsesPartyHat() => false;
     public override bool CanGoToStatue(bool toKingStatue) => false;
@@ -70,13 +70,13 @@ public sealed class BabyMushroomTownPet : ModNPC
             if (++housingCheckTimer >= 120) {
                 housingCheckTimer = 0;
                 if (!MushroomBottleEntity.AnyPlaced()) {
-                    // Leave without death, loot or gore when the last placed bottle is removed.
+                    // 最後一個瓶子被移除後直接離開，不觸發死亡、掉落或碎塊。
                     NPC.active = false;
                     if (Main.netMode == NetmodeID.Server)
                         NetMessage.SendData(MessageID.SyncNPC, number: NPC.whoAmI);
                     return false;
                 }
-                // homeTileY is the floor; flood-fill from inside the room above it.
+                // homeTileY 指向地板，房間填充檢查需從上方室內開始。
                 if (!NPC.homeless && (!WorldGen.InWorld(NPC.homeTileX, NPC.homeTileY - 2) ||
                     !WorldGen.StartRoomCheck(NPC.homeTileX, NPC.homeTileY - 2) || !WorldGen.RoomNeeds(Type) ||
                     !MushroomBottleEntity.TestedRoomContainsBottle())) {
@@ -100,7 +100,7 @@ public sealed class BabyMushroomTownPet : ModNPC
             }
         }
         if (NPC.homeless) {
-            // Only unhoused pets wander. Terraria handles looking for another valid room.
+            // 只有無房的寵物才遊走，尋找新房屋交由 Terraria 處理。
             animationTick = 0;
             return true;
         }
@@ -127,6 +127,7 @@ public sealed class BabyMushroomTownPet : ModNPC
         }
     }
 
+    // 依動畫時長表選影格，不以固定每格時長播放。
     public override void FindFrame(int frameHeight)
     {
         int frame = 0;
@@ -140,8 +141,7 @@ public sealed class BabyMushroomTownPet : ModNPC
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
     {
-        // The bottom mushroom occupies x28..49, y72..93 in each 80x100 frame.
-        // Anchor the visible feet to the collision box, leaving room above for the stack.
+        // 每格 80×100 的底層蘑菇位於 x28～49、y72～93；以可見腳底對齊碰撞框，頂部預留堆疊空間。
         spriteBatch.Draw(TextureAssets.Npc[Type].Value, NPC.Bottom - screenPos + new Vector2(0, NPC.gfxOffY),
             NPC.frame, drawColor, NPC.rotation, new Vector2(39, 94), NPC.scale, SpriteEffects.None, 0f);
         return false;

@@ -1,3 +1,4 @@
+// 定義職業能力雷達圖的五項展示評分。
 namespace Occident.Common.Classes;
 public readonly record struct ClassRating(
     float Damage,    // 輸出

@@ -1,187 +1,236 @@
-Mods: {
-	OccidentMod: {
-		Items: {
-			MushroomInABottle: {
-				DisplayName: 瓶中蘑菇
-				Tooltip: 放在合适的房屋中，迎接菇宝宝入住。
-			}
+// 同一語言集中維護；完整鍵名由下方巢狀區塊組成，勿改動程式使用的鍵名。
+{
+  Mods:
+  {
+    OccidentMod:
+    {
+      Keybinds:
+      {
+        SporeDreamTeleport:
+        {
+          DisplayName: 传送至孢梦之森（测试）
+        }
+      }
+      TestTeleport:
+      {
+        Button: 传送孢梦之森（测试）
+        Missing: 当前世界没有生成孢梦之森。
+        NoLanding: 孢梦之森内没有找到安全落点。
+      }
+      Biomes:
+      {
+        SporeDreamForest:
+        {
+          DisplayName: 孢梦之森
+        }
+      }
+      SporeDream:
+      {
+        Grass: 孢梦草皮
+        GiantMushroom: 巨蕈菇
+      }
+      Items:
+      {
+        PandorasFruit:
+        {
+          DisplayName: 致幻果
+          Tooltip: 仍在微微跳动。
+        }
+        MushroomInABottle:
+        {
+          DisplayName: 瓶中蘑菇
+          Tooltip: 放在合适的房屋中，迎接菇宝宝入住。
+        }
+        AncientAgaricStaff:
+        {
+          DisplayName: 古蕈柱杖
+          Tooltip: 召唤不知恐惧为何物的菇宝宝
+        }
+      }
+      NPCs:
+      {
+        BabyMushroomTownPet:
+        {
+          DisplayName: 菇宝宝
+        }
+        FungalWyrmPreview:
+        {
+          DisplayName: 真菌蠕虫造型预览
+        }
+      }
+      Projectiles:
+      {
+        BabyMushroomMinion:
+        {
+          DisplayName: 菇宝宝
+        }
+      }
+      Buffs:
+      {
+        BabyMushroomBuff:
+        {
+          DisplayName: 菇宝宝
+          Description: 菇宝宝为你作战。
+        }
+      }
+      ClassCategories:
+      {
+        Melee: 近战
+        Magic: 魔法
+        Ranged: 远程
+        Summon: 召唤
+      }
+      Classes:
+      {
+        Blademaster:
+        {
+          DisplayName: 剑豪
+          Description: 精研刀剑技艺，可驾驭多把武器连携进攻，亦可专注单刀蓄力，伺机斩出强力一击。
+        }
+        Goliath:
+        {
+          DisplayName: 铁卫
+          Description: 攻守兼备的重装战士，挥舞沉重钝器打破敌人架势，或以连续敲击维持压制，在近身交锋中稳守反攻。
+        }
+        Rogue:
+        {
+          DisplayName: 盗贼
+          Description: 善于伺机夺命的刺客，可潜入洞察并击破敌人弱点，制造进攻空隙，把握破绽展开猛烈攻势。
+        }
+        Knight:
+        {
+          DisplayName: 骑士
+          Description: 擅长正面防守的重装战士，能放缓步伐、稳守阵线，抵御猛烈攻势；亦可在成功防守后蓄势还击，持长枪时更能延展刺击距离。
+        }
+        Priest:
+        {
+          DisplayName: 祭司
+          Description: 以武器承载祝福的近战施法者，可蓄力攻击以恢复生命，亦能启动仪式，放大武器效能，将攻击中的恢复之力与祝福分享给队友。
+        }
+        Apothecary:
+        {
+          DisplayName: 药师
+          Description: 精通草药调配的施法者，以多样配方改变法术性质，既能强化攻势，亦可支援作战，并依所长专精其中一道。
+        }
+        Sage:
+        {
+          DisplayName: 贤者
+          Description: 精通各类法术的施法者，可专研同系魔法，逐步深化法术威力；亦能交替施展不同魔法，以法术连携应对多变战局。
+        }
+        Warlock:
+        {
+          DisplayName: 咒术师
+          Description: 以咏唱凝聚咒术的施法者，可经长吟释放强大法术，驱使咒术追猎敌人；亦能持续导引力量，在吟诵中逐步增强攻势。
+        }
+        Skirmisher:
+        {
+          DisplayName: 镖客
+          Description: 精于投掷技艺的远程战士，可号令散落武器追击敌人，掀起连环攻势；亦能使武器忠于己身，回旋穿敌而归。
+        }
+        Musketeer:
+        {
+          DisplayName: 铳士
+          Description: 精通各式枪械的远程战士，可减少弹药耗损，以持续火力压制敌人；亦能装填特制弹药，无视防御，直击要害。
+        }
+        Archer:
+        {
+          DisplayName: 游侠
+          Description: 精于弓术的远程猎手，可蓄势引弓，以强劲一箭贯穿敌人；亦能掌握松弦节奏，以接连飞矢维持凌厉攻势。
+        }
+        Cultist:
+        {
+          DisplayName: 异教徒
+          Description: 与超凡存在缔约的召唤者，可献出鲜血，驱使恶魔并肩厮杀；亦能召来天使随行庇护，积蓄庇佑，再化守护之力为征伐之威。
+        }
+        Evoker:
+        {
+          DisplayName: 唤灵术士
+          Description: 擅长统御群灵的召唤者，可调遣召唤物协同迎敌；亦能令其散播感染，将敌人化为死灵，在接连征战中壮大麾下军势。
+        }
+        Druid:
+        {
+          DisplayName: 德鲁伊
+          Description: 掌握化身之力的召唤者，可借由变化形貌，亲身释放召唤之力，以异形之躯迎战敌人。
+        }
+      }
+      UI:
+      {
+        WorldCreation:
+        {
+          ModTab: 模组
+          Vanilla: 原版
+          Longentity: 不朽
+          Elation: 痴狂
+          Finality: 终末
+          ExtraLarge: 特大
+          SelectedDifficulty: 世界难度：
+          LongentityDescription: 沒有人可以赦免你的死亡，孩子。
+          ElationDescription: 撕碎你殘存的理智……瞧，祂們笑得多開心。
+          FinalityDescription: 已經撕裂的鳴音，還能歌頌些什麼呢?
+          ExtraLargeHelp: 建議搭配大型模組使用，否則世界可能會顯得過於空曠。
+        }
+        PlayerClassTag:
+        {
+          NoClass: 一贫如洗
+          UnknownClass: 未知职业
+        }
+        CharacterCreation:
+        {
+          PreviewHeading: 角色预览
+          PreviewOn: 已开启
+          PreviewOff: 已关闭
+          RatingsTitle: 能力倾向
+          PreviewWeapon: 武器预览
+          PreviewEquipment: 装备预览
+          StartingStats: 初始配点
+          Stats:
+          {
+            Vigor: 生命力
+            Mind: 集中力
+            Endurance: 耐力
+            Strength: 力量
+            Dexterity: 灵巧
+            Intelligence: 智力
+            Faith: 信仰
+            Arcane: 感应
+          }
+          ClassType: 所属职业类型：{0}
+          Difficulty: 操作难度：{0}
+          DifficultyLevels:
+          {
+            NoSelection: ???
+            Unrated: 未评级
+            Easy: 简单
+            Normal: 普通
+            Hard: 困难
+            Expert: 专家
+            Master: 大师
+          }
+          Ratings:
+          {
+            Damage: 输出
+            Survival: 生存
+            Mobility: 机动
+            Control: 控制
+            Support: 辅助
+          }
+          ClassInfoTitle: 职业资讯
+          NoClassSelected: 尚未选择职业
+          ChooseClass:
+            '''
+            请选择左侧职业。
+            再次点击即可取消选择。
 
-			AncientAgaricStaff: {
-				DisplayName: 古蕈柱杖
-				Tooltip: 召唤不知恐惧为何物的菇宝宝
-			}
-		}
-
-		NPCs: {
-			BabyMushroomTownPet.DisplayName: 菇宝宝
-			FungalWyrmPreview.DisplayName: 真菌蠕虫造型预览
-		}
-
-		Projectiles.BabyMushroomMinion.DisplayName: 菇宝宝
-
-		Buffs: {
-			BabyMushroomBuff: {
-				DisplayName: 菇宝宝
-				Description: 菇宝宝为你作战。
-			}
-		}
-
-		ClassCategories: {
-			Melee: 近战
-			Magic: 魔法
-			Ranged: 远程
-			Summon: 召唤
-		}
-
-		Classes: {
-			Blademaster: {
-				DisplayName: 剑豪
-				Description: 精研刀剑技艺，可驾驭多把武器连携进攻，亦可专注单刀蓄力，伺机斩出强力一击。
-			}
-
-			Goliath: {
-				DisplayName: 铁卫
-				Description: 攻守兼备的重装战士，挥舞沉重钝器打破敌人架势，或以连续敲击维持压制，在近身交锋中稳守反攻。
-			}
-
-			Rogue: {
-				DisplayName: 盗贼
-				Description: 善于伺机夺命的刺客，可潜入洞察并击破敌人弱点，制造进攻空隙，把握破绽展开猛烈攻势。
-			}
-
-			Knight: {
-				DisplayName: 骑士
-				Description: 擅长正面防守的重装战士，能放缓步伐、稳守阵线，抵御猛烈攻势；亦可在成功防守后蓄势还击，持长枪时更能延展刺击距离。
-			}
-
-			Priest: {
-				DisplayName: 祭司
-				Description: 以武器承载祝福的近战施法者，可蓄力攻击以恢复生命，亦能启动仪式，放大武器效能，将攻击中的恢复之力与祝福分享给队友。
-			}
-
-			Apothecary: {
-				DisplayName: 药师
-				Description: 精通草药调配的施法者，以多样配方改变法术性质，既能强化攻势，亦可支援作战，并依所长专精其中一道。
-			}
-
-			Sage: {
-				DisplayName: 贤者
-				Description: 精通各类法术的施法者，可专研同系魔法，逐步深化法术威力；亦能交替施展不同魔法，以法术连携应对多变战局。
-			}
-
-			Warlock: {
-				DisplayName: 咒术师
-				Description: 以咏唱凝聚咒术的施法者，可经长吟释放强大法术，驱使咒术追猎敌人；亦能持续导引力量，在吟诵中逐步增强攻势。
-			}
-
-			Skirmisher: {
-				DisplayName: 镖客
-				Description: 精于投掷技艺的远程战士，可号令散落武器追击敌人，掀起连环攻势；亦能使武器忠于己身，回旋穿敌而归。
-			}
-
-			Musketeer: {
-				DisplayName: 铳士
-				Description: 精通各式枪械的远程战士，可减少弹药耗损，以持续火力压制敌人；亦能装填特制弹药，无视防御，直击要害。
-			}
-
-			Archer: {
-				DisplayName: 游侠
-				Description: 精于弓术的远程猎手，可蓄势引弓，以强劲一箭贯穿敌人；亦能掌握松弦节奏，以接连飞矢维持凌厉攻势。
-			}
-
-			Cultist: {
-				DisplayName: 异教徒
-				Description: 与超凡存在缔约的召唤者，可献出鲜血，驱使恶魔并肩厮杀；亦能召来天使随行庇护，积蓄庇佑，再化守护之力为征伐之威。
-			}
-
-			Evoker: {
-				DisplayName: 唤灵术士
-				Description: 擅长统御群灵的召唤者，可调遣召唤物协同迎敌；亦能令其散播感染，将敌人化为死灵，在接连征战中壮大麾下军势。
-			}
-
-			Druid: {
-				DisplayName: 德鲁伊
-				Description: 掌握化身之力的召唤者，可借由变化形貌，亲身释放召唤之力，以异形之躯迎战敌人。
-			}
-		}
-
-		UI: {
-			WorldCreation: {
-				ModTab: 模组
-				Vanilla: 原版
-				Longentity: 不朽
-				Elation: 痴狂
-				Finality: 终末
-				ExtraLarge: 特大
-				SelectedDifficulty: 世界难度：
-				LongentityDescription: 沒有人可以赦免你的死亡，孩子。
-				ElationDescription: 撕碎你殘存的理智……瞧，祂們笑得多開心。
-				FinalityDescription: 已經撕裂的鳴音，還能歌頌些什麼呢?
-				ExtraLargeHelp: 建議搭配大型模組使用，否則世界可能會顯得過於空曠。
-			}
-
-			PlayerClassTag: {
-				NoClass: 一贫如洗
-				UnknownClass: 未知职业
-			}
-
-			CharacterCreation: {
-				PreviewHeading: 角色预览
-				PreviewOn: 已开启
-				PreviewOff: 已关闭
-				RatingsTitle: 能力倾向
-				PreviewWeapon: 武器预览
-				PreviewEquipment: 装备预览
-				StartingStats: 初始配点
-
-				Stats: {
-					Vigor: 生命力
-					Mind: 集中力
-					Endurance: 耐力
-					Strength: 力量
-					Dexterity: 灵巧
-					Intelligence: 智力
-					Faith: 信仰
-					Arcane: 感应
-				}
-
-				ClassType: 所属职业类型：{0}
-				Difficulty: 操作难度：{0}
-
-				DifficultyLevels: {
-					NoSelection: ???
-					Unrated: 未评级
-					Easy: 简单
-					Normal: 普通
-					Hard: 困难
-					Expert: 专家
-					Master: 大师
-				}
-
-				Ratings: {
-					Damage: 输出
-					Survival: 生存
-					Mobility: 机动
-					Control: 控制
-					Support: 辅助
-				}
-
-				ClassInfoTitle: 职业资讯
-				NoClassSelected: 尚未选择职业
-				ChooseClass:
-					'''
-					请选择左侧职业。
-					再次点击即可取消选择。
-
-					未选择：一贫如洗
-					初始配点皆为 0。
-					'''
-				Casual: 休闲
-				CasualDescription: 休闲角色死亡时保留所有金币与物品。
-				Next: 下一步
-				Previous: 上一步
-				ContinueWithoutClass: 不选择就继续
-			}
-		}
-	}
+            未选择：一贫如洗
+            初始配点皆为 0。
+            '''
+          Casual: 休闲
+          CasualDescription: 休闲角色死亡时保留所有金币与物品。
+          Next: 下一步
+          Previous: 上一步
+          ContinueWithoutClass: 不选择就继续
+        }
+      }
+    }
+  }
 }

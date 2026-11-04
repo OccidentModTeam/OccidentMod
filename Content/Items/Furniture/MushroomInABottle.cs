@@ -1,3 +1,4 @@
+// 瓶中蘑菇物品，提供家具放置預設值與合成配方。
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

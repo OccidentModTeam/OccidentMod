@@ -1,3 +1,4 @@
+// 用世界生成亂數與平滑插值建立起伏，避免逐格鋸齒。
 using System;
 using System.Collections.Generic;
 
@@ -8,8 +9,7 @@ internal static class SporeDreamTerrainProfile
     internal const int MaxOffset = 8;
     internal const int EdgeMargin = 16;
 
-    // Long, irregular slopes layered over the original terrain; never white noise
-    // per tile. The caller supplies world-generation randomness for seed stability.
+    // 在原地形疊加長而不規則的平滑坡度，避免逐格雜訊；亂數由世界生成器提供以維持種子穩定。
     internal static int[] CreateOffsets(int width, Func<int, int, int> next)
     {
         var result = new int[width];

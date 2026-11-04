@@ -1,3 +1,4 @@
+// 真菌蠕蟲視覺原型，以單一 NPC 繪製整條分節身體與附肢。
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,8 +9,7 @@ using Terraria.ModLoader;
 
 namespace Occident.Content.NPCs.Prototypes;
 
-// Visual prototype: one harmless NPC owns a variable-length articulated render chain.
-// It deliberately has no boss progression, drops, terrain edits or body damage hitboxes.
+// 這是造型原型：單一無害 NPC 管理可變長度的分節繪圖鏈，不包含首領進度、掉落、地形修改或身體傷害判定。
 public sealed class FungalWyrmPreview : ModNPC
 {
     private const string Folder = "OccidentMod/Assets/Sprites/Prototypes/FungalWyrm/";
@@ -91,8 +91,7 @@ public sealed class FungalWyrmPreview : ModNPC
         for (int i = 1; i < joints.Length; i++) {
             Vector2 previous = joints[i - 1];
             float spacing = Spacing(i);
-            // Solve the chord distance along a monotonic curve: no accumulating gaps,
-            // self-intersections or abrupt per-segment rotation at a tight U-turn.
+            // 沿單調曲線解出節段間的弦長距離，避免縫隙累積、自交或急轉時節段旋轉突變。
             float low = 0f, high = spacing;
             for (int step = 0; step < 16; step++) {
                 float dx = (low + high) * .5f;
@@ -121,12 +120,11 @@ public sealed class FungalWyrmPreview : ModNPC
             ResetChain(NPC.Center);
         }
         phase += 1f / 60f;
-        // One broad travelling curve, close to the posed assembly preview. The wave
-        // length follows body length; the slope is capped so the dorsal side stays up.
+        // 整體使用一道寬廣的移動曲線；波長隨身長調整並限制斜率，維持背部朝上。
         pathHeight += MathHelper.Clamp((player.Center.Y - 220f - pathHeight) * .01f, -.25f, .25f);
         PlaceOnCurve();
         float halfView = Main.dedServ ? 1100f : Main.screenWidth / Math.Max(.5f, Main.GameViewMatrix.Zoom.X) * .5f;
-        // Reposition only once the entire animal has left view; no on-screen U-turn.
+        // 整隻移出視窗後才重新定位，避免在畫面內急轉掉頭。
         if (joints[^1].X < player.Center.X - halfView - 180f || NPC.Distance(player.Center) > 6500f)
             ResetChain(player.Center + new Vector2(halfView + 180f, -190f));
     }
@@ -135,7 +133,7 @@ public sealed class FungalWyrmPreview : ModNPC
     private void DrawPart(SpriteBatch batch, int part, Vector2 position, float rotation, float scale = 1f, float opacity = 1f, Vector2? origin = null)
     {
         Texture2D image = textures[part].Value;
-        // Artwork faces left; rotation PI therefore corresponds to its authored direction.
+        // 原圖朝左，因此旋轉角度為 PI 時才對應素材原始方向。
         bool flip = MathF.Cos(rotation) > 0;
         batch.Draw(image, position - Main.screenPosition, null, Color.White * opacity,
             rotation - MathHelper.Pi, origin ?? image.Size() * .5f, scale,
@@ -160,8 +158,7 @@ public sealed class FungalWyrmPreview : ModNPC
         int rootIndex = joints.Length - 2;
         float heading = Heading(rootIndex);
         Texture2D image = textures[6].Value;
-        // The authored fin's attachment is at (8,35), NOT its image centre.
-        // Reflect the attachment along with FlipVertically so turning cannot move the root.
+        // 魚鰭接點在原圖 (8,35)，並非圖片中心；垂直翻轉時連接點也要反射，避免轉向造成根部位移。
         bool flipped = MathF.Cos(heading) > 0;
         Vector2 origin = new(8f, flipped ? image.Height - 35f : 35f);
         Vector2 attachment = joints[rootIndex] - heading.ToRotationVector2() * 10f;
@@ -171,7 +168,7 @@ public sealed class FungalWyrmPreview : ModNPC
     {
         if (joints == null || textures == null) return false;
         DrawFin(spriteBatch, true);
-        // Tail to head: forward plates hide the next segment's completed connector.
+        // 由尾往頭繪製，前方甲片可遮住後一節已完成的連接處。
         DrawTailFin(spriteBatch);
         for (int i = joints.Length - 2; i >= 1; i--)
             DrawPart(spriteBatch, Part(i), joints[i], Heading(i), SegmentScale(i));

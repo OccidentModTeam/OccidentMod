@@ -1,4 +1,5 @@
-﻿using System;
+﻿// 建立流動霧帶，分前後層繪製並讓菇柄遮住後方霧氣。
+using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -35,7 +36,7 @@ public sealed class SporeDreamMistSystem : ModSystem
         float phase=(float)(elapsed*.14);
         SporeDreamRibbonPath.Append(forest.Left*16f,(forest.Right-1)*16f,phase,
             x=>SmoothGround(forest,x),TouchesStem,samples);
-        // One shared travelling envelope, rather than a separate emitter on every mushroom.
+        // 整片群系共用一道移動的霧氣強度曲線，不為每株菇建立發射器。
         float cycle=(float)(elapsed%48.0)/48f;
         float envelope=cycle>=.88f?0f:MathF.Sin(cycle/.88f*MathHelper.Pi);
         envelope*=envelope;
@@ -44,7 +45,7 @@ public sealed class SporeDreamMistSystem : ModSystem
             if(p.X<Main.screenPosition.X-128 || p.X>Main.screenPosition.X+Main.screenWidth+128 ||
                p.Y<Main.screenPosition.Y-128 || p.Y>Main.screenPosition.Y+Main.screenHeight+128) continue;
             float taper=Math.Clamp(Math.Min(sample.Progress,1f-sample.Progress)*18f,0f,1f);
-            // Keep wider sections soft: they should read as fog, not opaque tubes.
+            // 寬霧段降低密度，維持霧氣的柔軟感，避免成為不透明管狀。
             float density=7f/MathF.Sqrt(sample.Radius*14f);
             stamps.Add(new(p,sample.Radius,envelope*taper*density,sample.Front));
         }
@@ -69,6 +70,7 @@ public sealed class SporeDreamMistSystem : ModSystem
         return tile.HasTile && (tile.TileType==ModContent.TileType<SporeDreamGiant>()
             || tile.TileType==ModContent.TileType<SporeDreamCurvedGiant>());
     }
+    // 只建立一次柔邊霧點貼圖，後續以位置、尺寸與透明度重複繪製。
     private void EnsureTexture()
     {
         if(mistTexture!=null) return;
@@ -106,8 +108,7 @@ public sealed class SporeDreamMistSystem : ModSystem
                             restoreStems.Add(new Point(x,y));
                     }
             }
-            // Original stem pixels occlude the rear mist between the two passes.
-            // Animated mist never enters cached tile targets or source images.
+            // 前後霧層之間重繪原菇柄以形成遮擋；動態霧不寫入物塊快取或來源圖片。
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Deferred,BlendState.AlphaBlend,SamplerState.PointClamp,
                 DepthStencilState.None,RasterizerState.CullNone,null,Main.GameViewMatrix.TransformationMatrix);

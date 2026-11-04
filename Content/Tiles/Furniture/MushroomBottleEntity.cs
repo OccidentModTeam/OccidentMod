@@ -1,9 +1,10 @@
+// 為已放置的瓶子保存物塊實體索引，供住房檢查使用。
 using Terraria;
 using Terraria.ModLoader;
 
 namespace Occident.Content.Tiles.Furniture;
 
-// A saved, networked index of placed bottles avoids scanning the whole world each tick.
+// 以可儲存、可同步的物塊實體索引記錄瓶子，避免每刻掃描整個世界。
 public sealed class MushroomBottleEntity : ModTileEntity
 {
     public override bool IsTileValidForEntity(int x, int y)
@@ -24,7 +25,7 @@ public sealed class MushroomBottleEntity : ModTileEntity
     public static bool TestedRoomContainsBottle()
     {
         int tileType = ModContent.TileType<MushroomInABottleTile>();
-        // Use the actual flood-filled room, rather than its bounding rectangle.
+        // 檢查實際填充得到的房間格子，避免只用外接矩形誤判隔壁房間。
         for (int i = 0; i < WorldGen.numRoomTiles; i++) {
             Tile tile = Main.tile[WorldGen.roomX[i], WorldGen.roomY[i]];
             if (tile.HasTile && tile.TileType == tileType) return true;

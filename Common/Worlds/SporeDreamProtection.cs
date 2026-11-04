@@ -1,3 +1,4 @@
+// 分別處理邪惡轉化、敵怪與敵方彈幕；屏障範圍由群系地表判斷提供。
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +16,7 @@ public sealed class SporeDreamConversionGuard : GlobalTile
     public override void OnTileConverted(int i,int j,int fromType,int toType,int conversionType)
     {
         if(!SporeDreamForestSystem.Instance.Contains(i,j)) return;
-        // Preserve the original substrate as well as custom grass against evil/hallow conversion.
+        // 阻擋邪惡與神聖轉化時，同時保護原本土壤與自訂草皮。
         if(conversionType!=BiomeConversionID.Corruption && conversionType!=BiomeConversionID.Crimson && conversionType!=BiomeConversionID.Hallow) return;
         Main.tile[i,j].TileType=(ushort)fromType;
         WorldGen.SquareTileFrame(i,j);
@@ -41,15 +42,14 @@ public sealed class SporeDreamEnemyGuard : GlobalNPC
         if(Math.Max(npc.Hitbox.Right,npc.Hitbox.Right+npc.velocity.X)<=forest.Left*16
             || Math.Min(npc.Hitbox.Left,npc.Hitbox.Left+npc.velocity.X)>=forest.Right*16) return;
         bool crossing=false;
-        // Sweep movement so fast enemies cannot pass entirely through the protected strip.
+        // 沿本次預計移動路徑取樣，避免高速敵怪一步跨過整條地表屏障。
         int steps=Math.Clamp((int)Math.Ceiling(npc.velocity.Length()/8f),1,512);
         for(int step=0;step<=steps;step++) {
             Rectangle box=npc.Hitbox; box.Offset((int)(npc.velocity.X*step/steps),(int)(npc.velocity.Y*step/steps));
             if(forest.IsSurfaceBarrier(box)) { crossing=true; break; }
         }
         if(!crossing) return;
-        // Worms and other realLife-linked bosses move as one group, preserving
-        // body offsets, health, AI and velocity rather than stretching the chain.
+        // 以 realLife 相連的蠕蟲與首領整組搬移，維持節段相對位置、生命、行為與速度。
         int root=npc.realLife>=0 && npc.realLife<Main.maxNPCs ? npc.realLife : npc.whoAmI;
         var group=new List<NPC>();
         Rectangle bounds=npc.Hitbox;
@@ -60,8 +60,7 @@ public sealed class SporeDreamEnemyGuard : GlobalNPC
         if(group.Count==0) group.Add(npc);
         Vector2 destination=forest.OppositeBoundary(bounds,npc.velocity);
         Vector2 offset=destination-new Vector2(bounds.X,bounds.Y);
-        // The far side can have a higher hillside. Raise the intact group to a
-        // clear exit instead of inserting solid-colliding enemies into terrain.
+        // 另一側地面可能較高；整組往上尋找空位，避免把會碰撞地形的敵怪塞進土中。
         bool clear=false;
         for(int step=0;step<=160;step++) {
             clear=true;
@@ -92,6 +91,7 @@ public sealed class SporeDreamProjectileGuard : GlobalProjectile
     public override bool InstancePerEntity => true;
     private bool nativeAttack;
     private bool IsNativeAttack(Projectile projectile) => nativeAttack || SporeDreamNativeContent.IsNativeProjectileType(projectile.type);
+    // 原生敵怪及其子彈幕可繼承攻擊身分，不能只靠出生在群系內判定。
     public override void OnSpawn(Projectile projectile,IEntitySource source)
     {
         if(source is EntitySource_Parent parent) {

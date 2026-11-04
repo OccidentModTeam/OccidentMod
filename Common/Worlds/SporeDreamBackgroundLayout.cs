@@ -1,3 +1,4 @@
+// 計算群系全景圖位置與地下淡出，像素與物塊單位在此轉換。
 using System;
 
 namespace Occident.Common.Worlds;
@@ -9,6 +10,7 @@ internal static class SporeDreamBackgroundLayout
         public int Bottom => Top+Height;
     }
 
+    // 用整片地表的中位數作背景錨點，降低局部深坑對背景位置的影響。
     internal static float RepresentativeGround(int[] surface)
     {
         if(surface.Length==0) return 0f;
@@ -29,6 +31,7 @@ internal static class SporeDreamBackgroundLayout
         return new Panorama(left,top,width,height,fogStart);
     }
 
+    // 用物塊深度做平滑淡出，進入地下時逐步隱去地表背景。
     internal static float SurfaceVisibility(float playerY,float localGroundY)
     {
         float depth=(playerY-localGroundY)/16f;

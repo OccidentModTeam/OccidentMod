@@ -1,4 +1,5 @@
-﻿using System;
+﻿// 產生連續霧帶的取樣位置、寬度與前後層關係。
+using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
@@ -8,7 +9,7 @@ internal static class SporeDreamRibbonPath
 {
     internal readonly record struct Sample(Vector2 Position,bool Front,float Progress,float Radius);
 
-    // Trace the entire biome before viewport culling so depth never restarts at the camera edge.
+    // 先追蹤整片群系再裁掉視窗外部分，避免前後層關係從鏡頭邊緣重新起算。
     internal static void Append(float left,float right,float phase,Func<float,float> ground,
         Func<Vector2,bool> touchesStem,List<Sample> output)
     {
@@ -24,7 +25,7 @@ internal static class SporeDreamRibbonPath
             bool contact=touchesStem(position);
             if(contact&&!touching) front=!front;
             touching=contact;
-            // Broad and fine waves create smooth, independently travelling thick and thin sections.
+            // 疊加大、小波形，形成平滑且各自移動的粗細霧段。
             float thickness=(MathF.Sin(x/137f-phase*.71f)+1f)*.5f;
             float detail=(MathF.Sin(x/51f+phase*.43f)+1f)*.5f;
             float radius=10f+38f*thickness*thickness+8f*detail;

@@ -1,3 +1,4 @@
+// 維持菇寶寶召喚增益，沒有對應召喚物時移除增益。
 using Terraria;
 using Terraria.ModLoader;
 using Occident.Content.Projectiles.Minions;

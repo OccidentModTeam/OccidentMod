@@ -1,15 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<!-- Import tModLoader mod properties -->
+	<!-- 先載入 tModLoader 預設，再以專案內的 Windows 規則統一路徑。 -->
 	<Import Project="..\tModLoader.targets" />
+	<Import Project=".build\Occident.Windows.targets" Condition="'$(OS)' == 'Windows_NT'" />
 
-	<!-- General -->
+	<!-- 根命名空間與套件名稱分開保留，避免破壞既有內容與存檔識別。 -->
     <PropertyGroup><RootNamespace>Occident</RootNamespace><AssemblyName>OccidentMod</AssemblyName></PropertyGroup>
 	<PropertyGroup>
 		
 	</PropertyGroup>
 
-	<!-- References -->
+	<!-- 額外組件參考；目前由 tModLoader 共用設定提供。 -->
 	<ItemGroup>
 		
 	</ItemGroup>

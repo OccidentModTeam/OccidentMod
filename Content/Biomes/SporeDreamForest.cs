@@ -1,3 +1,4 @@
+// 向 tModLoader 宣告群系判定、背景樣式、音樂與顯示圖示。
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

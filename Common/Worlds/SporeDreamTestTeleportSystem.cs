@@ -1,3 +1,4 @@
+// 提供按鍵與背包按鈕測試傳送，伺服器檢查冷卻並尋找安全落點。
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
@@ -11,7 +12,7 @@ using Occident.Common.Networking;
 
 namespace Occident.Common.Worlds;
 
-// Explicit testing shortcut. No terrain is created or changed by teleporting.
+// 明確觸發的測試傳送捷徑；傳送不會建立或修改地形。
 public sealed class SporeDreamTestTeleportSystem : ModSystem
 {
     private ModKeybind teleportKey;
@@ -64,6 +65,7 @@ public sealed class SporeDreamTestTeleportSystem : ModSystem
         },InterfaceScaleType.UI));
     }
 
+    // 從群系中央向外找有支撐、無實心重疊且無液體的落點。
     internal bool TryFindDestination(Player player,out Vector2 destination)
     {
         destination=default;
@@ -88,6 +90,7 @@ public sealed class SporeDreamTestTeleportSystem : ModSystem
         return false;
     }
 
+    // 多人模式由伺服器執行；先送出目的區塊資料，再同步玩家傳送。
     internal void TryTeleport(Player player)
     {
         if(Main.netMode==NetmodeID.MultiplayerClient || !player.active || player.dead

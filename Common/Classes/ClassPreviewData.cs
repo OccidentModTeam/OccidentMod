@@ -1,3 +1,4 @@
+// 建立角色介面的展示配點與操作難度資料，不直接修改實際能力。
 using System;
 
 namespace Occident.Common.Classes;

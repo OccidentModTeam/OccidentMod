@@ -1,10 +1,10 @@
+// 以菌蓋輪廓計算彈跳表面與壓縮動畫，不依賴玩家狀態。
 using System;
 using System.Collections.Generic;
 using G=Occident.Common.Worlds.SporeDreamGrowthPath;
 namespace Occident.Common.Worlds;
 
-// Pure geometry shared by landing checks and isolated tests. Heights are the
-// actual alpha silhouette of the current native cap atlas, not a flat box.
+// 著地檢查共用的純幾何計算；高度取自現行菌蓋透明輪廓，不使用平坦矩形代替。
 internal static class SporeDreamSpringMath
 {
     internal const int PressTicks=6,AnimationTicks=24,CooldownTicks=18;
@@ -21,6 +21,7 @@ internal static class SporeDreamSpringMath
         foreach(var piece in pieces)if(piece.Kind==G.Vertical && ++vertical>1)return false;
         return true;
     }
+    // 只量測角色與菌蓋的重疊部分，依透明輪廓找出實際最高接觸面。
     internal static bool TryTop(G.Piece crown,float left,float width,out float top)
     {
         top=0;
@@ -36,6 +37,7 @@ internal static class SporeDreamSpringMath
     }
     internal static bool Crosses(float before,float after,float top,float velocity)
         =>velocity>0 && before<=top+2 && after>=top && after>=before;
+    // 動畫先下壓、回彈再微幅上拋；時間以遊戲更新刻數計算。
     internal static float Offset(int age)
     {
         if(age<0 || age>=AnimationTicks)return 0;

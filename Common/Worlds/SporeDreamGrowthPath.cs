@@ -1,9 +1,10 @@
+// 以像素接點產生菇柄直段、彎角與菌蓋，並計算砍斷後的端點。
 using System;
 using System.Collections.Generic;
 
 namespace Occident.Common.Worlds;
 
-// Pixel-space geometry. Twenty-pixel artwork is never stretched to a tile.
+// 生長幾何以像素為單位，20 像素素材不拉伸成物塊大小。
 internal static class SporeDreamGrowthPath
 {
     internal const int Up=0,Right=1,Down=2,Left=3;
@@ -30,6 +31,7 @@ internal static class SporeDreamGrowthPath
             Up=>(corner%2==1?8:12,0),Down=>(corner%2==1?8:12,20),
             Right=>(20,corner>=2?8:12),_=>(0,corner>=2?8:12)
         };
+    // 移除切點後方所有段落，並在剩餘路徑出口補上斷頂。
     internal static void Cut(List<Piece> pieces,int stage)
     {
         if(stage<0||stage>=pieces.Count)throw new ArgumentOutOfRangeException(nameof(stage));
@@ -38,6 +40,7 @@ internal static class SporeDreamGrowthPath
         Piece last=pieces[^1];var end=last.Exit;
         pieces.Add(new(End,end.X,end.Y,last.Direction,last.Style%5));
     }
+    // 把直段與彎角依接點串接，最後加入菌蓋；傳入的亂數由呼叫端決定。
     internal static List<Piece> Create(int x,int y,int initialDirection,bool multiple,Func<int,int,int> next,int uprightSegments=-1,int floorSide=-1)
     {
         var result=new List<Piece>();int direction=initialDirection;
@@ -58,8 +61,7 @@ internal static class SporeDreamGrowthPath
             x=left+exit.X;y=top+exit.Y;direction=outgoing;
         }
         if(direction==Up) {
-            // A full ground root has a downward-facing entry, a short lateral
-            // section, and an upward exit. Neither end is left horizontal in soil.
+            // 完整地面根部由朝下接點、短橫段及朝上出口組成，避免水平開口留在土中。
             int side=floorSide is Left or Right?floorSide:(next(0,2)==0?Left:Right);
             Bend(side);Straight(1);Bend(Up);
             Straight(uprightSegments>=0?uprightSegments:next(6,10));
@@ -67,14 +69,14 @@ internal static class SporeDreamGrowthPath
         } else {
             int outward=direction;
             Straight(uprightSegments is 0 or 1?1:next(1,3));Bend(Up);
-            // A second elbow is rare and separated by at least 100px of upright stem.
+            // 第二次彎折較少出現，且兩次彎折之間至少保留 100 像素直柄。
             Straight(uprightSegments>=0?uprightSegments:next(5,9));
             if(multiple && uprightSegments!=0 && uprightSegments!=1) {Bend(outward);Straight(next(1,3));}
         }
         result.Add(new(Crown,x,y,direction,next(0,3)));
         var eligible=new List<int>();
         for(int i=2;i<result.Count-2;i++)if(result[i].Kind==Vertical)eligible.Add(i);
-        // Allocate per plant: visible swellings without consecutive tumor cells.
+        // 以整株為單位配置膨大節，避免連續裝飾造成成串腫塊。
         if(eligible.Count>0 && next(0,10)<9) {
             int quota=eligible.Count>=10?3:eligible.Count>=5?2:1;
             for(int chosen=0;chosen<quota && eligible.Count>0;chosen++) {

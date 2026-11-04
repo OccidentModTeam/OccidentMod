@@ -1,3 +1,4 @@
+// 將舊模組名稱的存檔紀錄與世界標頭對應到目前套件。
 using System.Collections.Generic;
 using System.Linq;
 using System;
@@ -7,7 +8,7 @@ using Terraria.ModLoader.IO;
 
 namespace Occident.Common.Compatibility;
 
-// Keep old player/world system data readable after package renames.
+// 模組套件改名後，仍保留舊角色與世界資料的讀取能力。
 internal static class LegacySaveIdentity
 {
     internal const string PreviousName = "ArkheCrowns";
@@ -17,8 +18,7 @@ internal static class LegacySaveIdentity
     private static readonly FieldInfo GeneratedVersions = typeof(WorldFileData).GetField("modVersionsDuringWorldGen", Flags);
     private static readonly PropertyInfo Headers = typeof(WorldFileData).GetProperty("ModHeaders", Flags);
 
-    // Check all required members before any load hook is installed. A changed tML
-    // version must report a compatibility error, not fail midway through loading a save.
+    // 安裝讀檔掛鉤前先確認反射成員存在；若 tModLoader 改版，應提早報錯，避免讀檔到一半才失敗。
     internal static void ValidateRuntimeMembers()
     {
         if (UsedMods is null) throw new MissingFieldException(typeof(WorldFileData).FullName, "usedMods");
@@ -28,7 +28,7 @@ internal static class LegacySaveIdentity
 
     internal static IList<TagCompound> Remap(IList<TagCompound> records, string currentName)
     {
-        // Current saves are the common case: no copied list and no nested searches.
+        // 一般新存檔直接沿用原清單，只有找到舊套件紀錄時才建立轉換副本。
         bool needsMigration = false;
         foreach (var entry in records)
             if (IsLegacyRecord(entry))

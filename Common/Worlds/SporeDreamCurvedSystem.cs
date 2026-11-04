@@ -1,3 +1,4 @@
+// 管理彎曲巨菇的分段幾何、占格、生成、砍斷、存檔與多人同步。
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,6 +27,7 @@ public sealed class SporeDreamCurvedSystem : ModSystem
         internal bool Pressing;internal ulong PressStarted;
         internal Plant(Point a,Point b,List<G.Piece> pieces){RootA=a;RootB=b;Pieces=pieces;}
     }
+    // plants 保存形狀本體；cells 供挖掘查段落，draws 決定每段從哪個物塊開始繪製。
     private readonly List<Plant> plants=new();
     private readonly Dictionary<Point,(Plant Plant,int Stage)> cells=new();
     private readonly Dictionary<Point,List<(Plant Plant,int Stage)>> draws=new();
@@ -37,7 +39,7 @@ public sealed class SporeDreamCurvedSystem : ModSystem
         if(Main.netMode!=NetmodeID.MultiplayerClient)RepairGroundEntries();
         if(plants.Count>0)Mod.Logger.Info($"Spore Dream Forest curved paths loaded: {plants.Count} plants, {cells.Count} occupied tiles.");
     }
-    // Exact quarter-turn bounds around the native artwork neck; no resampling.
+    // 以原圖頸部為錨點精確計算四分之一圈旋轉邊界，不重採樣素材。
     private void RepairGroundEntries()
     {
         var forest=SporeDreamForestSystem.Instance;int repaired=0;
@@ -47,8 +49,7 @@ public sealed class SporeDreamCurvedSystem : ModSystem
                 || plant.RootA.Y!=forest.Surface[plant.RootA.X-forest.Left])continue;
             G.Piece first=plant.Pieces[0];
             if(first.Kind!=G.Horizontal || first.Y!=plant.RootA.Y*16-16)continue;
-            // Replace the open horizontal foot in place; its exit stays exactly
-            // where the following elbow expects it. The lower 4px enter soil.
+            // 原位替換開口的橫向根部，維持後續彎角接點；下緣 4 像素埋入土中。
             plant.Pieces[0]=first with {Kind=G.Turn,Extra=G.Up};repaired++;
         }
         if(repaired>0) {
@@ -77,7 +78,7 @@ public sealed class SporeDreamCurvedSystem : ModSystem
             G.Up=>new(p.X-8,p.Y,16,20),G.Down=>new(p.X-8,p.Y-20,16,20),
             G.Right=>new(p.X-20,p.Y-8,20,16),_=>new(p.X,p.Y-8,20,16)
         },
-        // Crowns draw wider, but only the central attachment is mineable.
+        // 菌蓋繪圖較寬，但可挖掘範圍只使用中央接點。
         _=>p.Direction switch {G.Right=>new(p.X,p.Y-8,16,16),G.Left=>new(p.X-16,p.Y-8,16,16),_=>new(p.X-8,p.Y-16,16,16)}
     };
     private static IEnumerable<Point> Footprint(Plant plant,G.Piece p)
@@ -91,6 +92,7 @@ public sealed class SporeDreamCurvedSystem : ModSystem
                 if(cell!=plant.RootA && cell!=plant.RootB) yield return cell;
             }
     }
+    // 由植株幾何重建占格與繪圖索引；形狀改變後也遞增地圖版本。
     private void Rebuild()
     {
         cells.Clear();draws.Clear();MapRevision++;
@@ -121,7 +123,7 @@ public sealed class SporeDreamCurvedSystem : ModSystem
             G.Piece piece=plant.Pieces[stage];Rectangle rect=Bounds(piece);
             if(piece.Kind==G.Crown)rect=CrownBounds(piece);
             if(rect.Left<(forest.Left+2)*16 || rect.Right>(forest.Right-2)*16 || rect.Top<32)return false;
-            // Distant parts of one path may not cross back through each other.
+            // 同一生長路徑中，不相鄰的段落不能回頭交叉。
             if(piece.Kind!=G.Crown)for(int earlier=0;earlier<regions.Count-1;earlier++)
                 if(rect.Intersects(regions[earlier]))return false;
             regions.Add(rect);
@@ -150,6 +152,7 @@ public sealed class SporeDreamCurvedSystem : ModSystem
         dirty=true;
     }
     private sealed record FloorPlan(Plant Plant,int X,int Ground,int Width);
+    // 先做不改地形的配置檢查，避免失敗候選留下人工基座。
     private FloorPlan PlanFloor(int x,int ground,int growth)
     {
         var forest=SporeDreamForestSystem.Instance;
@@ -189,8 +192,7 @@ public sealed class SporeDreamCurvedSystem : ModSystem
                 if(Math.Abs(first-second)<Math.Max(20,forest.Surface.Length/3))continue;
                 FloorPlan two=PlanFloor(second,forest.Surface[second-forest.Left],2);
                 if(two is null)continue;
-                // Both sites are planned before any terrain or plant is committed.
-                // Their large separation prevents either foundation affecting the other.
+                // 先完成兩個位置的規劃再修改地形；較大的間距可避免兩側基座互相影響。
                 if(!forest.PrepareGiantFoundation(one.X,one.Ground,true,one.Width)
                     || !forest.PrepareGiantFoundation(two.X,two.Ground,true,two.Width))return 0;
                 Place(one.Plant);Place(two.Plant);return 2;
@@ -211,8 +213,7 @@ public sealed class SporeDreamCurvedSystem : ModSystem
             if(count>=budget || plants.Count>=MaximumPlants)break;
             int x=candidate.X,d=candidate.Direction,ground=forest.Surface[x-forest.Left];
             Point a=new(x,ground+1),b=a;
-            // The new 16px stem fits one full side block. An inward layer and
-            // natural shoulders above/below keep its entire attachment supported.
+            // 16 像素菇柄接在完整側面物塊上；向內一層與上下自然土塊共同支撐接點。
             bool safe=true;
             for(int dx=0;dx<=1;dx++)for(int y=ground;y<=ground+2;y++)safe&=RootSafe(new Point(x-d*dx,y));
             if(!safe)continue;
@@ -240,8 +241,7 @@ public sealed class SporeDreamCurvedSystem : ModSystem
         cutting=true;
         var oldCells=cells.Where(p=>ReferenceEquals(p.Value.Plant,plant)).Select(p=>p.Key).ToArray();
         try {
-            // Rewrite the connected remainder atomically, without recursive
-            // per-tile KillTile calls or duplicate multi-tile item drops.
+            // 一次重建剩餘的相連部分，避免逐格遞迴呼叫 KillTile 或重複掉落物品。
             foreach(Point p in oldCells)Main.tile[p.X,p.Y].ClearTile();
             G.Cut(plant.Pieces,stage);
             if(plant.Pieces.Count==0)plants.Remove(plant);
@@ -276,7 +276,7 @@ public sealed class SporeDreamCurvedSystem : ModSystem
     public override void LoadWorldData(TagCompound tag)
     {
         ClearWorld();
-        // Width-36 curves existed only in isolated, unreleased test worlds.
+        // 寬 36 像素的舊彎曲幾何只存在於未發布的隔離測試世界。
         if(tag.GetInt("GeometryVersion")!=2)return;
         foreach(var data in tag.GetList<TagCompound>("CurvedGiants")) {
             int[] a=data.GetIntArray("A"),b=data.GetIntArray("B"),values=data.GetIntArray("Pieces");
@@ -295,6 +295,7 @@ public sealed class SporeDreamCurvedSystem : ModSystem
             foreach(G.Piece s in p.Pieces){writer.Write(s.Kind);writer.Write(s.X);writer.Write(s.Y);writer.Write(s.Direction);writer.Write(s.Style);writer.Write(s.Extra);}
         }
     }
+    // 先將整份資料讀入暫存並驗證，通過後才替換目前植株清單。
     public override void NetReceive(BinaryReader reader)
     {
         int count=reader.ReadInt32();if(count<0||count>MaximumPlants)throw new IOException("Invalid curved giant count");
@@ -338,6 +339,7 @@ public sealed class SporeDreamCurvedSystem : ModSystem
         if(plant is null || !SporeDreamSpringMath.TryTop(plant.Pieces[^1],left,width,out top))return false;
         depression=SpringOffset(plant);return true;
     }
+    // 只找本次向下位移會穿過的可彈菌蓋，取最先接觸的表面。
     internal bool TrySpringLanding(float left,float width,float before,float after,float velocity,out Point root,out float top)
     {
         root=default;top=float.MaxValue;bool found=false;
@@ -358,7 +360,7 @@ public sealed class SporeDreamCurvedSystem : ModSystem
     internal bool StartSpring(Point root,bool request=true)
     {
         Plant plant=SpringAt(root);if(plant is null)return false;
-        // Preserve the owner's predicted compression when the server echoes it.
+        // 收到伺服器回傳時保留所屬玩家已預測的壓縮進度，避免動畫重頭播放。
         if(!plant.Pressing || Main.GameUpdateCount-plant.PressStarted>=SporeDreamSpringMath.PressTicks) {
             plant.Pressing=true;plant.PressStarted=Main.GameUpdateCount;
         }
@@ -367,6 +369,7 @@ public sealed class SporeDreamCurvedSystem : ModSystem
         }
         return true;
     }
+    // 伺服器核對玩家位置、狀態與冷卻後，才轉送菌蓋壓縮事件。
     internal void ReceiveSpring(BinaryReader reader,int whoAmI,bool request)
     {
         Point root;

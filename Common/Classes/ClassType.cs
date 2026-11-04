@@ -1,3 +1,4 @@
+// 職業固定代號；既有數值會被存檔與封包使用，新增時不要任意重編。
 namespace Occident.Common.Classes;
 public enum ClassType
 {

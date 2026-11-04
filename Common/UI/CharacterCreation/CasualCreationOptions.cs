@@ -1,3 +1,4 @@
+// 在原版角色難度介面加入休閒選項，與實際難度欄位分開處理。
 using System;
 using System.Linq;
 using System.Reflection;
@@ -24,7 +25,7 @@ internal static class CasualCreationOptions
         var vanilla = row.Children.OfType<UIDifficultyButton>().OrderBy(button => button.VAlign).ToArray();
         var mode = player.GetModPlayer<CasualModePlayer>();
 
-        // Selection is rendered against a UI-only player, keeping the saved vanilla difficulty valid.
+        // 按鈕使用專供介面顯示的玩家副本，避免把休閒模式代號寫成非法的原版難度。
         var selection = new Player { difficulty = mode.IsActive ? (byte)4 : player.difficulty };
         var buttonPlayer = typeof(UIDifficultyButton).GetField("_player", BindingFlags.Instance | BindingFlags.NonPublic)
             ?? throw new MissingFieldException(typeof(UIDifficultyButton).FullName, "_player");
@@ -53,7 +54,7 @@ internal static class CasualCreationOptions
         };
         row.Append(casual);
 
-        // Preserve each native button's height: grow the row by one quarter instead of squeezing five into four.
+        // 增加選項區高度以容納第五個按鈕，維持原版按鈕高度。
         middle.Parent.Height.Set(middle.Parent.Height.Pixels + 28f, middle.Parent.Height.Percent);
         root.Height.Set(root.Height.Pixels + 28f, root.Height.Percent);
         middle.Height.Set(middle.Height.Pixels + 28f, middle.Height.Percent);

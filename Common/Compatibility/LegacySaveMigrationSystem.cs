@@ -1,3 +1,4 @@
+// 在原版讀檔入口掛接名稱相容轉換，卸載時完整移除掛鉤。
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -30,7 +31,7 @@ public sealed class LegacySaveMigrationSystem : ModSystem
         }
         catch
         {
-            // A later hook can fail after earlier hooks were already installed.
+            // 後續掛鉤可能安裝失敗；先卸除已裝好的掛鉤，再將錯誤交回載入器。
             Unload();
             throw;
         }

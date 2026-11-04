@@ -1,3 +1,4 @@
+// 管理近戰、遠程、魔法、召喚分頁與其職業清單。
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Occident.Common.Classes;
@@ -10,7 +11,7 @@ using Terraria.UI;
 
 namespace Occident.Common.UI.CharacterCreation;
 
-// Independent second-step tabs. Add new tab contents here without modifying appearance controls.
+// 第二步的分頁獨立管理；新增職業分頁時從這裡接入，不必修改外觀控制。
 internal sealed class ClassCreationPage
 {
     private readonly List<UIColoredImageButton> buttons = new();
@@ -44,13 +45,13 @@ internal sealed class ClassCreationPage
         Content.Width.Set(0f, 1f);
         Content.Height.Set(0f, 1f);
 
-        // Melee, ranged, magic, summon. Use modest vanilla weapons without extra effects.
+        // 以原版近戰、遠程、魔法、召喚武器作分頁圖示，避免額外特效。
         AddTab(ItemID.IronBroadsword, new ClassCreationCategory(player, ClassCategory.Melee));
         AddTab(ItemID.WoodenBow, new ClassCreationCategory(player, ClassCategory.Ranged));
         AddTab(ItemID.WandofSparking, new ClassCreationCategory(player, ClassCategory.Magic));
         AddTab(ItemID.BabyBirdStaff, new ClassCreationCategory(player, ClassCategory.Summon));
 
-        // Match MakeCategoriesBar's separator, including its tint and position below the buttons.
+        // 分隔線的顏色與按鈕下方位置，對齊原版 MakeCategoriesBar。
         var separator = new UIHorizontalSeparator(2, true)
         {
             HAlign = 0.5f,

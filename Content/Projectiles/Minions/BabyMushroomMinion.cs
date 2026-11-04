@@ -1,3 +1,4 @@
+// 菇寶寶召喚物的地面跟隨、尋敵、跳躍攻擊與動畫。
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,8 +21,7 @@ public sealed class BabyMushroomMinion : ModProjectile
     private const float AttackHopSpeed = 3.4f;
     private const float FollowHopSpeed = 3.2f;
     private const float ObstacleHopSpeed = 6f;
-    // Source frames contain vertical animation offsets. Anchor each visible sole to
-    // the physical hitbox so only projectile motion supplies the jump displacement.
+    // 來源影格本身含垂直偏移；將每格可見腳底對齊實體碰撞框，跳躍位移只由彈幕運動提供。
     private static readonly int[] LegacyFeetY = { 34, 34, 30, 24, 28, 34, 32, 34 };
     private Texture2D measuredTexture;
     private int[] measuredFeetY;
@@ -79,6 +79,8 @@ public sealed class BabyMushroomMinion : ModProjectile
         return true;
     }
 
+    // ai[0] 是地面跳躍間隔，ai[1] 是穿地返回旗標，ai[2] 是本次起跳方向。
+    // 先維持主人與增益，再決定返回、地面跟隨或跳躍攻擊，最後更新動畫。
     public override void AI()
     {
         Player owner = Main.player[Projectile.owner];
@@ -113,7 +115,7 @@ public sealed class BabyMushroomMinion : ModProjectile
             Projectile.netUpdate = true;
         }
 
-        // Return through terrain if stranded; normal following and combat stay on the ground.
+        // 卡住或離主人太遠時才穿地返回，一般跟隨與戰鬥維持地面移動。
         float returnDistance=target!=null ? 900f : 600f;
         if (ownerDistance > returnDistance || Projectile.ai[1] == 1f) {
             Projectile.ai[1] = 1f;
@@ -137,8 +139,7 @@ public sealed class BabyMushroomMinion : ModProjectile
                     if (preparationTicks == 0) preparationTicks = target!=null ? 1 : 4;
                     if (--preparationTicks == 0) {
                         int direction = Math.Abs(dx)>1f ? Math.Sign(dx) : (Projectile.direction==0 ? 1 : Projectile.direction);
-                        // A jumping enemy is not an obstacle. Only a solid block
-                        // directly ahead enables a high hop.
+                        // 跳起的敵人不算障礙物，只有正前方實心物塊才觸發高跳。
                         Vector2 probe = new(direction > 0 ? Projectile.Right.X + 1f : Projectile.Left.X - 5f,
                             Projectile.Bottom.Y - 16f);
                         bool blocked = Collision.SolidCollision(probe, 4, 16);
@@ -148,8 +149,7 @@ public sealed class BabyMushroomMinion : ModProjectile
                             float rise=Math.Clamp(Projectile.Bottom.Y-target.Bottom.Y+10f,22f,70f);
                             hopSpeed=Math.Max(hopSpeed,MathF.Sqrt(2f*RiseGravity*rise));
                         }
-                        // Shorten the horizontal stride with the remaining gap;
-                        // otherwise even a low hop can carry it past a small enemy.
+                        // 依剩餘距離縮短水平步幅，避免低跳也越過小型敵人。
                         float estimatedHeight = hopSpeed * hopSpeed / (2f * RiseGravity);
                         float flightTicks = Math.Max(1f, hopSpeed / RiseGravity +
                             MathF.Sqrt(2f * estimatedHeight / FallGravity) - 1f);
@@ -164,8 +164,7 @@ public sealed class BabyMushroomMinion : ModProjectile
                 else preparationTicks = 0;
             }
             else if (target != null && Projectile.ai[2] != 0f) {
-                // Keep the launch direction until landing. Approaching or passing
-                // the enemy may brake this hop, but can never reverse it in midair.
+                // 起跳後保持方向到落地；接近或越過敵人時可以減速，但不在空中反向。
                 float remainingAhead = dx * Projectile.ai[2];
                 if (remainingAhead <= stopDistance) Projectile.velocity.X *= 0.75f;
                 else {
@@ -206,8 +205,7 @@ public sealed class BabyMushroomMinion : ModProjectile
         int height = FrameHeight;
         int feetY;
         if (texture.Width == FrameWidth && texture.Height == FrameHeight * FrameCount) {
-            // The edited sheet uses eight 20x20 cells. Measure its actual feet once
-            // rather than carrying offsets over from the older, larger artwork.
+            // 新版圖集為八格 20×20，直接量測各格腳底，不沿用舊大尺寸素材偏移。
             if (measuredTexture != texture) {
                 Color[] pixels = new Color[texture.Width * texture.Height];
                 texture.GetData(pixels);
@@ -229,13 +227,13 @@ public sealed class BabyMushroomMinion : ModProjectile
             feetY = measuredFeetY[frame];
         }
         else if (texture.Width == 32 && texture.Height == 288) {
-            // Keep the original exported PNG usable until the edited sheet replaces it.
+            // 新版圖集替換完成前，仍相容原始匯出的 PNG。
             width = 32;
             height = 36;
             feetY = LegacyFeetY[frame];
         }
         else {
-            // Never fall back to drawing the whole sheet if an unexpected layout is supplied.
+            // 遇到未知版面就停止自訂繪製，避免把整張圖集當成單格畫出。
             return false;
         }
         Rectangle source = new(0, frame * height, width, height);
@@ -246,6 +244,7 @@ public sealed class BabyMushroomMinion : ModProjectile
         return false;
     }
 
+    // 依搜尋冷卻與可見性挑選目標，保留仍有效的近距離對象。
     private NPC FindTarget(Player owner)
     {
         if (owner.HasMinionAttackTargetNPC) {
@@ -257,8 +256,7 @@ public sealed class BabyMushroomMinion : ModProjectile
                 return designated;
             }
         }
-        // Keep attacking a live nearby target between searches. Dead/out-of-range
-        // targets are discarded immediately, rather than waiting for the timer.
+        // 兩次搜尋之間保留存活且在範圍內的目標；死亡或超出範圍時立即清掉，不等計時器。
         if(targetIndex>=0 && targetIndex<Main.maxNPCs && targetSearchTimer>0) {
             targetSearchTimer--;
             NPC cached=Main.npc[targetIndex];
@@ -283,9 +281,7 @@ public sealed class BabyMushroomMinion : ModProjectile
 
     private bool CanSeeTarget(NPC target)
     {
-        // Very small grounded actors can fail the body-center tile ray because
-        // its neighboring cell touches the floor. An upper-body ray recognizes
-        // visible ground enemies without allowing attacks through a full wall.
+        // 小型地面角色的中心射線容易被鄰近地板擋住；補查上半身射線以辨識可見敵人，仍禁止穿整面牆攻擊。
         return Collision.CanHitLine(Projectile.position,Projectile.width,Projectile.height,
                 target.position,target.width,target.height)
             || Collision.CanHitLine(Projectile.Top+new Vector2(0,2),1,1,

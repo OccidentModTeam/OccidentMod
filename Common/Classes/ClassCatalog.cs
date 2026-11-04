@@ -1,3 +1,4 @@
+// 集中處理職業分類、有效性與舊存檔名稱對照。
 namespace Occident.Common.Classes;
 public static class ClassCatalog
 {
@@ -32,8 +33,7 @@ public static class ClassCatalog
     }
 
 
-    // Old character saves store enum names as strings. Resolve them here and
-    // write only the current name on subsequent saves; unknown IDs stay intact.
+    // 舊角色以列舉名稱儲存職業；在此轉成現名，下次存檔寫回新名稱，無法辨識的舊代號仍保留。
     public static bool TryResolveClassId(string classId, out ClassType id)
     {
         string canonicalId = classId?.ToLowerInvariant() switch

@@ -1,3 +1,4 @@
+// 分批補登瓶子並定期檢查住房，安排菇寶寶入住。
 using Microsoft.Xna.Framework;
 using Occident.Content.NPCs.TownPets;
 using Occident.Content.Tiles.Furniture;
@@ -25,8 +26,7 @@ public sealed class MushroomHousingSystem : ModSystem
     {
         if (Main.netMode == NetmodeID.MultiplayerClient) return;
 
-        // One bounded scan per world load also recovers bottles placed before their
-        // tile entity existed. Normal placement still uses the networked tile hook.
+        // 每次載入世界分批掃描一次，補登舊瓶子的物塊實體；新放置仍沿用帶同步的物塊掛鉤。
         int columns = System.Math.Max(1, 65536 / Main.maxTilesY);
         int end = System.Math.Min(Main.maxTilesX, scanColumn + columns);
         int tileType = ModContent.TileType<MushroomInABottleTile>();
@@ -48,6 +48,7 @@ public sealed class MushroomHousingSystem : ModSystem
         TryWelcomeMushroom();
     }
 
+    // 先沿用原版房間有效性，再確認實際房間內有瓶子且沒有禁止入住物。
     internal static bool TryFindHome(Point16 bottlePosition, int ignoreNpc, out Point home)
     {
         home = Point.Zero;

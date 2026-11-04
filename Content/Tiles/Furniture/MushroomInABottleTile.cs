@@ -1,3 +1,4 @@
+// 瓶中蘑菇的多格家具定義，放置時建立實體、拆除時移除。
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -17,7 +18,7 @@ public sealed class MushroomInABottleTile : ModTile
 
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
         TileObjectData.newTile.Origin = new Point16(0, 1);
-        // The supplied 32x32 artwork has no gutters between its four tile cells.
+        // 32×32 原圖的四個物塊格之間沒有分隔像素。
         TileObjectData.newTile.CoordinatePadding = 0;
         TileObjectData.newTile.CoordinateHeights = new[] { 16, 16 };
         TileObjectData.newTile.HookPostPlaceMyPlayer =

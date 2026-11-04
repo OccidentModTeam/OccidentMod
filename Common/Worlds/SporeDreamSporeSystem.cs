@@ -1,3 +1,4 @@
+// 在鏡頭附近的巨菇生成、更新並繪製有限數量的孢子粒子。
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
@@ -43,7 +44,7 @@ public sealed class SporeDreamSporeSystem : ModSystem
         int right=Math.Min(forest.Right-1,Math.Min(Main.maxTilesX-2,(int)((Main.screenPosition.X+Main.screenWidth)/16f)+2));
         int top=Math.Max(1,(int)(Main.screenPosition.Y/16f)-4);
         int bottom=Math.Min(Main.maxTilesY-2,(int)((Main.screenPosition.Y+Main.screenHeight)/16f)+2);
-        // Vary scan direction so the particle cap does not always favor one edge of the screen.
+        // 交替掃描方向，避免粒子數上限總是優先保留畫面同一側。
         bool reverse=Main.rand.NextBool();
         for(int n=0;n<=right-left;n++) {
             int x=reverse ? right-n : left+n;

@@ -1,1 +1,3 @@
-Modify this file with a description of your mod.
+[b]輓歌 (OccidentMod)[/b] 是一部正在開發中的大型內容擴充模組，旨在嘗試全新態度的戰鬥系統與機制延伸。目前僅供底層框架的機制驗證與內部測試。
+
+[b]OccidentMod (輓歌)[/b] is an upcoming major content expansion mod featuring a brand-new combat system and expanded mechanics. It is currently available for core framework verification and internal testing only.

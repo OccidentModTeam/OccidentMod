@@ -1,3 +1,4 @@
+// 處理玩家踩上矮菇、壓縮與彈起的移動狀態。
 using System;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -7,8 +8,7 @@ using Occident.Common.Worlds;
 
 namespace Occident.Common.Players;
 
-// Movement stays with Terraria's owning player. Other peers receive the normal
-// player movement packets and a small, server-validated cap animation event.
+// 角色移動由所屬客戶端處理；其他玩家沿用原版移動封包，菌蓋動畫另經伺服器驗證同步。
 public sealed class SporeDreamSpringPlayer : ModPlayer
 {
     private bool holding,landing;
@@ -26,6 +26,7 @@ public sealed class SporeDreamSpringPlayer : ModPlayer
     {
         if(Main.netMode==NetmodeID.MultiplayerClient)NetMessage.SendData(MessageID.PlayerControls,-1,-1,null,Player.whoAmI);
     }
+    // 位移前先攔截落到菌蓋的交叉路徑，壓縮完成後才給向上的初速。
     public override void PreUpdateMovement()
     {
         if(!Owner)return;
@@ -46,10 +47,11 @@ public sealed class SporeDreamSpringPlayer : ModPlayer
         float before=Player.Bottom.Y;
         if(forest.TrySpringLanding(Player.position.X+Player.velocity.X,Player.width,before,before+Player.velocity.Y,
             Player.velocity.Y,out landingRoot,out float top)) {
-            // Resolve the crossing before vanilla movement, even at high fall speed.
+            // 在原版位移前先計算是否穿越菌蓋表面，避免高速下落時直接穿過。
             Player.velocity.Y=Math.Max(0,top-before);landing=true;ResetFall();
         }
     }
+    // 位移後將腳底貼到實際壓縮表面；有實心碰撞或離開菌蓋時取消狀態。
     public override void PostUpdate()
     {
         if(!Owner || !Eligible)return;

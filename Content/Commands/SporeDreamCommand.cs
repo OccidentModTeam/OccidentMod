@@ -1,3 +1,4 @@
+// 查詢目前世界的孢夢之森位置與範圍。
 using Terraria;
 using Terraria.ModLoader;
 using Occident.Common.Worlds;

@@ -1,3 +1,4 @@
+// 建立單一職業分類的清單，處理選取與捲動顯示。
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ using Terraria.UI;
 
 namespace Occident.Common.UI.CharacterCreation;
 
-// Native difficulty-button artwork and text sizing, used as a blue class-name list.
+// 沿用原版難度按鈕的圖樣與文字尺寸，組成職業名稱清單。
 internal sealed class ClassCreationCategory : UIElement
 {
     private const string PromptKey = "Mods.OccidentMod.UI.CharacterCreation.ChooseClass";
@@ -45,13 +46,12 @@ internal sealed class ClassCreationCategory : UIElement
         list.VAlign = 0.5f;
         Append(list);
 
-        // Transparent content area: let the description sit directly on the main panel.
+        // 內容區透明，讓說明直接呈現在主面板上。
         var details = new UIElement();
         details.SetPadding(0f);
         details.Left.Set(4f, 0.4f);
         details.Width.Set(-4f, 0.6f);
-        // The native separator already leaves 3px above this region and 14px below it.
-        // Inset only the top by 11px, keeping the existing bottom edge in place.
+        // 原版分隔線已預留上方 3 像素與下方 14 像素；只將頂端內縮 11 像素，維持底緣位置。
         details.Top.Set(11f, 0f);
         details.Height.Set(-11f, 1f);
         Append(details);
@@ -63,13 +63,13 @@ internal sealed class ClassCreationCategory : UIElement
         descriptionList.Height.Set(-16f, 1f);
         descriptionList.SetPadding(0f);
         details.Append(descriptionList);
-        // Retain the scroll position/controller for wheel input without drawing a scrollbar.
+        // 保留捲動控制與滾輪輸入，但不繪製捲軸。
         scrollbar = new UIScrollbar();
         descriptionList.SetScrollbar(scrollbar);
         description = new UIText(Language.GetText(PromptKey), 1f)
         {
             IsWrapped = true,
-            // Chinese glyphs extend above the normal baseline. Keep them inside the list's clip region.
+            // 中文字形可能超出一般基線，需預留上緣以免被清單裁切。
             PaddingTop = 8f,
             PaddingBottom = 4f
         };
@@ -103,6 +103,7 @@ internal sealed class ClassCreationCategory : UIElement
         base.Update(gameTime);
     }
 
+    // 只更新目前分類的選取標示，實際職業資料仍放在 ClassPlayer。
     private void RefreshSelection()
     {
         ClassType current = player.GetModPlayer<ClassPlayer>().CurrentClass;

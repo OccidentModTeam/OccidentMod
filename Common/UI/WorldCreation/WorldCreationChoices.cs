@@ -1,3 +1,4 @@
+// 管理自訂世界難度、尺寸選項與原版分頁的選取狀態。
 using System;
 using System.Collections.Generic;
 using Occident.Common.Worlds;

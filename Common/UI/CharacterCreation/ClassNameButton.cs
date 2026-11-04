@@ -1,3 +1,4 @@
+// 沿用原版按鈕外觀，顯示職業名稱及選取狀態。
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,7 +16,7 @@ internal sealed class ClassNameButton : UIDifficultyButton
     private readonly Asset<Texture2D> border;
     private readonly Asset<Texture2D> panel;
     private readonly UIText label;
-    // Warm copper stands apart from the surrounding blue without changing the native button shape.
+    // 以暖銅色區分周圍的藍色區塊，保留原版按鈕形狀。
     private static readonly Color IdleFill = new(120, 76, 60);
     private static readonly Color IdleBorder = new(181, 139, 105);
     private static readonly Color HoverFill = new(148, 100, 73);
@@ -41,7 +42,7 @@ internal sealed class ClassNameButton : UIDifficultyButton
         label.TextColor = selected || hovered ? SelectedText : new Color(242, 228, 212);
         base.DrawSelf(spriteBatch);
 
-        // Apply the palette to every state so idle buttons no longer fall back to the native blue.
+        // 所有互動狀態都套用同一色系，避免未選取時回到原版藍色。
         Color fill = selected ? SelectedFill : hovered ? HoverFill : IdleFill;
         Color edge = selected ? SelectedBorder : hovered ? HoverBorder : IdleBorder;
         var area = GetDimensions().ToRectangle();

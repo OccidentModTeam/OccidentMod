@@ -1,3 +1,4 @@
+// 致幻果物品的外觀、動畫與基本數值，沒有永久能力效果。
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -17,6 +18,6 @@ public sealed class PandorasFruit : ModItem
     {
         Item.width=26; Item.height=26; Item.maxStack=Item.CommonMaxStack;
         Item.rare=ItemRarityID.Blue;
-        // Deliberately no use style, permanent buffs, healing or story unlocks.
+        // 此物品刻意不提供使用動作、永久增益、治療或劇情解鎖效果。
     }
 }

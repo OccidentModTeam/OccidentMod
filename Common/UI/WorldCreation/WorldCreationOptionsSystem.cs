@@ -1,3 +1,4 @@
+// 將自訂選項接到原版世界建立流程，確認建立時交接待生成設定。
 using System;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -103,6 +104,7 @@ public sealed class WorldCreationOptionsSystem : ModSystem
         Choices(page).Refresh();
     }
 
+    // 只有確認建立世界時才交接 PendingCreation，避免預覽選項污染別的世界。
     private void Finish(On_UIWorldCreation.orig_FinishCreatingWorld orig, UIWorldCreation page)
     {
         WorldOptionsSystem.PendingCreation = Choices(page).Options;

@@ -1,3 +1,4 @@
+// 接收建立世界時的選項，負責世界資料、標頭與多人同步。
 using System.IO;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -12,6 +13,7 @@ public sealed class WorldOptionsSystem : ModSystem
 
     public override void ClearWorld() => Options = default;
 
+    // 消耗一次待生成設定後立刻清空，下一個世界不沿用上次選擇。
     public override void PreWorldGen()
     {
         Options = PendingCreation ?? default;
@@ -26,6 +28,7 @@ public sealed class WorldOptionsSystem : ModSystem
         writer.Write((byte)Options.Difficulty);
         writer.Write(Options.ExtraLarge);
     }
+    // 封包只接受已定義的難度範圍，非法值退回未指定。
     public override void NetReceive(BinaryReader reader)
     {
         int difficulty = reader.ReadByte();

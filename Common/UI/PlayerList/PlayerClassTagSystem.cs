@@ -1,3 +1,4 @@
+// 在角色列表加入職業標籤，從存檔資料取得名稱並提供未知代號備援。
 #nullable enable
 
 using System;

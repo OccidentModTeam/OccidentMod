@@ -1,3 +1,4 @@
+// 顯示所選職業的名稱、說明與能力雷達圖。
 using System;
 using Microsoft.Xna.Framework;
 using Occident.Common.Classes;
@@ -87,7 +88,7 @@ internal sealed class ClassInfoPanel : UIPanel
             string level = Language.GetTextValue(Prefix + "DifficultyLevels." +
                 (selected ? ClassPreviewData.GetDifficultyName(current) : "NoSelection"));
             difficultyText.SetDifficulty(level, selected ? ClassPreviewData.GetDifficulty(current) : 0);
-            // SetText updates minimum sizes; recalculate positions before drawing the new text.
+            // SetText 會更新元件最小尺寸；換字後重新排版，再進行繪製。
             Recalculate();
         }
     }

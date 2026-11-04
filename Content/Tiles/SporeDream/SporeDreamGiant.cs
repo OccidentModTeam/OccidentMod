@@ -1,3 +1,4 @@
+// 相容既有直柱巨菇物塊，負責素材繪製、截斷與剩餘菇柄框架。
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,8 +13,7 @@ namespace Occident.Content.Tiles.SporeDream;
 public sealed class SporeDreamGiant : ModTile
 {
     private const string Root="OccidentMod/Assets/Sprites/Environment/SporeDreamForest/";
-    // Old single-column saves use X=0/18/36. New paired columns use a distinct
-    // marker, so existing plants remain readable without rewriting the world.
+    // 舊單欄存檔的框架 X 為 0、18、36；雙欄版使用不同標記，無須重寫世界即可辨識舊植株。
     private const int SplitFrameBase=108;
     private const int SingleFrameBase=216;
     private static bool felling;
@@ -35,7 +35,7 @@ public sealed class SporeDreamGiant : ModTile
     {
         Main.tileFrameImportant[Type]=true;Main.tileAxe[Type]=true;Main.tileHammer[Type]=false;Main.tileLavaDeath[Type]=true;
         Main.tileNoFail[Type]=false;Main.tileNoAttach[Type]=true;
-        // Giant mushroom stems use axes, like other tree trunks.
+        // 巨菇柄比照樹幹使用斧頭砍伐。
         MinPick=0;MineResist=1f;
         AddMapEntry(new Color(156,83,83),Language.GetText("Mods.OccidentMod.SporeDream.GiantMushroom"));DustType=DustID.WoodFurniture;
         RegisterItemDrop(ItemID.Mushroom);
@@ -73,8 +73,7 @@ public sealed class SporeDreamGiant : ModTile
         int bodyPixels=(bottom-bodyTop)*16;
         var texture=ModContent.Request<Texture2D>(Root+"amanita_crema_tiles_02").Value;
         bool cutTop=Main.tile[x,top].TileFrameY!=0;
-        // A severed column keeps its tile data: its exposed top is determined
-        // from the remaining trunk, so saves and fog redraws use the same end.
+        // 截斷後保留剩餘物塊資料，由現有菇柄判定斷頂，確保存檔與霧層重繪使用同一端點。
         var cutTexture=cutTop && startPixel<SporeDreamGiantLayout.StemHeight
             ?ModContent.Request<Texture2D>(Root+"amanita_crema_tiles_top").Value:null;
         int cutStyle=SporeDreamGiantLayout.Style(x,top,1,Main.worldID);
@@ -127,6 +126,7 @@ public sealed class SporeDreamGiant : ModTile
         if(!supported) WorldGen.KillTile(i,j);
         return false;
     }
+    // 先尊重原版挖掘成敗與效果判定，再處理相連菇柄，避免重複砍除。
     public override void KillTile(int i,int j,ref bool fail,ref bool effectOnly,ref bool noItem)
     {
         if(fail || effectOnly || felling) return;
@@ -134,8 +134,7 @@ public sealed class SporeDreamGiant : ModTile
         GetStemBounds(i,j,out int top,out _,out _);
         felling=true;
         try {
-            // Break the opposite half at the cut and both columns above, leaving
-            // the supported lower stump intact. No recursive upward felling.
+            // 清除切點另一半與上方雙欄，保留有支撐的下方殘柄，不以遞迴逐格往上砍除。
             for(int y=j;y>=top;y--)for(int side=0;side<width;side++) {
                 if(x+side==i && y==j) continue;
                 Tile t=Main.tile[x+side,y];

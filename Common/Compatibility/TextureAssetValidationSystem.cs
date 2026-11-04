@@ -1,3 +1,4 @@
+// 客戶端載入完成時檢查專案貼圖，錯誤訊息會指出素材路徑。
 using System;
 using System.IO;
 using System.Linq;
@@ -26,7 +27,7 @@ public sealed class TextureAssetValidationSystem : ModSystem
             string assetPath = Mod.Name + "/" + texture;
             try
             {
-                // Also validate assets not yet referenced by implemented items.
+                // 尚未被物品引用的素材也一起載入驗證，讓損壞貼圖提早暴露。
                 _ = ModContent.Request<Texture2D>(assetPath, AssetRequestMode.ImmediateLoad).Value;
             }
             catch (Exception error)
