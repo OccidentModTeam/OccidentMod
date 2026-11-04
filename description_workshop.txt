@@ -1,1 +1,31 @@
-This description will show up on the steam page, check out https://steamcommunity.com/comment/Guide/formattinghelp.
+[h1] OccidentMod - 輓歌 [Beta 0.14] [/h1]
+
+[hr][/hr]
+
+[h2] 🛑 ⚠️ 開發狀態公告 / Development Status Notice ⚠️ 🛑 [/h2]
+
+[b][中文說明][/b]
+感謝您點閱本作品。本模組目前仍處於極早期的開發驗證階段，[b]各項內容與系統均極其不完善。[/b]
+遊玩過程中可能會遇到大量的 Bug、文本缺失、嚴重的平衡性問題，甚至導致遊戲崩潰。
+
+如果您只是想關注本專案，[b]建議您可以先加入「收藏」或點擊「關注」[/b]，等待我們撤除 [Beta] 尾綴或發布正式版本號後，再行考慮下載體驗。
+如果您是想參與底層機制驗證的測試玩家，訂閱前請務必[color=#ff4d4d][b]備份您的重要存檔，並建議使用全新角色與全新世界[/b][/color]進行遊玩。
+
+[b][English Description][/b]
+Thank you for visiting this page. This mod is currently in a very early stage of development and verification, and [b]all content and core systems are highly incomplete.[/b]
+You may encounter numerous bugs, missing text, severe balancing issues, or potential game crashes during gameplay.
+
+If you are here to follow our progress, [b]we recommend adding this mod to your "Favorites" or clicking "Follow" first[/b]. We suggest waiting until we remove the [Beta] tag or release an official version before downloading to play.
+If you are a playtester wishing to help verify core mechanics, please ensure you [color=#ff4d4d][b]back up your save files, and we highly recommend using a brand-new character and world[/b][/color] for testing.
+
+[hr][/hr]
+
+[h2] 📌 模組簡介 / Mod Overview [/h2]
+[b]輓歌 (OccidentMod)[/b] 是一部正在開發中的大型內容擴充模組，旨在嘗試全新態度的戰鬥系統與機制延伸。目前僅供底層框架的機制驗證與內部測試。
+
+[b]OccidentMod (輓歌)[/b] is an upcoming major content expansion mod featuring a brand-new combat system and expanded mechanics. It is currently available for core framework verification and internal testing only.
+
+[hr][/hr]
+
+[h2] 🌐 官方網站 / Official Website [/h2]
+[url=https://miraheze.org]輓歌 Occident 模組維基 / Official Wiki[/url] 
