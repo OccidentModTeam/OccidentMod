@@ -56,7 +56,7 @@ public static class ClassCatalog
         return System.Enum.TryParse(canonicalId, true, out id) && IsValid(id);
     }
 
-    public static bool IsValid(ClassType classId)
+    public static bool IsValid(ClassType classId) 
     {
         return GetCategory(classId) != ClassCategory.None;
     }
