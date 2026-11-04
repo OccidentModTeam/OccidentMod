@@ -1,3 +1,3 @@
-displayName = OccidentMod 挽歌
-author = OoolongTea
-version = 0.1.5
+displayName = OccidentMod 挽歌[Beta 0.14]
+author = Orson
+version = 0.1.6
