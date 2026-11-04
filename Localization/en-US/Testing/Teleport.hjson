@@ -1,0 +1,9 @@
+Mods: {
+	OccidentMod: {
+		TestTeleport: {
+			Button: Spore Dream Forest (Test)
+			Missing: This world has no Spore Dream Forest.
+			NoLanding: No safe landing spot was found in Spore Dream Forest.
+		}
+	}
+}

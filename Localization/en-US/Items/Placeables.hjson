@@ -1,0 +1,10 @@
+Mods: {
+	OccidentMod: {
+		Items: {
+			MushroomInABottle: {
+				DisplayName: Mushroom in a Bottle
+				Tooltip: Place in a suitable house to welcome a Baby Mushroom.
+			}
+		}
+	}
+}

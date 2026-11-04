@@ -1,0 +1,63 @@
+Mods: {
+	OccidentMod: {
+		UI: {
+			CharacterCreation: {
+				PreviewHeading: 角色预览
+				PreviewOn: 已开启
+				PreviewOff: 已关闭
+				RatingsTitle: 能力倾向
+				PreviewWeapon: 武器预览
+				PreviewEquipment: 装备预览
+				StartingStats: 初始配点
+
+				Stats: {
+					Vigor: 生命力
+					Mind: 集中力
+					Endurance: 耐力
+					Strength: 力量
+					Dexterity: 灵巧
+					Intelligence: 智力
+					Faith: 信仰
+					Arcane: 感应
+				}
+
+				ClassType: 所属职业类型：{0}
+				Difficulty: 操作难度：{0}
+
+				DifficultyLevels: {
+					NoSelection: ???
+					Unrated: 未评级
+					Easy: 简单
+					Normal: 普通
+					Hard: 困难
+					Expert: 专家
+					Master: 大师
+				}
+
+				Ratings: {
+					Damage: 输出
+					Survival: 生存
+					Mobility: 机动
+					Control: 控制
+					Support: 辅助
+				}
+
+				ClassInfoTitle: 职业资讯
+				NoClassSelected: 尚未选择职业
+				ChooseClass:
+					'''
+					请选择左侧职业。
+					再次点击即可取消选择。
+
+					未选择：一贫如洗
+					初始配点皆为 0。
+					'''
+				Casual: 休闲
+				CasualDescription: 休闲角色死亡时保留所有金币与物品。
+				Next: 下一步
+				Previous: 上一步
+				ContinueWithoutClass: 不选择就继续
+			}
+		}
+	}
+}

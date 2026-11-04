@@ -1,0 +1,10 @@
+Mods: {
+	OccidentMod: {
+		Buffs: {
+			BabyMushroomBuff: {
+				DisplayName: 菇宝宝
+				Description: 菇寶寶將為你而戰
+			}
+		}
+	}
+}

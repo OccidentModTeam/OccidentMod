@@ -1,0 +1,10 @@
+Mods: {
+	OccidentMod: {
+		Items: {
+			AncientAgaricStaff: {
+				DisplayName: Ancient Agaric Staff
+				Tooltip: Summons a Baby Mushroom that knows no fear.
+			}
+		}
+	}
+}

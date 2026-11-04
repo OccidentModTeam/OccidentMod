@@ -1,4 +1,4 @@
-// 菇寶寶城鎮寵物的住房、離開條件、動畫與腳底對齊。
+﻿// 菇寶寶城鎮寵物的住房、離開條件、動畫與腳底對齊。
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.Xna.Framework;
@@ -49,7 +49,7 @@ public sealed class BabyMushroomTownPet : ModNPC
     }
 
     // FullName 已包含翻譯後的物種名；再給名字會讓中文入住訊息變成「菇寶寶菇寶寶」。
-    public override List<string> SetNPCNameList() => new() { string.Empty };
+    public override List<string> SetNPCNameList()/* tModPorter Suggestion: Return a list of names */ => new() { string.Empty };
     public override bool UsesPartyHat() => false;
     public override bool CanGoToStatue(bool toKingStatue) => false;
     public override bool CanChat() => false;

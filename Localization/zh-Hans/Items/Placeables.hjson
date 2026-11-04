@@ -1,0 +1,10 @@
+Mods: {
+	OccidentMod: {
+		Items: {
+			MushroomInABottle: {
+				DisplayName: 瓶中蘑菇
+				Tooltip: 放在合适的房屋中，迎接菇宝宝入住。
+			}
+		}
+	}
+}

@@ -1,0 +1,10 @@
+Mods: {
+	OccidentMod: {
+		Items: {
+			PandorasFruit: {
+				DisplayName: Pandora's Fruit
+				Tooltip: Grants a minor increase to offensive power for 3 minutes and may attract the attention of a Celestial.
+			}
+		}
+	}
+}

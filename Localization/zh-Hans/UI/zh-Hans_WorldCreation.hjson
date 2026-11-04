@@ -1,0 +1,19 @@
+Mods: {
+	OccidentMod: {
+		UI: {
+			WorldCreation: {
+				ModTab: 模组
+				Vanilla: 原版
+				Longentity: 不朽
+				Elation: 痴狂
+				Finality: 终末
+				ExtraLarge: 特大
+				SelectedDifficulty: 世界难度：
+				LongentityDescription: 没有人可以赦免你的死亡，孩子。
+				ElationDescription: 撕碎你残存的理智……瞧，祂们笑得多开心。
+				FinalityDescription: 已经撕裂的鸣音，还能歌颂些什么呢？
+				ExtraLargeHelp: 建议搭配大型模组使用，否则世界可能会显得过于空旷。
+			}
+		}
+	}
+}

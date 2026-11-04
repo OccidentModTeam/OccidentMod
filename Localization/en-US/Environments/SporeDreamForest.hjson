@@ -1,0 +1,15 @@
+Mods: {
+	OccidentMod: {
+		Biomes: {
+			SporeDreamForest: {
+				DisplayName: Spore Dream Forest
+				TownNPCDialogueName: the Spore Dream Forest
+			}
+		}
+
+		SporeDream: {
+			Grass: Spore Dream Grass
+			GiantMushroom: Giant Mushroom
+		}
+	}
+}

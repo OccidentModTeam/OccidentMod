@@ -1,0 +1,63 @@
+Mods: {
+	OccidentMod: {
+		UI: {
+			CharacterCreation: {
+				PreviewHeading: Character Preview
+				PreviewOn: On
+				PreviewOff: Off
+				RatingsTitle: Aptitudes
+				PreviewWeapon: Weapon Preview
+				PreviewEquipment: Equipment Preview
+				StartingStats: Starting Stats
+
+				Stats: {
+					Vigor: Vigor
+					Mind: Mind
+					Endurance: Endurance
+					Strength: Strength
+					Dexterity: Dexterity
+					Intelligence: Intelligence
+					Faith: Faith
+					Arcane: Arcane
+				}
+
+				ClassType: Class Type: {0}
+				Difficulty: Difficulty: {0}
+
+				DifficultyLevels: {
+					NoSelection: ???
+					Unrated: Unrated
+					Easy: Easy
+					Normal: Normal
+					Hard: Hard
+					Expert: Expert
+					Master: Master
+				}
+
+				Ratings: {
+					Damage: Damage
+					Survival: Survival
+					Mobility: Mobility
+					Control: Control
+					Support: Support
+				}
+
+				ClassInfoTitle: Class Information
+				NoClassSelected: No class selected
+				ChooseClass:
+					'''
+					Choose a class on the left.
+					Click it again to clear your choice.
+
+					No class: Penniless.
+					All starting stats are 0.
+					'''
+				Casual: Casual
+				CasualDescription: Casual characters keep all coins and items upon death.
+				Next: Next
+				Previous: Previous
+				ContinueWithoutClass: Continue without a class
+			}
+		}
+	}
+}

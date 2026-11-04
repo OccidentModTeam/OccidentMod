@@ -1,0 +1,45 @@
+Mods: {
+	OccidentMod: {
+		Keybinds.SporeDreamTeleport.DisplayName: Spore Dream Teleport
+
+		Biomes: {
+			SporeDreamForest: {
+				DisplayName: Spore Dream Forest
+				TownNPCDialogueName: the Spore Dream Forest
+			}
+		}
+
+		Items: {
+			MushroomInABottle: {
+				DisplayName: Mods.OccidentMod.Items.MushroomInABottle.DisplayName
+				Tooltip: ""
+			}
+
+			PandorasFruit: {
+				DisplayName: Mods.OccidentMod.Items.PandorasFruit.DisplayName
+				Tooltip: ""
+			}
+
+			AncientAgaricStaff: {
+				DisplayName: Ancient Agaric Staff
+				Tooltip: ""
+			}
+		}
+
+		SporeDream.Grass: Mods.OccidentMod.SporeDream.Grass
+
+		Buffs: {
+			BabyMushroomBuff: {
+				DisplayName: Baby Mushroom Buff
+				Description: Mods.OccidentMod.Buffs.BabyMushroomBuff.Description
+			}
+		}
+
+		NPCs: {
+			Jormungandr.DisplayName: Jormungandr
+			BabyMushroomTownPet.DisplayName: Baby Mushroom Town Pet
+		}
+
+		Projectiles.BabyMushroomMinion.DisplayName: Baby Mushroom Minion
+	}
+}

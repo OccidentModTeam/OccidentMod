@@ -1,0 +1,10 @@
+Mods: {
+	OccidentMod: {
+		UI: {
+			PlayerClassTag: {
+				NoClass: 一贫如洗
+				UnknownClass: 未知职业
+			}
+		}
+	}
+}

@@ -1,0 +1,10 @@
+Mods: {
+	OccidentMod: {
+		UI: {
+			PlayerClassTag: {
+				NoClass: Penniless
+				UnknownClass: Unknown Class
+			}
+		}
+	}
+}

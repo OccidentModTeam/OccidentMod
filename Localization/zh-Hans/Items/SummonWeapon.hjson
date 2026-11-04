@@ -1,0 +1,10 @@
+Mods: {
+	OccidentMod: {
+		Items: {
+			AncientAgaricStaff: {
+				DisplayName: 古蕈柱杖
+				Tooltip: 召唤不知恐惧为何物的菇宝宝。
+			}
+		}
+	}
+}

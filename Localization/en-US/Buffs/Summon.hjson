@@ -1,0 +1,10 @@
+Mods: {
+	OccidentMod: {
+		Buffs: {
+			BabyMushroomBuff: {
+				DisplayName: Baby Mushroom
+				Description: A Baby Mushroom will fight for you
+			}
+		}
+	}
+}

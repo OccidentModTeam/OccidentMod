@@ -10,9 +10,9 @@ using Terraria.ModLoader;
 namespace Occident.Content.NPCs.Prototypes;
 
 // 這是造型原型：單一無害 NPC 管理可變長度的分節繪圖鏈，不包含首領進度、掉落、地形修改或身體傷害判定。
-public sealed class FungalWyrmPreview : ModNPC
+public sealed class Jormungandr : ModNPC
 {
-    private const string Folder = "OccidentMod/Assets/Sprites/Prototypes/FungalWyrm/";
+    private const string Folder ="OccidentMod/Assets/Sprites/Prototypes/Jormungandr/";
     private static readonly string[] Names = ["Head", "Forebody", "BodyLarge", "BodyMedium", "BodySmall", "TailRoot", "TailFin", "FinNear", "FinFar", "BodyVariant"];
     private static Asset<Texture2D>[] textures;
     private Vector2[] joints;

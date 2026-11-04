@@ -1,0 +1,19 @@
+Mods: {
+	OccidentMod: {
+		UI: {
+			WorldCreation: {
+				ModTab: Modded
+				Vanilla: Vanilla
+				Longentity: Longentity
+				Elation: Elation
+				Finality: Finality
+				ExtraLarge: Extra Large
+				SelectedDifficulty: "Difficulty: "
+				LongentityDescription: No one can absolve your death, child.
+				ElationDescription: Tear your remaining sanity to pieces... Look, see how beautifully they smile.
+				FinalityDescription: A shattered melody—what else is left to praise?
+				ExtraLargeHelp: Large mod compatibility recommended, otherwise the world may feel empty.
+			}
+		}
+	}
+}

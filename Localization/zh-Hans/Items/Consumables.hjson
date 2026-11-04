@@ -1,0 +1,10 @@
+Mods: {
+	OccidentMod: {
+		Items: {
+			PandorasFruit: {
+				DisplayName: 致幻果
+				Tooltip: 给予3分钟小幅攻击力提升，并概率受到天神的注视
+			}
+		}
+	}
+}
