@@ -1,17 +1,26 @@
-// 瓶中蘑菇物品，提供家具放置預設值與合成配方。
+#nullable enable
+
+using OccidentMod.Content.Tiles.Furniture;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Occident.Content.Items.Furniture;
+namespace OccidentMod.Content.Items.Furniture;
 
+/// <summary>
+///     瓶中蘑菇家具物品。
+///     Placeable mushroom-in-a-bottle furniture item.
+/// </summary>
 public sealed class MushroomInABottle : ModItem
 {
-    public override string Texture => "OccidentMod/Assets/Sprites/Item/Furniture/mushroom_in_a_bottle";
+    public override string Texture =>
+        "OccidentMod/Assets/Sprites/Tiles/Furniture/mushroom_in_a_bottle";
 
     public override void SetDefaults()
     {
-        Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.Furniture.MushroomInABottleTile>());
+        Item.DefaultToPlaceableTile(
+            ModContent.TileType<MushroomInABottleTile>());
+
         Item.width = 32;
         Item.height = 32;
         Item.maxStack = Item.CommonMaxStack;

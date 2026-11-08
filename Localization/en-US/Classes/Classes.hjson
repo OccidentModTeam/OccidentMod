@@ -47,6 +47,9 @@ Mods: {
 				DisplayName: Warlock
 				Description: A spellcaster who gathers power through incantation, releasing mighty spells after a lengthy chant to hunt down enemies; or continuously channeling power, gradually strengthening their assault as the chanting continues.
 			}
+                        Bard: {
+                                DisplayName: Bard
+                        }
 
 			Skirmisher: {
 				DisplayName: Skirmisher

@@ -47,6 +47,9 @@ Mods: {
 				DisplayName: 咒术师
 				Description: 以咏唱凝聚咒术的施法者，可经长吟释放强大法术，驱使咒术追猎敌人；亦能持续导引力量，在吟诵中逐步增强攻势。
 			}
+                        Bard: {
+                                DisplayName: 吟游诗人
+                        }
 
 			Skirmisher: {
 				DisplayName: 镖客

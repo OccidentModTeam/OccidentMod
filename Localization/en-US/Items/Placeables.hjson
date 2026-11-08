@@ -5,6 +5,22 @@ Mods: {
 				DisplayName: Mushroom in a Bottle
 				Tooltip: Place in a suitable house to welcome a Baby Mushroom.
 			}
+
+                        SporeDreamCapStyle0: {
+                                DisplayName: Spore Dream Dwarf Mushroom (I)
+                                Tooltip: Can be replanted on suitable ground.
+                        }
+
+                        SporeDreamCapStyle1: {
+                                DisplayName: Spore Dream Dwarf Mushroom (II)
+                                Tooltip: Can be replanted on suitable ground.
+                        }
+
+                        SporeDreamCapStyle2: {
+                                DisplayName: Spore Dream Dwarf Mushroom (III)
+                                Tooltip: Can be replanted on suitable ground.
+                        }
+
 		}
 	}
 }

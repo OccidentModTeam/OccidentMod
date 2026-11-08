@@ -1,17 +1,17 @@
 <Project>
-  <!-- tModLoader 以路徑文字去重，未辨識目錄連結是否指向同一份工程。
-       先驗證實體檔案，再統一用 ModSources 入口打包，避免開發列表重複。 -->
-  <Target Name="BuildMod" AfterTargets="Build" Condition="'$(BuildMod)' == 'true'">
-    <Exec Command="powershell.exe -NoProfile -NonInteractive -File &quot;$(MSBuildThisFileDirectory)Resolve-ModSource.ps1&quot; -ProjectFile &quot;$(MSBuildProjectFullPath)&quot; -SourcesDirectory &quot;$(OccidentModSourcesDirectory)&quot;"
-          ConsoleToMSBuild="true" StandardOutputImportance="Low">
-      <Output TaskParameter="ConsoleOutput" ItemName="_OccidentModSourceOutput" />
-    </Exec>
-    <PropertyGroup>
-      <OccidentCanonicalModSource>@(_OccidentModSourceOutput)</OccidentCanonicalModSource>
-    </PropertyGroup>
-    <Error Condition="'$(OccidentCanonicalModSource)' == ''" Text="Could not resolve the tModLoader source directory." />
-    <Message Importance="High" Text="tModLoader source: $(OccidentCanonicalModSource)" />
-    <Exec Command="dotnet $(tMLServerPath) -build &quot;$(OccidentCanonicalModSource)&quot; -eac &quot;$(TargetPath)&quot; -define &quot;$(DefineConstants)&quot; -unsafe $(AllowUnsafeBlocks) $(ExtraBuildModFlags)"
-          WorkingDirectory="$(tMLSteamPath)" />
-  </Target>
+    <!-- tModLoader 以路徑文字去重，未辨識目錄連結是否指向同一份工程。
+         先驗證實體檔案，再統一用 ModSources 入口打包，避免開發列表重複。 -->
+    <Target Name="BuildMod" AfterTargets="Build" Condition="'$(BuildMod)' == 'true'">
+        <Exec Command="powershell.exe -NoProfile -NonInteractive -File &quot;$(MSBuildThisFileDirectory)Resolve-ModSource.ps1&quot; -ProjectFile &quot;$(MSBuildProjectFullPath)&quot; -SourcesDirectory &quot;$(OccidentModSourcesDirectory)&quot;"
+              ConsoleToMSBuild="true" StandardOutputImportance="Low">
+            <Output TaskParameter="ConsoleOutput" ItemName="_OccidentModSourceOutput"/>
+        </Exec>
+        <PropertyGroup>
+            <OccidentCanonicalModSource>@(_OccidentModSourceOutput)</OccidentCanonicalModSource>
+        </PropertyGroup>
+        <Error Condition="'$(OccidentCanonicalModSource)' == ''" Text="Could not resolve the tModLoader source directory."/>
+        <Message Importance="High" Text="tModLoader source: $(OccidentCanonicalModSource)"/>
+        <Exec Command="dotnet $(tMLServerPath) -build &quot;$(OccidentCanonicalModSource)&quot; -eac &quot;$(TargetPath)&quot; -define &quot;$(DefineConstants)&quot; -unsafe $(AllowUnsafeBlocks) $(ExtraBuildModFlags)"
+              WorkingDirectory="$(tMLSteamPath)"/>
+    </Target>
 </Project>

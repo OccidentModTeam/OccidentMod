@@ -5,6 +5,22 @@ Mods: {
 				DisplayName: 瓶中蘑菇
 				Tooltip: 放在合适的房屋中，迎接菇宝宝入住。
 			}
+
+                        SporeDreamCapStyle0: {
+                                DisplayName: 孢梦矮菇（一）
+                                Tooltip: 可在合适的地面上重新种植。
+                        }
+
+                        SporeDreamCapStyle1: {
+                                DisplayName: 孢梦矮菇（二）
+                                Tooltip: 可在合适的地面上重新种植。
+                        }
+
+                        SporeDreamCapStyle2: {
+                                DisplayName: 孢梦矮菇（三）
+                                Tooltip: 可在合适的地面上重新种植。
+                        }
+
 		}
 	}
 }
