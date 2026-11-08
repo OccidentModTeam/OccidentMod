@@ -3,7 +3,7 @@ Mods: {
 		Buffs: {
 			BabyMushroomBuff: {
 				DisplayName: Baby Mushroom
-				Description: A Baby Mushroom will fight for you
+				Description: A Baby Mushroom is fighting for you.
 			}
 		}
 	}

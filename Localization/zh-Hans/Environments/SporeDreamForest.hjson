@@ -3,7 +3,7 @@ Mods: {
 		Biomes: {
 			SporeDreamForest: {
 				DisplayName: 孢梦之森
-				// TownNPCDialogueName: the Spore Dream Forest
+				TownNPCDialogueName: 孢梦之森
 			}
 		}
 

@@ -37,7 +37,8 @@ OccidentMod 目前仍處於開發與設計階段。以上內容為設計方向�
 
 ## 開發環境
 
-本專案使用 C# 與 tModLoader。從原始碼測試時，請將專案放入 tModLoader 的 `ModSources/OccidentMod` 資料夾，再透過遊戲內的模組原始碼介面建置並重新載入。
+本專案使用 C# 與 tModLoader。從原始碼測試時，請將專案放入 tModLoader 的 `ModSources/OccidentMod`
+資料夾，再透過遊戲內的模組原始碼介面建置並重新載入。
 
 目前耐力 HUD 支援原版水平條資源樣式；測試時請在設定中選擇水平條。
 
@@ -49,4 +50,5 @@ Orson｜茶茶（OolongTeaOWO）
 
 ## 授權
 
-本專案的原創程式碼以 [MIT License](LICENSE) 授權。第三方素材（包含 Terraria 原版及其衍生素材）的權利歸各自權利人所有，不因本專案的 MIT 授權而改變。
+本專案的原創程式碼以 [MIT License](LICENSE) 授權。第三方素材（包含 Terraria 原版及其衍生素材）的權利歸各自權利人所有，不因本專案的
+MIT 授權而改變。

@@ -1,0 +1,10 @@
+Mods: {
+    OccidentMod: {
+        Biomes: {
+            SporeDreamForestBiome: {
+                DisplayName: 孢梦之森
+                TownNPCDialogueName: 孢梦之森
+            }
+        }
+    }
+}

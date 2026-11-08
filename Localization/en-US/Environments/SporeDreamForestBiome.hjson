@@ -1,0 +1,10 @@
+Mods: {
+    OccidentMod: {
+        Biomes: {
+            SporeDreamForestBiome: {
+                DisplayName: Spore Dream Forest
+                TownNPCDialogueName: the Spore Dream Forest
+            }
+        }
+    }
+}

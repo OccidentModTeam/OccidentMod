@@ -1,13 +1,14 @@
-// 模組主入口；多人訊息交由 PacketRouter 統一分派。
-using System.IO;
+﻿using System.IO;
+using OccidentMod.Networking;
 using Terraria.ModLoader;
-using Occident.Common.Networking;
 
-namespace Occident
+namespace Occident;
+
+public sealed class Occident : Mod
 {
-	public class Occident : Mod
-	{
-		public override void HandlePacket(BinaryReader reader, int whoAmI)
-			=> PacketRouter.Receive(this, reader, whoAmI);
-	}
+    // Route incoming packets through the refactored networking system.
+    public override void HandlePacket(BinaryReader reader, int whoAmI)
+    {
+        PacketRouter.Receive(this, reader, whoAmI);
+    }
 }
