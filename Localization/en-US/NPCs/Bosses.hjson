@@ -1,9 +1,0 @@
-Mods: {
-    OccidentMod: {
-        NPCs: {
-            Jormungandr: {
-                DisplayName: Jormungandr
-            }
-        }
-    }
-}

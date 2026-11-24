@@ -1,12 +1,13 @@
-# 編譯產物與已打包的模組；原始碼、正式素材及 .build 腳本仍需納入版本控制。
+
+# 編譯產物與已打包的模組
+# 原始碼、正式素材及建置腳本仍需納入版本控制
 bin/
 obj/
 *.tmod
 *.pdb
 *.mdb
-*.tmod.bak
 
-# 本機編輯器與工作區設定。
+# 本機編輯器與工作區設定
 .vs/
 .vscode/
 .idea/
@@ -15,7 +16,7 @@ obj/
 *.userosscache
 *.sln.docstates
 
-# 暫存、當機傾印及編輯器殘留。
+# 暫存、當機傾印及編輯器殘留
 *.log
 *.tmp
 *.temp
@@ -30,7 +31,8 @@ obj/
 __pycache__/
 *.py[cod]
 
-# 本機憑證與機密設定；範例檔可追蹤，但不得填入真實金鑰。
+# 本機憑證與機密設定
+# 範例檔可追蹤，但不得填入真實金鑰
 .env
 .env.*
 !.env.example
@@ -49,13 +51,14 @@ credentials.json
 credentials.*.json
 *.local.json
 
-# 作業系統產生的中繼檔案。
+# 作業系統產生的中繼檔案
 Thumbs.db
 Desktop.ini
 .DS_Store
 *.lnk
 
-# 本機產物與歷史備份；不忽略正式 Assets 內的圖片與音效。
+# 本機產物與歷史備份
+# 不忽略正式 Assets 內的圖片與音效
 output/
 .codex/
 Backups/
@@ -69,7 +72,8 @@ backups/
 /*.dll
 /*.exe
 
-# 放在專案根目錄的遊戲執行資料，避免誤排除 Common/Worlds 與 Common/Players。
+# 專案根目錄的遊戲執行資料
+# 不誤排除其他路徑下的同名資料夾
 /SaveData/
 /Players/
 /Worlds/
@@ -83,7 +87,8 @@ backups/
 *.wld
 *.twld
 
-# 本機測試結果與工具環境；相依套件宣告及鎖定檔仍可追蹤。
+# 本機測試結果與工具環境
+# 相依套件宣告及鎖定檔仍可追蹤
 TestResults/
 coverage/
 *.coverage

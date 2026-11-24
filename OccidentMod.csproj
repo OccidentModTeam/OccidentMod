@@ -12,10 +12,33 @@
     <PropertyGroup>
 
     </PropertyGroup>
+    <ItemGroup>
+      <Folder Include="Assets\UI\OriginPage\" />
+      <Folder Include="Content\Buffs\" />
+      <Folder Include="Content\Items\" />
+      <Folder Include="Content\NPCs\Boosses\" />
+      <Folder Include="Content\Tiles\" />
+      <Folder Include="Content\Walls\" />
+      <Folder Include="Core\Contracts\" />
+      <Folder Include="Core\Events\" />
+      <Folder Include="Core\Utilities\" />
+      <Folder Include="Features\BoosMechanics\" />
+      <Folder Include="Features\Character\Abilities\" />
+      <Folder Include="Features\Character\Attributes\" />
+      <Folder Include="Features\Character\Progression\" />
+      <Folder Include="Features\Loot\" />
+      <Folder Include="Features\World\" />
+      <Folder Include="Integration\ModSupport\" />
+      <Folder Include="Integration\TModLoader\NPCs\" />
+      <Folder Include="Integration\TModLoader\World\" />
+      <Folder Include="Networking\Handlers\" />
+      <Folder Include="Networking\Packets\" />
+      <Folder Include="Networking\Protocol\" />
+      <Folder Include="Presentation\Particles\" />
+      <Folder Include="Presentation\Rendering\" />
+      <Folder Include="Presentation\UI\" />
+    </ItemGroup>
 
     <!-- 額外組件參考；目前由 tModLoader 共用設定提供。 -->
-    <ItemGroup>
-
-    </ItemGroup>
 
 </Project>
