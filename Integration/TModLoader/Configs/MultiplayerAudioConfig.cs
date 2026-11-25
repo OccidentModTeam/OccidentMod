@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Terraria.ModLoader.Config;
 
-namespace OccidentMod.Integration.TModLoader.Configs;
+namespace VesperMod.Integration.TModLoader.Configs;
 
 public enum AudioProfile
 {

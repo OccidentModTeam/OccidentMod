@@ -1,4 +1,4 @@
-namespace OccidentMod.Features.Character.Classes.Definitions;
+namespace VesperMod.Features.Character.Classes.Definitions;
 
 /// <summary>
 /// 定义镖客的职业标识、本地化索引及显示顺序。
@@ -12,7 +12,7 @@ public sealed class ThrowerDefinition : ClassDefinition
     public override string Id => "Thrower";
 
     public override string DisplayNameKey =>
-        "Mods.OccidentMod.Classes.Thrower.DisplayName";
+        "Mods.VesperMod.Classes.Thrower.DisplayName";
 
     public override int SortOrder => 60;
 }

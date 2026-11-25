@@ -1,7 +1,7 @@
 #nullable enable
 using Terraria.ModLoader;
 
-namespace OccidentMod.Features.Character.Classes;
+namespace VesperMod.Features.Character.Classes;
 
 /// <summary>
 /// 管理职业与原版基础伤害类型的对应关系。

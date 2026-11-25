@@ -1,12 +1,12 @@
 using System;
 using Microsoft.Xna.Framework;
-using OccidentMod.Content.Mounts;
-using OccidentMod.Networking;
-using OccidentMod.Presentation.Rendering;
+using VesperMod.Content.Mounts;
+using VesperMod.Networking;
+using VesperMod.Presentation.Rendering;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace OccidentMod.Integration.TModLoader.Players;
+namespace VesperMod.Integration.TModLoader.Players;
 
 public sealed class PokaRider : ModPlayer
 {

@@ -1,10 +1,10 @@
 using System;
 using Microsoft.Xna.Framework;
-using OccidentMod.Content.Mounts;
+using VesperMod.Content.Mounts;
 using Terraria;
 using Terraria.ID;
 
-namespace OccidentMod.Integration.TModLoader.Players;
+namespace VesperMod.Integration.TModLoader.Players;
 
 internal static class PokaBuoyancy
 {

@@ -1,12 +1,12 @@
 using System;
 using Microsoft.Xna.Framework;
-using OccidentMod.Integration.TModLoader.Players;
-using OccidentMod.Presentation.UI;
+using VesperMod.Integration.TModLoader.Players;
+using VesperMod.Presentation.UI;
 using Terraria;
 using Terraria.GameContent.UI.ResourceSets;
 using Terraria.ModLoader;
 
-namespace OccidentMod.Integration.TModLoader.UI;
+namespace VesperMod.Integration.TModLoader.UI;
 
 [Autoload(Side = ModSide.Client)]
 internal sealed class HorizontalResourceOverlay : ModResourceOverlay

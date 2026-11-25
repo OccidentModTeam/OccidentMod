@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace OccidentMod.Presentation.UI;
+namespace VesperMod.Presentation.UI;
 
 internal sealed class HotbarHudStack(Point firstPosition)
 {

@@ -3,7 +3,7 @@ using MonoMod.Cil;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace OccidentMod.Integration.TModLoader.Players;
+namespace VesperMod.Integration.TModLoader.Players;
 
 public sealed class FlightRecoveryPlayer : ModPlayer
 {

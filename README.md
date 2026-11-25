@@ -1,11 +1,11 @@
 
-# OccidentMod — 輓歌
+# VesperMod — 輓歌
 
 **繁體中文** · [简体中文](README.zh-CN.md) · [English](README.en.md)
 
 > **讓戰鬥更有深度，讓探索重新充滿未知。**
 
-《輓歌》（OccidentMod）是一項正在開發中的 Terraria 大型內容擴充計畫。我們希望保留原版自由探索的精神，同時重新思考職業、武器、飾品、坐騎與世界環境之間的關係。
+《輓歌》（VesperMod）是一項正在開發中的 Terraria 大型內容擴充計畫。我們希望保留原版自由探索的精神，同時重新思考職業、武器、飾品、坐騎與世界環境之間的關係。
 
 我們追求的不只是更多裝備與 Boss，而是讓每種玩法都有值得學習的機制，讓玩家能自由嘗試搭配，並在熟悉的世界中持續發現新事物。
 
@@ -28,13 +28,13 @@ Beta 0.2.1 包含閃避翻滾、職業起源頁、Poka 坐騎及高瞰者。蘑�
 
 ## 開發與原始碼測試
 
-本專案使用 **C#** 與 **tModLoader**。如需從原始碼建置，請將專案放入 tModLoader 的 `ModSources/OccidentMod` 資料夾，再透過遊戲內的模組原始碼介面建置並重新載入。
+本專案使用 **C#** 與 **tModLoader**。如需從原始碼建置，請將專案放入 tModLoader 的 `ModSources/VesperMod` 資料夾，再透過遊戲內的模組原始碼介面建置並重新載入。
 
 ## 作者與連結
 
 Orson｜茶茶（OolongTeaOWO）
 
-[GitHub](https://github.com/OolongTeaOWO/OccidentMod) · [Bluesky](https://bsky.app/profile/o-olong-tea.bsky.social)
+[GitHub](https://github.com/OccidentModTeam/VesperMod) · [Bluesky](https://bsky.app/profile/o-olong-tea.bsky.social)
 
 ## 授權
 

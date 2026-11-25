@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria.ModLoader;
 
-namespace OccidentMod.Presentation.UI;
+namespace VesperMod.Presentation.UI;
 
 internal sealed class EnergyBar
 {

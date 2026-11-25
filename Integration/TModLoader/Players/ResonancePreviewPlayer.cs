@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace OccidentMod.Integration.TModLoader.Players;
+namespace VesperMod.Integration.TModLoader.Players;
 
 internal sealed class ResonancePreviewPlayer : ModPlayer
 {

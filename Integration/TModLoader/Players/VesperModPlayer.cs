@@ -1,9 +1,9 @@
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace OccidentMod.Integration.TModLoader.Players;
+namespace VesperMod.Integration.TModLoader.Players;
 
-public class OccidentModPlayer : ModPlayer
+public class VesperModPlayer : ModPlayer
 {
     public string SelectedClassId { get; private set; } = "";
 

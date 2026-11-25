@@ -3,7 +3,7 @@
 
 using System;
 
-namespace OccidentMod.Features.Character.Classes;
+namespace VesperMod.Features.Character.Classes;
 
 /// <summary>
 ///

@@ -1,4 +1,4 @@
-# 《輓歌》Occident — Beta v0.2.1
+# 《輓歌》Vesper — Beta v0.2.1
 **玩家動作、職業介面與新內容 / Player Movement, Class Interface, and New Content**
 
 ## 繁體中文
@@ -55,7 +55,7 @@
 
 ---
 
-# 《輓歌》Occident — Beta v0.2.0
+# 《輓歌》Vesper — Beta v0.2.0
 
 **大型核心架構重構 / Major Core Architecture Refactoring**
 

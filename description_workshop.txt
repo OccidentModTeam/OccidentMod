@@ -1,4 +1,4 @@
-[h1]OccidentMod - 輓歌 [Beta 0.2.1][/h1]
+[h1]VesperMod - 輓歌 [Beta 0.2.2.1][/h1]
 
 [hr][/hr]
 
@@ -18,7 +18,7 @@ We recommend following or favoriting the mod for future updates. If you wish to 
 
 [hr][/hr]
 
-[h2]🌌 關於《輓歌》 / About OccidentMod[/h2]
+[h2]🌌 關於《輓歌》 / About VesperMod[/h2]
 
 [b]我們希望讓 Terraria 的戰鬥更有深度，讓探索重新充滿未知。[/b]
 
@@ -30,7 +30,7 @@ We recommend following or favoriting the mod for future updates. If you wish to 
 
 [b]Our goal is to make Terraria's combat more engaging and its world worth exploring again.[/b]
 
-OccidentMod is an ambitious content expansion project exploring new possibilities for classes, weapons, accessories, mounts, and environments.
+VesperMod is an ambitious content expansion project exploring new possibilities for classes, weapons, accessories, mounts, and environments.
 
 Rather than simply adding more equipment and bosses, we aim to create distinct playstyles, meaningful active abilities, environments filled with discoveries, and challenging encounters built around mechanics rather than inflated stats.
 
@@ -53,7 +53,7 @@ This build adds dodge rolls, the Poka mount, and the Highwatcher in the Crimson,
 [h2]🌐 官方連結 / Official Links[/h2]
 
 [b]GitHub / Source Code[/b]
-https://github.com/OolongTeaOWO/OccidentMod
+https://github.com/OccidentModTeam/VesperMod
 
 [b]Bluesky / Social Updates[/b]
 https://bsky.app/profile/o-olong-tea.bsky.social

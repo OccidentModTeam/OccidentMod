@@ -1,9 +1,9 @@
 #nullable enable
 
-using OccidentMod.Features.Character.Attributes;
+using VesperMod.Features.Character.Attributes;
 using Terraria.ModLoader;
 
-namespace OccidentMod.Integration.TModLoader.Players;
+namespace VesperMod.Integration.TModLoader.Players;
 
 public sealed class StaminaPlayer : ModPlayer
 {

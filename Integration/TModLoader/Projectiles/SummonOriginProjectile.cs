@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace OccidentMod.Integration.TModLoader.Projectiles;
+namespace VesperMod.Integration.TModLoader.Projectiles;
 
 /// <summary>
 ///

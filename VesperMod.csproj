@@ -2,12 +2,12 @@
 
     <!-- 先載入 tModLoader 預設，再以專案內的 Windows 規則統一路徑。 -->
     <Import Project="..\tModLoader.targets"/>
-    <Import Project=".build\Occident.Windows.targets" Condition="'$(OS)' == 'Windows_NT'"/>
+    <Import Project=".build\Vesper.Windows.targets" Condition="'$(OS)' == 'Windows_NT'"/>
 
-    <!-- 根命名空間與套件名稱分開保留，避免破壞既有內容與存檔識別。 -->
+    <!-- 命名空間、組件名稱和模組來源目錄使用相同識別。 -->
     <PropertyGroup>
-        <RootNamespace>OccidentMod</RootNamespace>
-        <AssemblyName>OccidentMod</AssemblyName>
+        <RootNamespace>VesperMod</RootNamespace>
+        <AssemblyName>VesperMod</AssemblyName>
     </PropertyGroup>
     <PropertyGroup>
 

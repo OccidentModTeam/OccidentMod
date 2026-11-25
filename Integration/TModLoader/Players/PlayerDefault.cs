@@ -2,9 +2,9 @@
 #nullable enable
 
 using Terraria;
-using OccidentMod.Integration.TModLoader.Projectiles;
+using VesperMod.Integration.TModLoader.Projectiles;
 
-namespace OccidentMod.Integration.TModLoader.Players;
+namespace VesperMod.Integration.TModLoader.Players;
 
 /// <summary>
 ///

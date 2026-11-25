@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel;
 using Terraria.ModLoader.Config;
 
-namespace OccidentMod.Integration.TModLoader.Configs;
+namespace VesperMod.Integration.TModLoader.Configs;
 
 /// <summary>調整高瞰者的攻擊。預設值可在此修改，遊戲內模組設定可覆寫。</summary>
 public sealed class ArticulatedBipedConfig : ModConfig

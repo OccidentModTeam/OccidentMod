@@ -6,9 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.Xna.Framework;
-using OccidentMod.Features.Character.Attributes;
-using OccidentMod.Integration.TModLoader.Players;
-using OccidentMod.Networking;
+using VesperMod.Features.Character.Attributes;
+using VesperMod.Integration.TModLoader.Players;
+using VesperMod.Networking;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameInput;
@@ -26,7 +26,7 @@ namespace Microsoft.Xna.Framework {
 namespace Terraria.ID { public static class NetmodeID { public const int SinglePlayer=0, MultiplayerClient=1, Server=2; } }
 namespace Terraria.GameInput { public sealed class TriggersSet { public bool Left, Right; } }
 namespace Terraria.DataStructures { public struct PlayerDrawSet { public bool headOnlyRender; public Vector2 rotationOrigin, Position; public float rotation; } }
-namespace OccidentMod { public static class OccidentMod { public static ModKeybind RollKey = new(); } }
+namespace VesperMod { public static class VesperMod { public static ModKeybind RollKey = new(); } }
 namespace Terraria {
     public static class Main {
         public static int netMode, myPlayer, maxPlayers=2;

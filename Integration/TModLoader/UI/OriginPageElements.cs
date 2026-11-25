@@ -5,7 +5,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
-namespace OccidentMod.Integration.TModLoader.UI;
+namespace VesperMod.Integration.TModLoader.UI;
 
     internal sealed class OriginClassPicker : UIElement
     {

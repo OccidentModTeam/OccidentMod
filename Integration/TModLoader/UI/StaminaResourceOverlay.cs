@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.GameContent.UI.ResourceSets;
 using Terraria.ModLoader;
 
-namespace OccidentMod.Integration.TModLoader.UI;
+namespace VesperMod.Integration.TModLoader.UI;
 
 [Autoload(Side = ModSide.Client)]
 internal sealed class StaminaResourceOverlay : ModResourceOverlay

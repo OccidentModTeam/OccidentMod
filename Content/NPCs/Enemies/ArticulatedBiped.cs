@@ -1,15 +1,15 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using OccidentMod.Content.Projectiles.Enemies;
-using OccidentMod.Integration.TModLoader.Configs;
-using OccidentMod.Presentation.Audio;
-using OccidentMod.Presentation.Rendering;
+using VesperMod.Content.Projectiles.Enemies;
+using VesperMod.Integration.TModLoader.Configs;
+using VesperMod.Presentation.Audio;
+using VesperMod.Presentation.Rendering;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace OccidentMod.Content.NPCs.Enemies;
+namespace VesperMod.Content.NPCs.Enemies;
 
 public sealed class ArticulatedBiped : ModNPC
 {

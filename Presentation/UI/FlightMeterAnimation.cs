@@ -1,6 +1,6 @@
 using System;
 
-namespace OccidentMod.Presentation.UI;
+namespace VesperMod.Presentation.UI;
 
 internal sealed class FlightMeterAnimation
 {

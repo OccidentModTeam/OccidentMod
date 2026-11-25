@@ -1,4 +1,4 @@
-namespace OccidentMod.Features.Character.Classes.Definitions;
+namespace VesperMod.Features.Character.Classes.Definitions;
 
 /// <summary>
 /// 定义吟游诗人的职业标识、本地化索引及显示顺序。
@@ -12,7 +12,7 @@ public sealed class BardDefinition : ClassDefinition
     public override string Id => "Bard";
 
     public override string DisplayNameKey =>
-        "Mods.OccidentMod.Classes.Bard.DisplayName";
+        "Mods.VesperMod.Classes.Bard.DisplayName";
 
     public override int SortOrder => 30;
 }

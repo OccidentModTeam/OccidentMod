@@ -1,12 +1,12 @@
-using OccidentMod.Features.Character.Classes;
-using OccidentMod.Networking;
+using VesperMod.Features.Character.Classes;
+using VesperMod.Networking;
 using Terraria;
 using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace OccidentMod.Integration.TModLoader;
+namespace VesperMod.Integration.TModLoader;
 
 /// <summary>Owns the player's potential state and passive charge and release timing.</summary>
 public sealed class PotentialChargePlayer : ModPlayer
@@ -57,7 +57,7 @@ public sealed class PotentialChargePlayer : ModPlayer
 
     public override void ProcessTriggers(TriggersSet triggersSet)
     {
-        if (global::OccidentMod.OccidentMod.ReleasePotentialKey?.JustPressed != true ||
+        if (global::VesperMod.VesperMod.ReleasePotentialKey?.JustPressed != true ||
             !Potential.IsFull || Potential.IsActive || Player.dead || Player.ghost)
         {
             return;

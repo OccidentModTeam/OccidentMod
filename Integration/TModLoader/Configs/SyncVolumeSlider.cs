@@ -5,7 +5,7 @@ using Terraria.GameInput;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config.UI;
 
-namespace OccidentMod.Integration.TModLoader.Configs;
+namespace VesperMod.Integration.TModLoader.Configs;
 
 public sealed class SyncVolumeSlider : FloatElement
 {
@@ -25,7 +25,7 @@ public sealed class SyncVolumeSlider : FloatElement
     public override void OnBind()
     {
         base.OnBind();
-        muteIcon = ModContent.Request<Texture2D>("OccidentMod/Assets/UI/Config/MuteSpeaker").Value;
+        muteIcon = ModContent.Request<Texture2D>("VesperMod/Assets/UI/Config/MuteSpeaker").Value;
         TextDisplayFunction = () => $"{Label}  {Proportion:P0}";
         ColorMethod = percent => Color.Lerp(Color.Black, Enabled ? SliderColor : new Color(105, 105, 105), percent);
     }

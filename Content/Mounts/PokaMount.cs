@@ -2,13 +2,13 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using OccidentMod.Content.Buffs;
+using VesperMod.Content.Buffs;
 
-namespace OccidentMod.Content.Mounts;
+namespace VesperMod.Content.Mounts;
 
 public sealed class PokaMount : ModMount
 {
-    internal const string SpritePath = "OccidentMod/Assets/Sprites/NPCs/Prototypes/Poka_";
+    internal const string SpritePath = "VesperMod/Assets/Sprites/NPCs/Prototypes/Poka_";
     internal const int FrameWidth = 27;
     internal const int FrameHeight = 25;
     internal const int WalkFrameCount = 8;

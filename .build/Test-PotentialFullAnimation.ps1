@@ -1,10 +1,10 @@
 param(
-    [string]$AssemblyPath = (Join-Path $PSScriptRoot '../bin/Debug/net8.0/OccidentMod.dll')
+    [string]$AssemblyPath = (Join-Path $PSScriptRoot '../bin/Debug/net8.0/VesperMod.dll')
 )
 
 $ErrorActionPreference = 'Stop'
 $assembly = [Reflection.Assembly]::LoadFrom((Resolve-Path -LiteralPath $AssemblyPath).Path)
-$type = $assembly.GetType('OccidentMod.Presentation.UI.PotentialFullAnimation', $true)
+$type = $assembly.GetType('VesperMod.Presentation.UI.PotentialFullAnimation', $true)
 $animation = [Activator]::CreateInstance($type)
 function Assert-Frame($Expected) {
     if ($Expected -ne $animation.FrameIndex) {
