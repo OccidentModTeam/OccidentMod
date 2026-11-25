@@ -2,13 +2,13 @@
 
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using VesperMod.Integration.TModLoader.Players;
-using VesperMod.Presentation.UI;
+using OccidentMod.Integration.TModLoader.Players;
+using OccidentMod.Presentation.UI;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace VesperMod.Integration.TModLoader.UI;
+namespace OccidentMod.Integration.TModLoader.UI;
 
 [Autoload(Side = ModSide.Client)]
 internal sealed class PotentialHudSystem : ModSystem
@@ -83,7 +83,7 @@ internal sealed class PotentialHudSystem : ModSystem
         if (index >= 0)
         {
             layers.Insert(index + 1, new LegacyGameInterfaceLayer(
-                "VesperMod: Hotbar HUD",
+                "OccidentMod: Hotbar HUD",
                 DrawHotbarHud,
                 InterfaceScaleType.UI));
         }
@@ -92,7 +92,7 @@ internal sealed class PotentialHudSystem : ModSystem
         if (flightIndex >= 0)
         {
             layers.Insert(flightIndex, new LegacyGameInterfaceLayer(
-                "VesperMod: Flight Meter",
+                "OccidentMod: Flight Meter",
                 DrawFlightMeter,
                 InterfaceScaleType.None));
         }

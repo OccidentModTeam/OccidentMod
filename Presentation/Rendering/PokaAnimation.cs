@@ -1,7 +1,7 @@
 using System;
-using VesperMod.Content.Mounts;
+using OccidentMod.Content.Mounts;
 
-namespace VesperMod.Presentation.Rendering;
+namespace OccidentMod.Presentation.Rendering;
 
 internal static class PokaAnimation
 {

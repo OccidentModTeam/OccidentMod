@@ -4,9 +4,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace VesperMod.Integration.TModLoader.Players;
+namespace OccidentMod.Integration.TModLoader.Players;
 
-/// <summary>Appearance switches for the Vesper resource display set.</summary>
+/// <summary>Appearance switches for the Occident resource display set.</summary>
 public sealed class ResourceBarAppearancePlayer : ModPlayer
 {
     internal const byte MessageType = 8;

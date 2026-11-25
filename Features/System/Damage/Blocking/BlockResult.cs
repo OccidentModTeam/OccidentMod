@@ -1,4 +1,4 @@
-namespace VesperMod.Features.System.Damage.Blocking;
+namespace OccidentMod.Features.System.Damage.Blocking;
 
 public readonly record struct BlockResult(
     double InputDamage,

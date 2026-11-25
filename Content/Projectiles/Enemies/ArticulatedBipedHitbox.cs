@@ -1,13 +1,13 @@
 using System;
 using Microsoft.Xna.Framework;
-using VesperMod.Content.NPCs.Enemies;
-using VesperMod.Presentation.Audio;
-using VesperMod.Presentation.Rendering;
+using OccidentMod.Content.NPCs.Enemies;
+using OccidentMod.Presentation.Audio;
+using OccidentMod.Presentation.Rendering;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace VesperMod.Content.Projectiles.Enemies;
+namespace OccidentMod.Content.Projectiles.Enemies;
 
 // Hostile hitboxes use Terraria's normal player immunity and multiplayer damage handling.
 public sealed class ArticulatedBipedHitbox : ModProjectile

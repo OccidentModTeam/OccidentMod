@@ -3,20 +3,20 @@ using ReLogic.Utilities;
 using Terraria;
 using Terraria.Audio;
 
-namespace VesperMod.Presentation.Audio;
+namespace OccidentMod.Presentation.Audio;
 
 internal struct HighwatcherAudio
 {
     private const int HumIntervalTicks = 8 * 60;
 
-    private static readonly SoundStyle MachineHum = new("VesperMod/Assets/Sounds/NPCs/Highwatcher/MachineHum")
+    private static readonly SoundStyle MachineHum = new("OccidentMod/Assets/Sounds/NPCs/Highwatcher/MachineHum")
     {
         Volume = 0.55f,
         MaxInstances = 0,
         PauseBehavior = PauseBehavior.PauseWithGame,
     };
 
-    private static readonly SoundStyle BirdCall = new("VesperMod/Assets/Sounds/NPCs/Highwatcher/BirdCall")
+    private static readonly SoundStyle BirdCall = new("OccidentMod/Assets/Sounds/NPCs/Highwatcher/BirdCall")
     {
         Volume = 0.72f,
         MaxInstances = 0,
@@ -25,7 +25,7 @@ internal struct HighwatcherAudio
 
     private static readonly SoundStyle SummonCry = BirdCall with
     {
-        Identifier = "VesperMod/HighwatcherSummonCry",
+        Identifier = "OccidentMod/HighwatcherSummonCry",
         IsLooped = true,
         Volume = 0.85f,
     };

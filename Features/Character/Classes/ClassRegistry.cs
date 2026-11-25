@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace VesperMod.Features.Character.Classes;
+namespace OccidentMod.Features.Character.Classes;
 
 /// <summary>
 /// 管理所有已注册的职业定义，提供职业注册与查询功能。

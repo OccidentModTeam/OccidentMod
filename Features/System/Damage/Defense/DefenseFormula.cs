@@ -1,8 +1,8 @@
-namespace VesperMod.Features.System.Damage.Defense;
+namespace OccidentMod.Features.System.Damage.Defense;
 
 public enum DefenseFormula
 {
-    Vesper,
+    Occident,
     Vanilla
 }
 

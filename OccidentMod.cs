@@ -1,16 +1,16 @@
 #nullable enable
 
 using System.IO;
-using VesperMod.Features.Character.Classes;
-using VesperMod.Integration.TModLoader.Players;
-using VesperMod.Networking;
+using OccidentMod.Features.Character.Classes;
+using OccidentMod.Integration.TModLoader.Players;
+using OccidentMod.Networking;
 using Microsoft.Xna.Framework.Input;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace VesperMod;
+namespace OccidentMod;
 
-public class VesperMod : Mod
+public class OccidentMod : Mod
 {
     internal static ModKeybind? ReleasePotentialKey { get; private set; }
     internal static ModKeybind? RollKey { get; private set; }

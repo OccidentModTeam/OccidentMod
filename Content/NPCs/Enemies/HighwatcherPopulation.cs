@@ -6,7 +6,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace VesperMod.Content.NPCs.Enemies;
+namespace OccidentMod.Content.NPCs.Enemies;
 
 public sealed class HighwatcherPopulation : ModSystem
 {

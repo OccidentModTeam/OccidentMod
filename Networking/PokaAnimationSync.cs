@@ -1,11 +1,11 @@
 using System.IO;
-using VesperMod.Content.Mounts;
-using VesperMod.Integration.TModLoader.Players;
+using OccidentMod.Content.Mounts;
+using OccidentMod.Integration.TModLoader.Players;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace VesperMod.Networking;
+namespace OccidentMod.Networking;
 
 internal static class PokaAnimationSync
 {

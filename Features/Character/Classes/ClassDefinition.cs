@@ -1,5 +1,5 @@
 #nullable enable
-namespace VesperMod.Features.Character.Classes;
+namespace OccidentMod.Features.Character.Classes;
 
 /// <summary>
 /// 定义职业的基本参数与共用属性

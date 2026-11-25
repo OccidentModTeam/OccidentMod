@@ -9,7 +9,7 @@ using MonoMod.RuntimeDetour;
 using ReLogic.Content;
 using Terraria.ModLoader;
 
-namespace VesperMod.Integration.TModLoader.UI;
+namespace OccidentMod.Integration.TModLoader.UI;
 
 [Autoload(Side = ModSide.Client)]
 internal sealed class UiPixelSampling : ModSystem

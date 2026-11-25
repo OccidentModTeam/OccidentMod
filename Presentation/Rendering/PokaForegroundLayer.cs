@@ -1,14 +1,14 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using VesperMod.Content.Mounts;
-using VesperMod.Integration.TModLoader.Players;
-using VesperMod.Presentation.UI;
+using OccidentMod.Content.Mounts;
+using OccidentMod.Integration.TModLoader.Players;
+using OccidentMod.Presentation.UI;
 using ReLogic.Content;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace VesperMod.Presentation.Rendering;
+namespace OccidentMod.Presentation.Rendering;
 
 [Autoload(Side = ModSide.Client)]
 public sealed class PokaForegroundLayer : PlayerDrawLayer
@@ -30,7 +30,7 @@ public sealed class PokaForegroundLayer : PlayerDrawLayer
         walk = ModContent.Request<Texture2D>(PokaMount.SpritePath + "Walk");
         crouch = ModContent.Request<Texture2D>(PokaMount.SpritePath + "Crouch");
         chargeWalk = ModContent.Request<Texture2D>(PokaMount.SpritePath + "ChargeWalk");
-        const string barPath = "VesperMod/Assets/UI/EnergyBar/ChargeBar_";
+        const string barPath = "OccidentMod/Assets/UI/EnergyBar/ChargeBar_";
         chargeBarFrame = ModContent.Request<Texture2D>(barPath + "Frame");
         chargeBarFill = ModContent.Request<Texture2D>(barPath + "Fill");
         chargeBarGlow = ModContent.Request<Texture2D>(barPath + "FullGlow");

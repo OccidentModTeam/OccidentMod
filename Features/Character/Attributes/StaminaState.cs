@@ -1,6 +1,6 @@
 using System;
 
-namespace VesperMod.Features.Character.Attributes;
+namespace OccidentMod.Features.Character.Attributes;
 
 public sealed class StaminaState
 {

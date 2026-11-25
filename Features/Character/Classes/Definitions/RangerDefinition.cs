@@ -1,4 +1,4 @@
-namespace VesperMod.Features.Character.Classes.Definitions;
+namespace OccidentMod.Features.Character.Classes.Definitions;
 
 /// <summary>
 /// 定义射手的职业标识、本地化索引及显示顺序。
@@ -12,7 +12,7 @@ public sealed class RangerDefinition : ClassDefinition
     public override string Id => "Ranger";
 
     public override string DisplayNameKey =>
-        "Mods.VesperMod.Classes.Ranger.DisplayName";
+        "Mods.OccidentMod.Classes.Ranger.DisplayName";
 
     public override int SortOrder => 50;
 }

@@ -1,8 +1,8 @@
-using VesperMod.Content.Mounts;
+using OccidentMod.Content.Mounts;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace VesperMod.Content.Buffs;
+namespace OccidentMod.Content.Buffs;
 
 public sealed class PokaBuff : ModBuff
 {

@@ -1,8 +1,8 @@
-using VesperMod.Content.Items.Mounts;
+using OccidentMod.Content.Items.Mounts;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace VesperMod.Content.Commands;
+namespace OccidentMod.Content.Commands;
 
 public sealed class PokaCommand : ModCommand
 {

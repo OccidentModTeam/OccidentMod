@@ -28,7 +28,7 @@ If you only want to follow the project, consider favoriting or following the mod
 
 ## Development and source testing
 
-This project uses **C#** and **tModLoader**. To build from source, place the project in tModLoader's `ModSources/VesperMod` directory, then build and reload it through the in-game Mod Sources interface.
+This project uses **C#** and **tModLoader**. To build from source, place the project in tModLoader's `ModSources/OccidentMod` directory, then build and reload it through the in-game Mod Sources interface.
 
 ## Author and links
 

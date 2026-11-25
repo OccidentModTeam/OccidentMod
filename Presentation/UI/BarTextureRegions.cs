@@ -2,7 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace VesperMod.Presentation.UI;
+namespace OccidentMod.Presentation.UI;
 
 internal static class BarTextureRegions
 {

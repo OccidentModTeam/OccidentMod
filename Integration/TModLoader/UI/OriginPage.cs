@@ -14,9 +14,9 @@ using Terraria.GameContent.UI.States;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
-using VesperMod.Integration.TModLoader.Players;
+using OccidentMod.Integration.TModLoader.Players;
 
-namespace VesperMod.Integration.TModLoader.UI;
+namespace OccidentMod.Integration.TModLoader.UI;
 
 /// <summary>
 ///
@@ -36,10 +36,10 @@ namespace VesperMod.Integration.TModLoader.UI;
 public sealed class OriginPage : ModSystem
 {
     private const string LocalizationRoot =
-        "Mods.VesperMod.UI.OriginPage.";
+        "Mods.OccidentMod.UI.OriginPage.";
 
     private const string ClassLocalizationRoot =
-        "Mods.VesperMod.Classes.";
+        "Mods.OccidentMod.Classes.";
 
     private const float MaximumExtraHeight = 220f;
 
@@ -309,7 +309,7 @@ public sealed class OriginPage : ModSystem
         panel.SetPadding(0f);
 
         var classPlayer =
-            player.GetModPlayer<VesperModPlayer>();
+            player.GetModPlayer<OccidentModPlayer>();
 
         var weaponPlayer =
             player.GetModPlayer<OriginWeaponChoicePlayer>();
@@ -345,7 +345,7 @@ public sealed class OriginPage : ModSystem
             button.SetPadding(0f);
 
             var texture = ModContent.Request<Texture2D>(
-                $"VesperMod/Assets/UI/OriginPage/{classId}",
+                $"OccidentMod/Assets/UI/OriginPage/{classId}",
                 ReLogic.Content.AssetRequestMode.ImmediateLoad);
 
             var icon = new UIImage(texture)
@@ -569,7 +569,7 @@ public sealed class OriginPage : ModSystem
     }
 
     private static void RefreshSelection(
-        VesperModPlayer classPlayer,
+        OccidentModPlayer classPlayer,
         OriginWeaponChoicePlayer weaponPlayer,
         UIPanel[] classButtons,
         UIPanel[] weaponButtons,

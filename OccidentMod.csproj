@@ -4,10 +4,10 @@
     <Import Project="..\tModLoader.targets"/>
     <Import Project=".build\Vesper.Windows.targets" Condition="'$(OS)' == 'Windows_NT'"/>
 
-    <!-- 命名空間、組件名稱和模組來源目錄使用相同識別。 -->
+    <!-- 保留原模組識別以讀取既有存檔；遊戲顯示名稱由 build.txt 設定。 -->
     <PropertyGroup>
-        <RootNamespace>VesperMod</RootNamespace>
-        <AssemblyName>VesperMod</AssemblyName>
+        <RootNamespace>OccidentMod</RootNamespace>
+        <AssemblyName>OccidentMod</AssemblyName>
     </PropertyGroup>
     <PropertyGroup>
 

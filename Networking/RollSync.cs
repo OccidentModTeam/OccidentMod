@@ -1,10 +1,10 @@
 using System.IO;
-using VesperMod.Integration.TModLoader.Players;
+using OccidentMod.Integration.TModLoader.Players;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace VesperMod.Networking;
+namespace OccidentMod.Networking;
 
 internal static class RollSync
 {

@@ -1,13 +1,13 @@
-using VesperMod.Content.Mounts;
+using OccidentMod.Content.Mounts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace VesperMod.Content.Items.Mounts;
+namespace OccidentMod.Content.Items.Mounts;
 
 public sealed class PokaWhistle : ModItem
 {
-    public override string Texture => "VesperMod/Assets/Sprites/Items/Mounts/PokaWhistle";
+    public override string Texture => "OccidentMod/Assets/Sprites/Items/Mounts/PokaWhistle";
 
     public override void SetDefaults()
     {

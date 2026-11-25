@@ -1,4 +1,4 @@
-namespace VesperMod.Presentation.UI;
+namespace OccidentMod.Presentation.UI;
 
 internal sealed class ResonanceAnimation
 {

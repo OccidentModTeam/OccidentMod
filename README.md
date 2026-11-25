@@ -28,7 +28,7 @@ Beta 0.2.1 包含閃避翻滾、職業起源頁、Poka 坐騎及高瞰者。蘑�
 
 ## 開發與原始碼測試
 
-本專案使用 **C#** 與 **tModLoader**。如需從原始碼建置，請將專案放入 tModLoader 的 `ModSources/VesperMod` 資料夾，再透過遊戲內的模組原始碼介面建置並重新載入。
+本專案使用 **C#** 與 **tModLoader**。如需從原始碼建置，請將專案放入 tModLoader 的 `ModSources/OccidentMod` 資料夾，再透過遊戲內的模組原始碼介面建置並重新載入。
 
 ## 作者與連結
 

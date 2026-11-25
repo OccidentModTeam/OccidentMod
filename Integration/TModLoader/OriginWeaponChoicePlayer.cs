@@ -3,7 +3,7 @@
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace VesperMod.Integration.TModLoader;
+namespace OccidentMod.Integration.TModLoader;
 
 /// <summary>
 ///

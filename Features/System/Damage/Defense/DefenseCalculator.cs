@@ -1,15 +1,15 @@
 using System;
 
-namespace VesperMod.Features.System.Damage.Defense;
+namespace OccidentMod.Features.System.Damage.Defense;
 
 public static class DefenseCalculator
 {
-    public const double VesperMaximumReduction = 0.82;
-    public const double VesperDefenseScale = 134.0;
+    public const double OccidentMaximumReduction = 0.82;
+    public const double OccidentDefenseScale = 134.0;
 
     /// <summary>Returns the reduction ratio contributed by effective defense.</summary>
-    public static double GetVesperReduction(double effectiveDefense) =>
-        VesperMaximumReduction * (1.0 - Math.Exp(-NormalizeDefense(effectiveDefense) / VesperDefenseScale));
+    public static double GetOccidentReduction(double effectiveDefense) =>
+        OccidentMaximumReduction * (1.0 - Math.Exp(-NormalizeDefense(effectiveDefense) / OccidentDefenseScale));
 
     /// <summary>Returns damage after defense, before final modifiers and integer rounding.</summary>
     /// <param name="incomingDamage">Damage entering the defense calculation.</param>
@@ -27,7 +27,7 @@ public static class DefenseCalculator
 
         return formula switch
         {
-            DefenseFormula.Vesper => incomingDamage * (1.0 - GetVesperReduction(effectiveDefense)),
+            DefenseFormula.Occident => incomingDamage * (1.0 - GetOccidentReduction(effectiveDefense)),
             DefenseFormula.Vanilla => Math.Max(
                 1.0,
                 incomingDamage - NormalizeDefense(effectiveDefense) * GetVanillaEffectiveness(difficulty)),

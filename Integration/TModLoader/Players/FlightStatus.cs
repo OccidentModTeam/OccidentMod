@@ -1,6 +1,6 @@
 using Terraria;
 
-namespace VesperMod.Integration.TModLoader.Players;
+namespace OccidentMod.Integration.TModLoader.Players;
 
 internal readonly record struct FlightStatus(float Remaining, int Maximum, bool IsInfinite)
 {

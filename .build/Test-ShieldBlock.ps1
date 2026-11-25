@@ -1,12 +1,12 @@
 param(
-    [string]$AssemblyPath = (Join-Path $PSScriptRoot '../bin/Debug/net8.0/VesperMod.dll')
+    [string]$AssemblyPath = (Join-Path $PSScriptRoot '../bin/Debug/net8.0/OccidentMod.dll')
 )
 
 $ErrorActionPreference = 'Stop'
 $assembly = [Reflection.Assembly]::LoadFrom((Resolve-Path -LiteralPath $AssemblyPath).Path)
-$shield = $assembly.GetType('VesperMod.Features.System.Damage.Blocking.ShieldBlockCalculator', $true)
-$defense = $assembly.GetType('VesperMod.Features.System.Damage.Defense.DefenseCalculator', $true)
-$formula = $assembly.GetType('VesperMod.Features.System.Damage.Defense.DefenseFormula', $true)
+$shield = $assembly.GetType('OccidentMod.Features.System.Damage.Blocking.ShieldBlockCalculator', $true)
+$defense = $assembly.GetType('OccidentMod.Features.System.Damage.Defense.DefenseCalculator', $true)
+$formula = $assembly.GetType('OccidentMod.Features.System.Damage.Defense.DefenseFormula', $true)
 
 function Assert-BlockResult(
     [string]$Label,

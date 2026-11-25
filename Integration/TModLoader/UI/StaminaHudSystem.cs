@@ -4,14 +4,14 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using MonoMod.Cil;
-using VesperMod.Integration.TModLoader.Players;
-using VesperMod.Presentation.UI;
+using OccidentMod.Integration.TModLoader.Players;
+using OccidentMod.Presentation.UI;
 using Terraria;
 using Terraria.GameContent.UI.ResourceSets;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace VesperMod.Integration.TModLoader.UI;
+namespace OccidentMod.Integration.TModLoader.UI;
 
 [Autoload(Side = ModSide.Client)]
 internal sealed class StaminaHudSystem : ModSystem
@@ -32,7 +32,7 @@ internal sealed class StaminaHudSystem : ModSystem
         if (index >= 0)
         {
             layers.Insert(index + 1, new LegacyGameInterfaceLayer(
-                "VesperMod: Stamina",
+                "OccidentMod: Stamina",
                 DrawStamina,
                 InterfaceScaleType.UI));
         }

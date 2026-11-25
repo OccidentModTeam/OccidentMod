@@ -1,14 +1,14 @@
 using System;
 using Microsoft.Xna.Framework;
-using VesperMod.Features.Character.Attributes;
-using VesperMod.Networking;
+using OccidentMod.Features.Character.Attributes;
+using OccidentMod.Networking;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace VesperMod.Integration.TModLoader.Players;
+namespace OccidentMod.Integration.TModLoader.Players;
 
 internal sealed class DodgeRollPlayer : ModPlayer
 {
@@ -60,7 +60,7 @@ internal sealed class DodgeRollPlayer : ModPlayer
 
     public override void ProcessTriggers(TriggersSet triggersSet)
     {
-        if (VesperMod.RollKey?.JustPressed != true || Main.gameMenu || Main.playerInventory ||
+        if (OccidentMod.RollKey?.JustPressed != true || Main.gameMenu || Main.playerInventory ||
             Main.ingameOptionsWindow || Main.mapFullscreen || Main.drawingPlayerChat ||
             Main.blockInput || Player.mouseInterface || pendingRequest != 0 || !CanStart || Stamina.Current < StaminaCost)
             return;

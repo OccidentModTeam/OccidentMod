@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria.ModLoader;
 
-namespace VesperMod.Presentation.Rendering;
+namespace OccidentMod.Presentation.Rendering;
 
 internal enum BipedMotion
 {
@@ -20,7 +20,7 @@ internal readonly record struct BipedPose(
 
 internal static class ArticulatedBipedRig
 {
-    internal const string AssetPath = "VesperMod/Assets/Sprites/NPCs/Enemies/ArticulatedBiped/";
+    internal const string AssetPath = "OccidentMod/Assets/Sprites/NPCs/Enemies/ArticulatedBiped/";
     internal const float Scale = 2f;
     internal const int StrikeHitStart = 31;
     internal const int StrikeHitEnd = 50;

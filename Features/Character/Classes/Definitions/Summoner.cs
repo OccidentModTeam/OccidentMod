@@ -1,4 +1,4 @@
-namespace VesperMod.Features.Character.Classes.Definitions;
+namespace OccidentMod.Features.Character.Classes.Definitions;
 
 /// <summary>
 /// 定义召唤师的职业标识、本地化索引及显示顺序。
@@ -12,7 +12,7 @@ public sealed class SummonerDefinition : ClassDefinition
     public override string Id => "Summoner";
 
     public override string DisplayNameKey =>
-        "Mods.VesperMod.Classes.Summoner.DisplayName";
+        "Mods.OccidentMod.Classes.Summoner.DisplayName";
 
     public override int SortOrder => 70;
 }

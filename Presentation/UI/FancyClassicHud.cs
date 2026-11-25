@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria.ModLoader;
 
-namespace VesperMod.Presentation.UI;
+namespace OccidentMod.Presentation.UI;
 
 internal sealed class FancyClassicHud
 {

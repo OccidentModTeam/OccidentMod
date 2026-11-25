@@ -1,10 +1,10 @@
 using Microsoft.Xna.Framework;
-using VesperMod.Content.NPCs.Enemies;
+using OccidentMod.Content.NPCs.Enemies;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace VesperMod.Content.Commands;
+namespace OccidentMod.Content.Commands;
 
 public sealed class BipedTestCommand : ModCommand
 {

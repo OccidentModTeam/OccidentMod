@@ -1,15 +1,15 @@
 using Microsoft.Xna.Framework;
-using VesperMod.Integration.TModLoader.Configs;
+using OccidentMod.Integration.TModLoader.Configs;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace VesperMod.Presentation.Audio;
+namespace OccidentMod.Presentation.Audio;
 
 internal static class PokaCallAudio
 {
-    private static readonly SoundStyle Call = new("VesperMod/Assets/Sounds/Mounts/PokaCall")
+    private static readonly SoundStyle Call = new("OccidentMod/Assets/Sounds/Mounts/PokaCall")
     {
         MaxInstances = 1,
     };

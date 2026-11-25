@@ -1,4 +1,4 @@
-namespace VesperMod.Features.Character.Classes.Definitions;
+namespace OccidentMod.Features.Character.Classes.Definitions;
 
 /// <summary>
 /// 定义战士的职业标识、本地化索引及显示顺序。
@@ -12,7 +12,7 @@ public sealed class WarriorDefinition : ClassDefinition
     public override string Id => "Warrior";
 
     public override string DisplayNameKey =>
-        "Mods.VesperMod.Classes.Warrior.DisplayName";
+        "Mods.OccidentMod.Classes.Warrior.DisplayName";
 
     public override int SortOrder => 10;
 }

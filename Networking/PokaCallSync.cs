@@ -1,13 +1,13 @@
 using System;
 using System.IO;
 using Microsoft.Xna.Framework;
-using VesperMod.Content.Mounts;
-using VesperMod.Integration.TModLoader.Players;
-using VesperMod.Presentation.Audio;
+using OccidentMod.Content.Mounts;
+using OccidentMod.Integration.TModLoader.Players;
+using OccidentMod.Presentation.Audio;
 using Terraria;
 using Terraria.ID;
 
-namespace VesperMod.Networking;
+namespace OccidentMod.Networking;
 
 internal static class PokaCallSync
 {

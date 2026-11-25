@@ -11,9 +11,9 @@ $source = foreach ($path in $paths) {
 $imports = @'
 using System;
 using System.IO;
-using VesperMod.Features.Character.Classes;
-using VesperMod.Integration.TModLoader;
-using VesperMod.Networking;
+using OccidentMod.Features.Character.Classes;
+using OccidentMod.Integration.TModLoader;
+using OccidentMod.Networking;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -45,9 +45,9 @@ namespace Terraria
     }
 }
 
-namespace VesperMod
+namespace OccidentMod
 {
-    public class VesperMod
+    public class OccidentMod
     {
         public static ModKeybind ReleasePotentialKey { get; } = new ModKeybind();
     }
@@ -177,7 +177,7 @@ public static class PotentialSyncChecks
         loaded.TryRelease();
         Expect(!loaded.Potential.IsActive, "Partial potential was released.");
         loaded.Potential.Add(100);
-        global::VesperMod.VesperMod.ReleasePotentialKey.JustPressed = true;
+        global::OccidentMod.OccidentMod.ReleasePotentialKey.JustPressed = true;
         loaded.ProcessTriggers(new TriggersSet());
         Expect(loaded.Potential.IsActive && loaded.Potential.Current == 100, "Full release did not start.");
         for (int i = 0; i < 150; i++)
