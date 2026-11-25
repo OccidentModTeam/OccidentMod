@@ -15,7 +15,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using Microsoft.Win32.SafeHandles;
-public static class OccidentPhysicalPath {
+public static class VesperPhysicalPath {
     // 由已開啟的檔案控制代碼取得連結解析後路徑，無須改變目錄結構。
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
     private static extern uint GetFinalPathNameByHandle(
@@ -43,10 +43,10 @@ $sourcesPath = [IO.Path]::GetFullPath($SourcesDirectory)
 $candidate = Join-Path (Join-Path $sourcesPath ([IO.Path]::GetFileName($projectDirectory))) ([IO.Path]::GetFileName($projectPath))
 
 if (Test-Path -LiteralPath $candidate -PathType Leaf) {
-    if (-not [string]::Equals([OccidentPhysicalPath]::Get($projectPath),
-                             [OccidentPhysicalPath]::Get($candidate),
+    if (-not [string]::Equals([VesperPhysicalPath]::Get($projectPath),
+                             [VesperPhysicalPath]::Get($candidate),
                              [StringComparison]::OrdinalIgnoreCase)) {
-        throw 'ModSources contains another checkout with the same name. Build that checkout or set OccidentModSourcesDirectory to the intended tModLoader source root.'
+        throw 'ModSources contains another checkout with the same name. Build that checkout or set VesperModSourcesDirectory to the intended tModLoader source root.'
     }
     $projectDirectory = [IO.Path]::GetDirectoryName($candidate)
 }

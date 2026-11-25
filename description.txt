@@ -1,3 +1,3 @@
-[b]輓歌 (OccidentMod)[/b] 是一部正在開發中的大型內容擴充模組，旨在嘗試全新態度的戰鬥系統與機制延伸。目前僅供底層框架的機制驗證與內部測試。
+[b]輓歌 (VesperMod)[/b] 是一款正在開發中的大型《Terraria》內容擴充模組，旨在保留原版遊戲核心體驗的同時，引入多樣化的職業、獨特的 Boss 機制與全新遊戲內容。目前仍處於早期開發階段。Beta 0.2.1 加入閃避翻滾、Poka 坐騎與高瞰者，並更新職業起源頁。
 
-[b]OccidentMod (輓歌)[/b] is an upcoming major content expansion mod featuring a brand-new combat system and expanded mechanics. It is currently available for core framework verification and internal testing only.
+[b]VesperMod (輓歌)[/b] is a major Terraria content expansion mod currently in development. It aims to preserve the core vanilla experience while introducing diverse classes, unique boss mechanics, and new gameplay content. The mod is still in early development. Beta 0.2.1 adds dodge rolls, the Poka mount, and the Highwatcher, and updates the Origin page.

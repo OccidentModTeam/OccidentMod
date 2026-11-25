@@ -1,3 +1,3 @@
-displayName = OccidentMod 挽歌[Beta 0.2.0]
+displayName = VesperMod 挽歌[Beta 0.2.2.1]
 author = Orson
-version = 0.2.0
+version = 0.2.2.1

@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <!-- 先載入 tModLoader 預設，再以專案內的 Windows 規則統一路徑。 -->
+    <Import Project="..\tModLoader.targets"/>
+    <Import Project=".build\Vesper.Windows.targets" Condition="'$(OS)' == 'Windows_NT'"/>
+
+    <!-- 命名空間、組件名稱和模組來源目錄使用相同識別。 -->
+    <PropertyGroup>
+        <RootNamespace>VesperMod</RootNamespace>
+        <AssemblyName>VesperMod</AssemblyName>
+    </PropertyGroup>
+    <PropertyGroup>
+
+    </PropertyGroup>
+    <ItemGroup>
+      <Folder Include="Assets\UI\OriginPage\" />
+      <Folder Include="Content\Buffs\" />
+      <Folder Include="Content\Items\" />
+      <Folder Include="Content\NPCs\Boosses\" />
+      <Folder Include="Content\Tiles\" />
+      <Folder Include="Content\Walls\" />
+      <Folder Include="Core\Contracts\" />
+      <Folder Include="Core\Events\" />
+      <Folder Include="Core\Utilities\" />
+      <Folder Include="Features\BoosMechanics\" />
+      <Folder Include="Features\Character\Abilities\" />
+      <Folder Include="Features\Character\Attributes\" />
+      <Folder Include="Features\Character\Progression\" />
+      <Folder Include="Features\Loot\" />
+      <Folder Include="Features\World\" />
+      <Folder Include="Integration\ModSupport\" />
+      <Folder Include="Integration\TModLoader\NPCs\" />
+      <Folder Include="Integration\TModLoader\World\" />
+      <Folder Include="Networking\Handlers\" />
+      <Folder Include="Networking\Packets\" />
+      <Folder Include="Networking\Protocol\" />
+      <Folder Include="Presentation\Particles\" />
+      <Folder Include="Presentation\Rendering\" />
+      <Folder Include="Presentation\UI\" />
+    </ItemGroup>
+
+    <!-- 額外組件參考；目前由 tModLoader 共用設定提供。 -->
+
+</Project>

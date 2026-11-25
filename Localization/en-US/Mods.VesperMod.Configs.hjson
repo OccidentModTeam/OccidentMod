@@ -1,0 +1,91 @@
+MultiplayerAudioConfig: {
+	NearbyMountVolumeSlider: {
+		Label: Other Mounts Volume
+		Tooltip: Applies in multiplayer when mount sound sync is enabled.
+	}
+
+	EditingProfile: {
+		Label: Audio Profile
+		Tooltip: Select which volume settings to edit. Save applies both profiles.
+	}
+
+	DisplayName: Multiplayer Audio
+
+	Headers: {
+		Music: Music
+		Sound: Sound Effects
+	}
+
+	BardVolumeSlider: {
+		Label: Bard Music Volume
+		Tooltip: ""
+	}
+
+	MountVolumeSlider: {
+		Label: Own Mount Volume
+		Tooltip: ""
+	}
+
+	SyncBardMusic: {
+		Label: Sync Bard Music in Multiplayer
+		Tooltip: Reserved for future multiplayer music support.
+	}
+
+	SyncMountSounds: {
+		Label: Sync Mount Sounds in Multiplayer
+		Tooltip: Hear calls from nearby mounts. Your own mount has a separate volume.
+	}
+}
+
+AudioProfile: {
+	SinglePlayer: {
+		Label: Single Player
+		Tooltip: ""
+	}
+
+	Multiplayer: {
+		Label: Multiplayer
+		Tooltip: ""
+	}
+
+	Tooltip: ""
+}
+
+ArticulatedBipedConfig: {
+	DisplayName: Highwatcher
+
+	StompRangeTiles: {
+		Label: Stomp Range (Tiles)
+		Tooltip: How far the shock travels to either side of the impact point.
+	}
+
+	StompDamage: {
+		Label: Stomp Damage
+		Tooltip: Base damage dealt by the stomp.
+	}
+
+	HeadStrikeDamage: {
+		Label: Head Strike Damage
+		Tooltip: Base damage dealt by the head during the downswing.
+	}
+
+	StompLongHoldChancePercent: {
+		Label: Long Hold Chance (%)
+		Tooltip: Chance to hold the foot longer, rolled once at the start of each stomp.
+	}
+
+	StompExtraHoldTicks: {
+		Label: Extra Hold (Ticks)
+		Tooltip: Ticks added to the normal raised-foot hold when the long hold is selected.
+	}
+
+	JumpReactionChancePercent: {
+		Label: Jump Counter Chance (%)
+		Tooltip: Chance to use a quick neck strike when the target jumps or is knocked upward.
+	}
+
+	StompHoldTicks: {
+		Label: Raised Foot Hold (Ticks)
+		Tooltip: How long the raised foot is held before the stomp. 60 ticks is roughly one second.
+	}
+}

@@ -1,0 +1,91 @@
+MultiplayerAudioConfig: {
+	NearbyMountVolumeSlider: {
+		Label: 其他玩家的坐骑音量
+		Tooltip: 多人模式下开启坐骑音效同步后生效。
+	}
+
+	EditingProfile: {
+		Label: 当前音量设定
+		Tooltip: 切换要编辑的一套音量。保存时会一起保存单人和多人设定。
+	}
+
+	DisplayName: 多人音效
+
+	Headers: {
+		Music: 音乐
+		Sound: 音效
+	}
+
+	BardVolumeSlider: {
+		Label: 吟游诗人音乐音量
+		// Tooltip: ""
+	}
+
+	MountVolumeSlider: {
+		Label: 自己的坐骑音量
+		// Tooltip: ""
+	}
+
+	SyncBardMusic: {
+		Label: 吟游诗人音乐多人同步
+		Tooltip: 预留设置，吟游诗人音乐同步尚未接入。
+	}
+
+	SyncMountSounds: {
+		Label: 座骑音效多人同步
+		Tooltip: 开启后可听见附近其他玩家的坐骑。自己的坐骑使用独立音量。
+	}
+}
+
+AudioProfile: {
+	SinglePlayer: {
+		Label: 单人
+		// Tooltip: ""
+	}
+
+	Multiplayer: {
+		Label: 多人
+		// Tooltip: ""
+	}
+
+	// Tooltip: ""
+}
+
+ArticulatedBipedConfig: {
+	DisplayName: 高瞰者
+
+	StompRangeTiles: {
+		Label: 震地范围（格）
+		Tooltip: 从落脚点向左右各延伸的格数。
+	}
+
+	StompDamage: {
+		Label: 震地伤害
+		Tooltip: 跺地时的基础伤害。
+	}
+
+	HeadStrikeDamage: {
+		Label: 甩头伤害
+		Tooltip: 头部在下甩过程中碰到玩家时的基础伤害。
+	}
+
+	StompLongHoldChancePercent: {
+		Label: 长停留概率（%）
+		Tooltip: 每次抬脚时抽选一次长停留。
+	}
+
+	StompExtraHoldTicks: {
+		Label: 额外停留（刻）
+		Tooltip: 抽中长停留时，在普通停留时间上加多少刻。
+	}
+
+	JumpReactionChancePercent: {
+		Label: 跳跃反制概率（%）
+		Tooltip: 高瞰者发现目标起跳或被震飞时，改用快速甩头的概率。
+	}
+
+	StompHoldTicks: {
+		Label: 跺地抬脚停留（刻）
+		Tooltip: 脚抬到最高点后停留的时间。60 刻约等于 1 秒。
+	}
+}

@@ -1,64 +1,41 @@
-# OccidentMod
+
+# VesperMod — 輓歌
 
 [繁體中文](README.md) · [简体中文](README.zh-CN.md) · **English**
 
-> **Forge your legend, your way.**
+> **Deeper combat. A world worth exploring again.**
 
-OccidentMod is a Terraria content mod in development, with the long-term ambition of creating an expansive adventure.
-Through combat that rewards observation and timing, alongside varied combinations of weapons, equipment, and builds, it
-aims to let players find their own path through its challenges.
+VesperMod (輓歌) is a large-scale Terraria content expansion project in development. We want to preserve Terraria's spirit of free exploration while rethinking how classes, weapons, accessories, mounts, and environments interact.
 
-## Read the attack. Seize the moment.
+Our goal is not simply to add more equipment and bosses. We want playstyles with mechanics worth learning, room for experimentation, and new discoveries even in a familiar world.
 
-Observe enemy movements, recognize incoming attacks, and decide when to attack, dodge, or defend. Learn when to strike
-and how to exploit openings, making each encounter an opportunity to understand your opponent and sharpen your skills.
+## Design goals
 
-## Experiment with equipment. Develop your own build.
+- **Classes and weapons:** Explore distinctive controls and combat rhythms, encouraging flexible builds rather than differences based only on stats.
+- **Accessories and mounts:** Experiment with active abilities that make equipment and movement meaningful parts of gameplay.
+- **Environments and exploration:** Give players reasons to be curious through new biomes, interactions, and hidden discoveries.
+- **Bosses and challenges:** Focus on understandable attacks, timing, and changing battle conditions instead of simply inflating health pools.
 
-Combine weapons and equipment to suit your preferences and explore what different combinations can offer. Each build is
-intended to have its own strengths, limitations, and rhythm, giving you different ways to approach the same challenge
-and develop a personal fighting style.
-
-## Consistent rules. Meaningful choices.
-
-OccidentMod is built around freedom within a coherent set of rules. Choices come with trade-offs, and power comes at a
-cost. Understanding those rules, making thoughtful equipment choices, and mastering your actions will help you overcome
-challenges.
+These are **development goals**, not a list of features currently implemented.
 
 ## Development status
 
-OccidentMod is still in active development and design. The description above presents the project's intended direction,
-not a list of completed features. Content will be introduced gradually across future versions.
+**VesperMod is in early development and technical testing. It is not yet a complete gameplay experience.** Existing features may contain bugs, missing content, and balance issues, and may be rebuilt or removed as development continues.
 
-Systems currently being implemented and refined include:
+Beta 0.2.1 includes dodge rolls, the Origin page, the Poka mount, and the Highwatcher. The mushroom staff and Baby Mushroom are temporarily removed. The previous Spore Dream Forest has been removed, with a redesigned environment and redrawn textures planned. See the [changelog](CHANGELOG.md).
 
-- Player actions: rolling and crouching.
-- Main-hand and off-hand weapon controls.
-- Equipment display, ready stances, and weapon placement.
-- Stamina consumption for rolling, passive recovery, and a stamina HUD.
-- Character creation for 14 classes, starting stats, and weapon previews.
-- Spore Dream Forest world generation, vegetation, and day/night visuals.
-- Giant mushroom root shapes, height variations, spring caps, and map silhouettes.
-- Mushroom in a Bottle, Baby Mushroom, and Ancient Agaric Staff.
+If you only want to follow the project, consider favoriting or following the mod. If you choose to test it, **back up your saves and use a new character and world**.
 
-These systems are still being tested and adjusted. Values, rules, and presentation may change.
+## Development and source testing
 
-## Development environment
+This project uses **C#** and **tModLoader**. To build from source, place the project in tModLoader's `ModSources/VesperMod` directory, then build and reload it through the in-game Mod Sources interface.
 
-This project uses C# and tModLoader. To test from source, place the project in tModLoader's `ModSources/OccidentMod`
-directory, then build and reload it through the in-game Mod Sources interface.
-
-The stamina HUD currently supports the vanilla horizontal resource bar styles. Select a horizontal bar style in Settings
-when testing.
-
-## Author
+## Author and links
 
 Orson｜茶茶 (OolongTeaOWO)
 
-[GitHub](https://github.com/OolongTeaOWO/OccidentMod) · [Official Wiki](https://occident.miraheze.org) · [Bluesky](https://bsky.app/profile/o-olong-tea.bsky.social)
+[GitHub](https://github.com/OccidentModTeam/VesperMod) · [Bluesky](https://bsky.app/profile/o-olong-tea.bsky.social)
 
 ## License
 
-Original source code in this project is licensed under the [MIT License](LICENSE). Rights to third-party assets,
-including original Terraria assets and derivatives, remain with their respective rights holders and are not changed by
-this project's MIT license.
+Original source code in this project is licensed under the [MIT License](LICENSE). Rights to third-party assets, including original Terraria assets and derivatives, remain with their respective rights holders and are not changed by this project's MIT license.

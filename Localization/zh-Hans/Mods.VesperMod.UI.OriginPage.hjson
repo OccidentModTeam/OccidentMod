@@ -1,0 +1,79 @@
+Title: 选择起源
+Subtitle: 选择你的初始职业，之后仍可自由转职。
+NotSelected: 尚未选择起源
+SelectHint: 请选择上方的一种职业。
+DescriptionHint: 每种职业拥有不同的战斗特色。
+PotentialHint: 每种职业都有独特的潜能机制。
+ChargeTitle: 充能方式
+MottoTitle: 起源箴言
+WeaponTitle: 选择初始武器
+WeaponHint: 二选一，不限制后续武器使用
+WeaponOne: 初始武器方案一
+WeaponTwo: 初始武器方案二
+WeaponUnassigned: 初始武器尚未配置
+
+Classes: {
+	Warrior: {
+		Role: 近战 · 攻防均衡
+		Description: 擅长刀剑、斧与长枪的近身战斗。
+		Potential: 潜能技能效果尚未公布。
+		Charge: 通过主动攻击积累潜能能量。
+		Motto: 让剑锋指引前路，纵使荆棘遍野，亦当无畏前行。
+	}
+
+	Rogue: {
+		Role: 灵巧 · 潜行与匕首
+		Description: 运用潜行与匕首进行灵活作战。
+		Potential: 潜能技能效果尚未公布。
+		Charge: 通过主动攻击积累潜能能量。
+		Motto: 潜行于命运的罅隙，令自诩永恒的诸神，亦畏属于自己的最后一个黎明。
+	}
+
+	Ranger: {
+		Role: 远程 · 弓弩与火器
+		Description: 灵活运用弓弩与枪械进行远程攻击。
+		Potential: 潜能技能效果尚未公布。
+		Charge: 通过主动攻击积累潜能能量。
+		Motto: 让枪火轰鸣，令万箭齐发；以烈火与箭雨，击碎那不堪一击的秩序。
+	}
+
+	Thrower: {
+		Role: 远程 · 投掷专精
+		Description: 专精投掷武器与灵活的战斗节奏。
+		Potential: 潜能技能效果尚未公布。
+		Charge: 通过主动攻击积累潜能能量。
+		Motto: 这一击，必将呼啸千里，踏破云浪；纵是诸神，亦要贯穿其咽喉。
+	}
+
+	Mage: {
+		Role: 魔法 · 法书与法杖
+		Description: 掌握不同施法方式与魔法武器。
+		Potential: 潜能技能效果尚未公布。
+		Charge: 通过主动攻击积累潜能能量。
+		Motto: 聆听群星的低语，追寻万象的根源；以真理之言，叩问诸神。
+	}
+
+	Bard: {
+		Role: 辅助 · 音符与演奏
+		Description: 通过演奏赋予队友增益，并为敌人带来创伤。
+		Potential: 共奏：两把乐器自动演奏，演奏命中视为完美。
+		Charge: 通过音符判定积累潜能能量。
+		Motto: 以旋律织补破碎的苍穹，以乐色谱写万物的终章。
+	}
+
+	Summoner: {
+		Role: 召唤 · 协同作战
+		Description: 指挥召唤物，并亲自参与战斗。
+		Potential: 潜能技能效果尚未公布。
+		Charge: 主要通过召唤物攻击积累潜能能量。
+		Motto: 纵使此世再无祂的容身之处，我亦将僭越天律，引渡祂归来。
+	}
+
+	Artificer: {
+		Role: 部署 · 哨兵专精
+		Description: 利用哨兵与部署装置掌控战场。
+		Potential: 潜能技能效果尚未公布。
+		Charge: 主要通过哨兵攻击积累潜能能量。
+		Motto: 任奇物散尽，佯作俯首之姿；待敌人自诩胜者，方知满地皆是胜利的伏笔。
+	}
+}

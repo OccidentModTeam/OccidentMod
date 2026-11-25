@@ -1,31 +1,59 @@
-[h1] OccidentMod - 輓歌 [Beta 0.14] [/h1]
+[h1]VesperMod - 輓歌 [Beta 0.2.2.1][/h1]
 
 [hr][/hr]
 
-[h2] 🛑 ⚠️ 開發狀態公告 / Development Status Notice ⚠️ 🛑 [/h2]
+[h2]⚠️ 開發狀態 / Development Status[/h2]
 
-[b][中文說明][/b]
-感謝您點閱本作品。本模組目前仍處於極早期的開發驗證階段，[b]各項內容與系統均極其不完善。[/b]
-遊玩過程中可能會遇到大量的 Bug、文本缺失、嚴重的平衡性問題，甚至導致遊戲崩潰。
+本模組目前處於早期開發與技術驗證階段，[b]尚未提供完整遊戲體驗。[/b]
 
-如果您只是想關注本專案，[b]建議您可以先加入「收藏」或點擊「關注」[/b]，等待我們撤除 [Beta] 尾綴或發布正式版本號後，再行考慮下載體驗。
-如果您是想參與底層機制驗證的測試玩家，訂閱前請務必[color=#ff4d4d][b]備份您的重要存檔，並建議使用全新角色與全新世界[/b][/color]進行遊玩。
+現有內容可能存在錯誤、缺失或嚴重的不平衡問題，部分系統也可能在後續版本中重構或移除。
 
-[b][English Description][/b]
-Thank you for visiting this page. This mod is currently in a very early stage of development and verification, and [b]all content and core systems are highly incomplete.[/b]
-You may encounter numerous bugs, missing text, severe balancing issues, or potential game crashes during gameplay.
+建議一般玩家先收藏或關注本模組。若您希望參與測試，請務必[color=#ff4d4d][b]備份存檔，並使用全新角色與世界[/b][/color]。
 
-If you are here to follow our progress, [b]we recommend adding this mod to your "Favorites" or clicking "Follow" first[/b]. We suggest waiting until we remove the [Beta] tag or release an official version before downloading to play.
-If you are a playtester wishing to help verify core mechanics, please ensure you [color=#ff4d4d][b]back up your save files, and we highly recommend using a brand-new character and world[/b][/color] for testing.
+This mod is in early development and technical testing. [b]It is not yet a complete gameplay experience.[/b]
+
+Expect bugs, missing content, balance issues, and potentially major system changes.
+
+We recommend following or favoriting the mod for future updates. If you wish to test the current build, please [color=#ff4d4d][b]back up your saves and use a new character and world[/b][/color].
 
 [hr][/hr]
 
-[h2] 📌 模組簡介 / Mod Overview [/h2]
-[b]輓歌 (OccidentMod)[/b] 是一部正在開發中的大型內容擴充模組，旨在嘗試全新態度的戰鬥系統與機制延伸。目前僅供底層框架的機制驗證與內部測試。
+[h2]🌌 關於《輓歌》 / About VesperMod[/h2]
 
-[b]OccidentMod (輓歌)[/b] is an upcoming major content expansion mod featuring a brand-new combat system and expanded mechanics. It is currently available for core framework verification and internal testing only.
+[b]我們希望讓 Terraria 的戰鬥更有深度，讓探索重新充滿未知。[/b]
+
+《輓歌》是一項大型內容擴充計畫，致力於重新探索職業、武器、飾品、坐騎與世界環境的可能性。
+
+我們追求的不只是更多裝備與 Boss，而是具有獨特玩法的職業、值得主動使用的裝備、充滿秘密的環境，以及依靠機制而非單純堆疊數值構成的挑戰。
+
+[b]我們希望玩家即使多次通關，依然能找到新的玩法與值得探索的事物。[/b]
+
+[b]Our goal is to make Terraria's combat more engaging and its world worth exploring again.[/b]
+
+VesperMod is an ambitious content expansion project exploring new possibilities for classes, weapons, accessories, mounts, and environments.
+
+Rather than simply adding more equipment and bosses, we aim to create distinct playstyles, meaningful active abilities, environments filled with discoveries, and challenging encounters built around mechanics rather than inflated stats.
+
+[b]We want every new playthrough to offer something worth discovering.[/b]
+
+[b]以上為開發願景，並非目前版本已實裝的功能。[/b]
+
+[b]These are development goals, not features currently available in the beta.[/b]
 
 [hr][/hr]
 
-[h2] 🌐 官方網站 / Official Website [/h2]
-[url=https://miraheze.org]輓歌 Occident 模組維基 / Official Wiki[/url] 
+[h2]Beta 0.2.1 更新 / Update[/h2]
+
+本版加入閃避翻滾、Poka 坐騎與猩紅地形敵人高瞰者，並更新職業起源頁及資源介面。蘑菇法杖與小蘑菇暫時移除，既有孢夢森林已移除，環境與貼圖預計重製。
+
+This build adds dodge rolls, the Poka mount, and the Highwatcher in the Crimson, and updates the Origin page and resource displays. The mushroom staff and Baby Mushroom are temporarily removed. The previous Spore Dream Forest has been removed, with a redesigned environment and redrawn textures planned.
+
+[hr][/hr]
+
+[h2]🌐 官方連結 / Official Links[/h2]
+
+[b]GitHub / Source Code[/b]
+https://github.com/OccidentModTeam/VesperMod
+
+[b]Bluesky / Social Updates[/b]
+https://bsky.app/profile/o-olong-tea.bsky.social

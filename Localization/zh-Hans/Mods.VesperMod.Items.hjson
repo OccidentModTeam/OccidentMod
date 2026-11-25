@@ -1,0 +1,8 @@
+PokaWhistle: {
+	DisplayName: 波卡哨
+	Tooltip:
+		'''
+		召唤座骑波卡
+		骑乘时按住跳跃键蓄力，松开后跃起
+		'''
+}

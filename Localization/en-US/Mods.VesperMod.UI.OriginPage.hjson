@@ -1,0 +1,79 @@
+Title: Choose Your Origin
+Subtitle: Choose a starting class. You can switch classes later.
+NotSelected: No Origin Selected
+SelectHint: Select one of the classes above.
+DescriptionHint: Each class offers a different combat style.
+PotentialHint: Each class possesses a unique Potential ability.
+ChargeTitle: Charging Method
+MottoTitle: Origin Motto
+WeaponTitle: Choose Starting Weapon
+WeaponHint: Choose one. Future weapon use is unrestricted.
+WeaponOne: Starting Weapon Option I
+WeaponTwo: Starting Weapon Option II
+WeaponUnassigned: Starting weapons are not yet configured.
+
+Classes: {
+	Warrior: {
+		Role: Melee · Balanced Offense and Defense
+		Description: Excel in close combat with swords, axes, and spears.
+		Potential: Potential ability details are not yet available.
+		Charge: Build Potential energy through active attacks.
+		Motto: Let the blade guide your way; though the path be strewn with thorns, march onward without fear.
+	}
+
+	Rogue: {
+		Role: Agility · Stealth and Daggers
+		Description: Fight with stealth, daggers, and agile tactics.
+		Potential: Potential ability details are not yet available.
+		Charge: Build Potential energy through active attacks.
+		Motto: Slip through the fissures of fate, and teach even those who claim eternity to dread their final dawn.
+	}
+
+	Ranger: {
+		Role: Ranged · Bows and Firearms
+		Description: Fight at range using bows, crossbows, and firearms.
+		Potential: Potential ability details are not yet available.
+		Charge: Build Potential energy through active attacks.
+		Motto: Let gunfire roar and myriad arrows fly; with flame and a storm of arrows, shatter that brittle order.
+	}
+
+	Thrower: {
+		Role: Ranged · Throwing Specialist
+		Description: Specialize in thrown weapons and agile combat.
+		Potential: Potential ability details are not yet available.
+		Charge: Build Potential energy through active attacks.
+		Motto: Let this single throw scream across a thousand miles and tear through the sea of clouds; let it pierce the throats of gods themselves.
+	}
+
+	Mage: {
+		Role: Magic · Spellbooks and Staves
+		Description: Master different casting styles and magical weapons.
+		Potential: Potential ability details are not yet available.
+		Charge: Build Potential energy through active attacks.
+		Motto: Hear the whispers of the stars, seek the origins of all creation; with words of truth, question the gods themselves.
+	}
+
+	Bard: {
+		Role: Support · Music and Performance
+		Description: Empower allies and wound enemies through music.
+		Potential: Ensemble: Two instruments play automatically, and their hits count as perfect.
+		Charge: Build Potential energy through note judgments.
+		Motto: Let melody mend the sundered sky, and the colors of sound compose creation's final requiem.
+	}
+
+	Summoner: {
+		Role: Summoning · Combat Synergy
+		Description: Command minions while actively joining the fight.
+		Potential: Potential ability details are not yet available.
+		Charge: Build Potential energy primarily through minion attacks.
+		Motto: Should this world deny Them a place, even if the gods forbid it, they shall not prevent the promise from being fulfilled.
+	}
+
+	Artificer: {
+		Role: Deployment · Sentry Specialist
+		Description: Control the battlefield with sentries and deployed devices.
+		Potential: Potential ability details are not yet available.
+		Charge: Build Potential energy primarily through sentry attacks.
+		Motto: Let my inventions lie scattered as I feign defeat; when my foes proclaim victory, they shall learn the ground is strewn with the seeds of my triumph.
+	}
+}

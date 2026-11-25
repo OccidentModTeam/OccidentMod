@@ -1,4 +1,61 @@
-# 《輓歌》Occident — Beta v0.2.0
+# 《輓歌》Vesper — Beta v0.2.1
+**玩家動作、職業介面與新內容 / Player Movement, Class Interface, and New Content**
+
+## 繁體中文
+
+### 玩家動作與介面
+
+- 新增消耗耐力的閃避翻滾。基礎耐力為 50，每次翻滾消耗 12。
+- 重做角色建立的起源頁。八個職業分頁顯示，提供職業資訊與起始武器選擇。
+- 新增潛能充滿與釋放的顯示、共鳴預覽及飛行量表，並調整翅膀飛行時間的回復方式。
+- 更新生命、魔力與耐力顯示，以及物品欄、裝備欄和標誌貼圖。
+
+### 新坐騎與敵人
+
+- 新增 Poka 坐騎與召喚哨，支援蓄力跳躍、緩降與水面浮力，並加入坐騎動畫與叫聲。
+- 新增猩紅地形敵人高瞰者。牠會踏出震波、對起跳做出甩頭反擊，並在半血時減傷並呼喚援兵。
+
+### 多人遊玩與設定
+
+- 同步閃避翻滾、潛能、資源條外觀及 Poka 的動作與叫聲。翻滾請求加入重複與過期檢查，避免同一請求重複扣除耐力。
+- 可分別調整單人、多人自己的坐騎及附近玩家坐騎的音量。伺服器可調整高瞰者的攻擊數值與反應機率。
+- 多人遊玩時，伺服器與所有玩家請使用相同版本。
+
+### 暫時移除與內容調整
+
+- 蘑菇法杖（古蕈柱杖）與小蘑菇（菇寶寶）暫時移除，未來可能重新調整後回歸。相關的瓶中蘑菇也自本版移除。
+- 移除目前版本的孢夢森林（孢夢之森）。未來預計以重新設計的環境內容取代，相關貼圖也將重新繪製。
+- 本版移除舊版自訂世界建立選項、超大型世界建立功能及耶夢加德預覽。
+
+## English
+
+### Player Movement and Interface
+
+- Added a stamina-based dodge roll. Base stamina is 50, and each roll costs 12.
+- Rebuilt the Origin page with eight classes across two pages, class details, and starting weapon choices.
+- Added potential charge and release indicators, a resonance preview, and a flight meter. Changed how wing flight time recovers.
+- Updated health, mana, and stamina displays, along with inventory, equipment slot, and logo artwork.
+
+### New Mount and Enemy
+
+- Added the Poka mount and its summoning whistle, with a charged jump, slow fall, buoyancy, new animations, and a mount call.
+- Added the Highwatcher to the Crimson. It creates a stomp shockwave, can counter a player's jump with a head strike, and reduces incoming damage while calling reinforcements at half health.
+
+### Multiplayer and Settings
+
+- Added multiplayer sync for dodge rolls, potential, resource bar appearance, and Poka's animations and call. Duplicate and expired roll requests are checked to prevent a request from spending stamina twice.
+- Added separate mount volume controls for single-player, your own mount in multiplayer, and nearby players' mounts. Servers can tune Highwatcher attacks and reaction chances.
+- Use the same version on the server and all clients.
+
+### Temporary Removals and Content Changes
+
+- Temporarily removed the mushroom staff (Ancient Agaric Staff) and Baby Mushroom. They may return after further adjustments. The related Mushroom in a Bottle was also removed from this build.
+- Removed the current Spore Dream Forest. A redesigned environment is planned to replace it, and its textures will be redrawn.
+- Removed the previous custom world creation options, extra-large world creation, and the Jormungandr preview from this build.
+
+---
+
+# 《輓歌》Vesper — Beta v0.2.0
 
 **大型核心架構重構 / Major Core Architecture Refactoring**
 

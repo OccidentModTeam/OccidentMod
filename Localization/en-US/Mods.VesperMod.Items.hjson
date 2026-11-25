@@ -1,0 +1,8 @@
+PokaWhistle: {
+	DisplayName: Poka Whistle
+	Tooltip:
+		'''
+		Summons Poka
+		While riding, hold Jump to charge and release to leap
+		'''
+}
